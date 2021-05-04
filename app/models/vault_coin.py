@@ -1,5 +1,6 @@
 from .db import db
 
+
 class VaultCoin(db.Model):
     __tablename__= 'vault_coins'
 
