@@ -2,7 +2,7 @@ from .db import db
 
 
 class Coin(db.Model):
-    __tablename__='coins'
+    __tablename__ = 'coins'
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100), nullable = False)
@@ -12,20 +12,24 @@ class Coin(db.Model):
     maxsupply = db.Column(db.Integer, nullable = False)
     circsupply = db.Column(db.Integer, nullable = False)
 
+    transfers = db.relationship(
+        "Transfer",
+        back_populates="coins"
+    )
+
+
+    def to_dict(self):
+       return {
+         "id": self.id,
+         "name": self.name,
+         "symbol": self.symbol,
+         "lastaskprice": self.lastaskprice,
+         "lastaskpricedate": datetime_to_string(self.lastaskpricedate),
+         "maxsupply": self.maxsupply,
+         "cicsupply": self.cicsupply
+       }
+
 
 def datetime_to_string(date):
     return date.__string__()
-
-
-def to_dict(self):
-    return {
-      "id": self.id,
-      "name": self.name,
-      "symbol": self.symbol,
-      "lastaskprice": self.lastaskprice,
-      "lastaskpricedate": self.lastaskpricedate,
-      "maxsupply": self.maxsupply,
-      "cicsupply": self.cicsupply
-    }
-
 
