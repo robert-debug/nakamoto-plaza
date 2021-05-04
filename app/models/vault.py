@@ -11,6 +11,10 @@ class Vault(db.Model):
         "User",
         back_populates="vaults"
     )
+    vault_coins = db.relationship(
+        "VaultCoin",
+        back_populates="vaults"
+    )    
 
     def to_dict(self):
         return {
