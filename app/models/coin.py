@@ -7,7 +7,7 @@ class Coin(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100), nullable = False)
     symbol = db.Column(db.String(5), nullable = False)
-    lastaskprice = db.Column(db.Numeric, precision = 4, asdecimal = False, nullable = False)
+    lastaskprice = db.Column(db.Numeric(precision = 4, asdecimal = False), nullable = False)
     lastaskpricedate = db.Column(db.DateTime, nullable = False)
     maxsupply = db.Column(db.Integer, nullable = False)
     circsupply = db.Column(db.Integer, nullable = False)
