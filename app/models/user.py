@@ -8,8 +8,26 @@ class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key = True)
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
+  firstname = db.Column(db.String(70), nullable = False)
+  lasttname = db.Column(db.String(100), nullable = False)
+  fakebankinfo= db.Column(db.Integer, nullable= False)
   hashed_password = db.Column(db.String(255), nullable = False)
+  state = db.Column(db.String(13), nullable = False)
 
+  transfers = db.relationship(
+      "Transfer",
+      back_populates="users"
+  )
+
+  vault = db.relationship(
+      "Vault", uselist=False,
+      back_populates="users"
+  )
+
+  transactions = db.relationship(
+      "Transactions",
+      back_populates="users"
+  )
 
   @property
   def password(self):
@@ -24,6 +42,17 @@ class User(db.Model, UserMixin):
   def check_password(self, password):
     return check_password_hash(self.password, password)
 
+
+  def full_to_dict(self):
+    return {
+      "id": self.id,
+      "username": self.username,
+      "email": self.email,
+      'firstname': self.firstname,
+      'lastname' : self.lastname,
+      'fakebankinfo' : self.fakebankinfo,
+      'state': self.state
+    }
 
   def to_dict(self):
     return {
