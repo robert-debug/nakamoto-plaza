@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
   lasttname = db.Column(db.String(100), nullable = False)
   fakebankinfo= db.Column(db.Integer, nullable= False)
   hashed_password = db.Column(db.String(255), nullable = False)
-  state = db.Column(db.String(100), nullable = False)
+  state = db.Column(db.String(13), nullable = False)
 
   @property
   def password(self):
