@@ -19,6 +19,11 @@ class User(db.Model, UserMixin):
       back_populates="users"
   )
 
+  vault = db.relationship(
+      "Vault", uselist=False,
+      back_populates="users"
+  )
+
   @property
   def password(self):
     return self.hashed_password
@@ -44,7 +49,7 @@ class User(db.Model, UserMixin):
       'state': self.state
     }
 
-    def to_dict(self):
+  def to_dict(self):
     return {
       "id": self.id,
       "username": self.username,
