@@ -4,8 +4,8 @@ class VaultCoin(db.Model):
     __tablename__= 'vault_coins'
 
     id = db.Column(db.Integer, primary_key = True)
-    vault_id = db.Column(db.Integer, db.ForeignKey('vault.id'), nullable = False))
-    coin_id = db.Column(db.Integer, db.ForeignKey('coin.id'), nullable = False))
+    vault_id = db.Column(db.Integer, db.ForeignKey('vault.id'), nullable = False)
+    coin_id = db.Column(db.Integer, db.ForeignKey('coin.id'), nullable = False)
 
 
     coins = db.relationship(
@@ -17,7 +17,7 @@ class VaultCoin(db.Model):
         "Vault",
         back_populates="vault_coins"
     )
-    
+
     def to_dict(self):
         return {
             "id": self.id,
