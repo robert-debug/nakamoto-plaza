@@ -22,6 +22,11 @@ class Coin(db.Model):
         back_populates="coins"
     )
 
+    transactions = db.relationship(
+        "Transaction",
+        back_populates="coins"
+    )
+
 
     def to_dict(self):
        return {

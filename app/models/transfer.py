@@ -9,7 +9,7 @@ class Transfer(db.Model):
     sender_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
     receiver_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
     coin_id = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable = False)
-    coinamt = db.Column(db.Numeric, precision = 4, asdecimal = False, nullable = False)
+    coinamt = db.Column(db.Numeric, precision = 8, asdecimal = False, nullable = False)
     date = db.Column(db.DateTime, nullable = False)
 
     users = db.relationship(
@@ -18,7 +18,7 @@ class Transfer(db.Model):
     )
 
     coins = db.relationship(
-        "Coins",
+        "Coin",
         back_populates="transfers"
     )
 
