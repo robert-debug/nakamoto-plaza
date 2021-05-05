@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 06056c9021a5
+Revision ID: 5fc1428db142
 Revises: 
-Create Date: 2021-05-05 10:04:13.285629
+Create Date: 2021-05-05 19:12:10.841087
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '06056c9021a5'
+revision = '5fc1428db142'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,10 +22,10 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('symbol', sa.String(length=5), nullable=False),
-    sa.Column('lastaskprice', sa.Numeric(precision=4, asdecimal=False), nullable=False),
+    sa.Column('lastaskprice', sa.Numeric(precision=14, scale=8, asdecimal=False), nullable=False),
     sa.Column('lastaskpricedate', sa.DateTime(), nullable=False),
-    sa.Column('maxsupply', sa.Integer(), nullable=False),
-    sa.Column('circsupply', sa.Integer(), nullable=False),
+    sa.Column('maxsupply', sa.BigInteger(), nullable=False),
+    sa.Column('circsupply', sa.BigInteger(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('fiats',
@@ -39,7 +39,7 @@ def upgrade():
     sa.Column('username', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('firstname', sa.String(length=70), nullable=False),
-    sa.Column('lasttname', sa.String(length=100), nullable=False),
+    sa.Column('lastname', sa.String(length=100), nullable=False),
     sa.Column('fakebankinfo', sa.Integer(), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('state', sa.String(length=13), nullable=False),
@@ -52,8 +52,8 @@ def upgrade():
     sa.Column('fiat_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('coin_id', sa.Integer(), nullable=False),
-    sa.Column('coinamt', sa.Numeric(precision=8, asdecimal=False), nullable=False),
-    sa.Column('fiatprice', sa.Numeric(precision=4, asdecimal=False), nullable=False),
+    sa.Column('coinamt', sa.Numeric(precision=14, scale=8, asdecimal=False), nullable=False),
+    sa.Column('fiatprice', sa.Numeric(precision=14, scale=8, asdecimal=False), nullable=False),
     sa.Column('purchase', sa.Boolean(), nullable=False),
     sa.Column('date', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['coin_id'], ['coins.id'], ),
@@ -66,7 +66,7 @@ def upgrade():
     sa.Column('sender_id', sa.Integer(), nullable=False),
     sa.Column('receiver_id', sa.Integer(), nullable=False),
     sa.Column('coin_id', sa.Integer(), nullable=False),
-    sa.Column('coinamt', sa.Numeric(precision=8, asdecimal=False), nullable=False),
+    sa.Column('coinamt', sa.Numeric(precision=14, scale=8, asdecimal=False), nullable=False),
     sa.Column('date', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['coin_id'], ['coins.id'], ),
     sa.ForeignKeyConstraint(['receiver_id'], ['users.id'], ),
@@ -83,6 +83,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('vault_id', sa.Integer(), nullable=False),
     sa.Column('coin_id', sa.Integer(), nullable=False),
+    sa.Column('amount', sa.Float(), nullable=False),
     sa.ForeignKeyConstraint(['coin_id'], ['coins.id'], ),
     sa.ForeignKeyConstraint(['vault_id'], ['vaults.id'], ),
     sa.PrimaryKeyConstraint('id')

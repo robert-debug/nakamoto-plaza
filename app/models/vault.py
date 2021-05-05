@@ -15,10 +15,6 @@ class Vault(db.Model):
         "VaultCoin",
         back_populates="vaults"
     )
-    transactions = db.relationship(
-        "Transaction",
-        back_populates="vaults"
-    )  
 
 
     def to_dict(self):

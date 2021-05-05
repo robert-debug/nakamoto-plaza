@@ -8,6 +8,11 @@ class Fiat(db.Model):
     name = db.Column(db.String(100), nullable = False)
     symbol = db.Column(db.String(3), nullable = False)
 
+    transactions = db.relationship(
+        "Transaction",
+        back_populates="fiats"
+    )
+
     def to_dict(self):
         return {
             "id": self.id,

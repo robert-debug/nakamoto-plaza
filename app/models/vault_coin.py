@@ -7,7 +7,7 @@ class VaultCoin(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     vault_id = db.Column(db.Integer, db.ForeignKey('vaults.id'), nullable = False)
     coin_id = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable = False)
-
+    amount = db.Column(db.Float, nullable = False)
 
     coins = db.relationship(
         "Coin",
