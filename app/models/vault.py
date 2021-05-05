@@ -5,7 +5,7 @@ class Vault(db.Model):
     __tablename__ = 'vaults'
 
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
 
     users = db.relationship(
         "User",

@@ -5,11 +5,11 @@ from app.models.coin import datetime_to_string
 class Transaction(db.Model):
     __tablename__ = 'transactions'
     id = db.Column(db.Integer, primary_key = True)
-    fiat_id = db.Column(db.Integer, db.ForeignKey('fiats.id'), nullable = False))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False))
+    fiat_id = db.Column(db.Integer, db.ForeignKey('fiats.id'), nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
     coin_id = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable = False)
-    coinamt = db.Column(db.Numeric, precision = 8, asdecimal = False, nullable = False)
-    fiatprice = db.Column(db.Numeric, precision = 4, asdecimal = False, nullable = False)
+    coinamt = db.Column(db.Numeric(precision = 8, asdecimal = False), nullable = False)
+    fiatprice = db.Column(db.Numeric(precision = 4, asdecimal = False), nullable = False)
     purchase = db.Column(db.Boolean, nullable = False)
     date = db.Column(db.DateTime, nullable = False)
 

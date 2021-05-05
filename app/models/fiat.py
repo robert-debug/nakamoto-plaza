@@ -10,8 +10,8 @@ class Fiat(db.Model):
 
     def to_dict(self):
         return {
-            "id" = self.id,
-            "name" = self.name,
-            "symbol" = self.symbol
+            "id": self.id,
+            "name": self.name,
+            "symbol": self.symbol
         }
 
