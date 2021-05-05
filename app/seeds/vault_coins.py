@@ -2,11 +2,20 @@ from app.models import db, VaultCoin
 
 def seed_vault_coins():
     i = 1
+
+    two = VaultCoin (
+        vault_id= 1,
+        coin_id= 2,
+        amount= 0.5
+    )
+    db.session.add(two)
+
     while i < 14:
         coin_select_one= (2, 3)
         coin_select_two= (4, 9)
-        coin_select_three= (10, 13)
+        coin_select_three= (10, 12)
         
+
         bitcoin= VaultCoin (
             vault_id= i,
             coin_id= coin_select_one,

@@ -1,12 +1,13 @@
 from app.models import db, Coin
+import datetime
 
-datetime = datetime.datetime()
-def seed_coins:
+datetimes = datetime.datetime.now()
+def seed_coins():
     bitcoin = Coin(
         name='Bitcoin',
         symbol='BTC',
         lastaskprice=48095.67319629,
-        lastaskpricedate=datetime
+        lastaskpricedate=datetimes,
         maxsupply =21000000,
         circsupply=18700475
     )
@@ -17,7 +18,7 @@ def seed_coins:
         name='Ethereum',
         symbol='ETH',
         lastaskprice=2800.69577202,
-        lastaskpricedate=datetime
+        lastaskpricedate=datetimes,
         maxsupply=0,
         circsupply=115748819
     )
@@ -25,10 +26,10 @@ def seed_coins:
     db.session.add(ethereum)
 
     dogecoin = Coin(
-        name='Dogecoin'
+        name='Dogecoin',
         symbol='DOGE',
         lastaskprice=0.48813996,
-        lastaskpricedate=datetime,
+        lastaskpricedate=datetimes,
         maxsupply=0,
         circsupply=129475242412
     )
@@ -36,10 +37,10 @@ def seed_coins:
     db.session.add(dogecoin)
 
     ripple = Coin(
-        name='Ripple'
+        name='Ripple',
         symbol='XRP',
         lastaskprice=1.30819334,
-        lastaskpricedate=datetime,
+        lastaskpricedate=datetimes,
         maxsupply=100000000000,
         circsupply=46030731641
     )
@@ -47,10 +48,10 @@ def seed_coins:
     db.session.add(ripple)
 
     cardano = Coin(
-        name='Cardano'
+        name='Cardano',
         symbol='Ada',
         lastaskprice=1.17488424,
-        lastaskpricedate=datetime,
+        lastaskpricedate=datetimes,
         maxsupply=45000000000,
         circsupply=32061503736
     )
@@ -58,10 +59,10 @@ def seed_coins:
     db.session.add(cardano)
 
     uniswap = Coin(
-        name='Uniswap Protocol Token'
+        name='Uniswap Protocol Token',
         symbol='UNI',
         lastaskprice=35.72123819,
-        lastaskpricedate=datetime,
+        lastaskpricedate=datetimes,
         maxsupply=1000000000,
         circsupply=558378475
     )
@@ -69,31 +70,20 @@ def seed_coins:
     db.session.add(uniswap)
 
     litecoin = Coin(
-        name='Litecoin'
+        name='Litecoin',
         symbol='LTC',
         lastaskprice=291.19985476,
-        lastaskpricedate=datetime,
+        lastaskpricedate=datetimes,
         maxsupply=84000000,
         circsupply=66752415
     )
-    db.session.add(litecoin)
-
-    litecoin = Coin(
-        name='Litecoin'
-        symbol='LTC',
-        lastaskprice=291.19985476,
-        lastaskpricedate=datetime,
-        maxsupply=84000000,
-        circsupply=66752415
-    )
-
     db.session.add(litecoin)
 
     stellar = Coin(
-        name='Stellar'
+        name='Stellar',
         symbol='XLM',
         lastaskprice=0.48891318,
-        lastaskpricedate=datetime,
+        lastaskpricedate=datetimes,
         maxsupply=50000000000,
         circsupply=23010708009
     )
@@ -101,10 +91,10 @@ def seed_coins:
     db.session.add(stellar)
 
     ethclassic = Coin(
-        name='Ethereum Classic'
+        name='Ethereum Classic',
         symbol='ETC',
         lastaskprice=74.62248955,
-        lastaskpricedate=datetime,
+        lastaskpricedate=datetimes,
         maxsupply=210700000,
         circsupply=126909629
     )
@@ -112,10 +102,10 @@ def seed_coins:
     db.session.add(ethclassic)
 
     tron = Coin(
-        name='TRON'
+        name='TRON',
         symbol='TRX',
         lastaskprice=0.11224112,
-        lastaskpricedate=datetime,
+        lastaskpricedate=datetimes,
         maxsupply=100850743812,
         circsupply=71660220128
     )
@@ -123,10 +113,10 @@ def seed_coins:
     db.session.add(tron)
 
     aave = Coin(
-        name='Aave'
+        name='Aave',
         symbol='AAVE',
         lastaskprice=387.98516230,
-        lastaskpricedate=datetime,
+        lastaskpricedate=datetimes,
         maxsupply=16000000,
         circsupply=12735637
     )
@@ -134,15 +124,16 @@ def seed_coins:
     db.session.add(aave)
 
     cosmos = Coin(
-        name='Cosmos'
+        name='Cosmos',
         symbol='ATOM',
         lastaskprice=19.49421638,
-        lastaskpricedate=datetime,
+        lastaskpricedate=datetimes,
         maxsupply=0,
         circsupply=238526147
     )
 
     db.session.add(cosmos)
+
     db.session.commit()
 
 def undo_coins():
