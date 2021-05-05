@@ -1,7 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from .transfer import Transfer
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
@@ -9,23 +9,33 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   firstname = db.Column(db.String(70), nullable = False)
-  lasttname = db.Column(db.String(100), nullable = False)
+  lastname = db.Column(db.String(100), nullable = False)
   fakebankinfo= db.Column(db.Integer, nullable= False)
   hashed_password = db.Column(db.String(255), nullable = False)
   state = db.Column(db.String(13), nullable = False)
 
-  transfers = db.relationship(
-      "Transfer",
-      back_populates="users"
+  senders= db.relationship(
+    'Transfer', 
+  backref='sender', 
+  foreign_keys='Transfer.sender_id',
+  lazy='dynamic', 
+  )
+  
+  receivers= db.relationship(
+    'Transfer', 
+    backref='receiver', 
+    foreign_keys='Transfer.receiver_id',
+    lazy='dynamic', 
   )
 
-  vault = db.relationship(
-      "Vault", uselist=False,
+  vaults = db.relationship(
+      "Vault", 
+      uselist=False,
       back_populates="users"
   )
 
   transactions = db.relationship(
-      "Transactions",
+      "Transaction",
       back_populates="users"
   )
 

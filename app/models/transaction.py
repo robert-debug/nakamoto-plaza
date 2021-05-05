@@ -8,8 +8,8 @@ class Transaction(db.Model):
     fiat_id = db.Column(db.Integer, db.ForeignKey('fiats.id'), nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
     coin_id = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable = False)
-    coinamt = db.Column(db.Numeric(precision = 8, asdecimal = False), nullable = False)
-    fiatprice = db.Column(db.Numeric(precision = 4, asdecimal = False), nullable = False)
+    coinamt = db.Column(db.Numeric(precision = 14, scale=8,  asdecimal = False), nullable = False)
+    fiatprice = db.Column(db.Numeric(precision = 14, scale=8, asdecimal = False), nullable = False)
     purchase = db.Column(db.Boolean, nullable = False)
     date = db.Column(db.DateTime, nullable = False)
 

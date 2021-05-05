@@ -4,7 +4,8 @@ from .coins import seed_coins, undo_coins
 from .fiats import seed_fiats, undo_fiats
 from .vaults import seed_vaults, undo_vaults
 from .vault_coins import seed_vault_coins, undo_vault_coins
-from .transfers import seed_transfers
+from .transfers import seed_transfers, undo_transfers
+from .transactions import seed_transactions, undo_transactions
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
