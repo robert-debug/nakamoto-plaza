@@ -14,9 +14,16 @@ class User(db.Model, UserMixin):
   hashed_password = db.Column(db.String(255), nullable = False)
   state = db.Column(db.String(13), nullable = False)
 
-  transfers = db.relationship(
-      "Transfer",
+  sender = db.relationship(
+      "Transfer", 
+      foreign_keys='Transfer.sender_id',
       back_populates="users"
+  )
+
+  receiver = db.relationship(
+    "Transfer", 
+    foreign_keys='Transfer.receiver_id',
+    back_populates="users"
   )
 
   vault = db.relationship(
@@ -25,7 +32,7 @@ class User(db.Model, UserMixin):
   )
 
   transactions = db.relationship(
-      "Transactions",
+      "Transaction",
       back_populates="users"
   )
 
