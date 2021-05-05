@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .coins import seed_coins, undo_coins
 from .fiats import seed_fiats, undo_fiats
 from .vaults import seed_vaults, undo_vaults
+from .vault_coins import seed_vault_coins, undo_vault_coins
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -15,11 +16,14 @@ def seed():
     seed_coins()
     seed_fiats()
     seed_vaults()
+    seed_vault_coins()
+
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_vault_coins()
     undo_vaults()
     undo_fiats()
     undo_coins()
