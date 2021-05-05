@@ -21,6 +21,7 @@ def get_one_coin(id):
     return coin_dict
 
 @coin_routes.route('/int:id', methods=['PUT'])
+@login_required
 def update_coin(id):
     coin = Coin.query.get(id)
     body = request.get_json()
