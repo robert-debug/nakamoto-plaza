@@ -5,12 +5,12 @@ class VaultCoin(db.Model):
     __tablename__= 'vault_coins'
 
     id = db.Column(db.Integer, primary_key = True)
-    vault_id = db.Column(db.Integer, db.ForeignKey('vault.id'), nullable = False)
-    coin_id = db.Column(db.Integer, db.ForeignKey('coin.id'), nullable = False)
+    vault_id = db.Column(db.Integer, db.ForeignKey('vaults.id'), nullable = False)
+    coin_id = db.Column(db.Integer, db.ForeignKey('coins.id'), nullable = False)
 
 
     coins = db.relationship(
-        "Coins",
+        "Coin",
         back_populates="vault_coins"
     )
 
