@@ -12,9 +12,15 @@ class Transfer(db.Model):
     coinamt = db.Column(db.Numeric(precision = 8, asdecimal = False), nullable = False)
     date = db.Column(db.DateTime, nullable = False)
 
-    users = db.relationship(
-        "User",
-        back_populates="transfers"
+    senders = db.relationship(
+        "Transfer", 
+        foreign_keys='Transfer.sender_id',
+        back_populates="users"
+    )
+    receiver = db.relationship(
+        "Transfer", 
+        foreign_keys='Transfer.receiver_id',
+        back_populates="users"
     )
 
     coins = db.relationship(
