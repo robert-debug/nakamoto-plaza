@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
@@ -6,6 +6,7 @@ import logo from '../image-assets/color_logo_with_background.png'
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const displayState = useSelector(state => state.session.user);
+  const [title, setTitle] = useState(null)
   // const selectedCoin = useSelector(state => state.coin.coin);
   const history = useHistory();
   const home = (
@@ -32,13 +33,13 @@ const NavBar = () => {
     </>
   )
   
-  let displayHeader;
-  use
-  if(!sessionUser) displayHeader = null;
-  if(sessionUser && displayState === 'home') displayHeader = home
-  if(sessionUser && displayState === 'prices') displayHeader = prices
-  if(sessionUser && displayState === 'portfolio') displayHeader = portfolio
-  // if(sessionUser && displayState === 'coin') displayHeader = coinName
+  useEffect(() =>{
+    if(!sessionUser) setTitle(null);
+    if(sessionUser && displayState === 'home') setTitle(home);
+    if(sessionUser && displayState === 'prices') setTitle(prices);
+    if(sessionUser && displayState === 'portfolio') setTitle(portfolio);
+    // if(sessionUser && displayState === 'coin') setTitle(coinName);
+  },[])
 
 
 
@@ -52,7 +53,7 @@ const NavBar = () => {
           <img className='logo' alt='logo' src={logo}/>
         </div>
         <div className='location-label'>
-          {displayHeader}
+          {title}
         </div>
         <div>
           <NavLink to="/login" exact={true} activeClassName="active">
