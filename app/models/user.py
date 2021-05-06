@@ -18,14 +18,14 @@ class User(db.Model, UserMixin):
     'Transfer', 
   backref='sender', 
   foreign_keys='Transfer.sender_id',
-  lazy='dynamic', 
+  lazy='dynamic'
   )
-  
+
   receivers= db.relationship(
     'Transfer', 
     backref='receiver', 
     foreign_keys='Transfer.receiver_id',
-    lazy='dynamic', 
+    lazy='dynamic'
   )
 
   vaults = db.relationship(
