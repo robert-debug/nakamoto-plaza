@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, Vault, VaultCoin, Coin, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -70,6 +70,21 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
+        username = form.data['username']
+        new_user = User.query.filter_by(username=username)
+        vault = Vault(
+            user_id = newuser.id
+        )
+        db.session.add(vault)
+        db.session.commit()
+        new_vault = Vault.query.filter_by(user_id = newuser.id)
+        coins = Coins.query.all()
+        for coin in coins:
+            vault_coin = Vault(
+                vault_id = new_vault.id,
+                coin_id = coin.id,
+                amount = 0
+        )
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

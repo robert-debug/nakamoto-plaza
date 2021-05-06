@@ -2,7 +2,9 @@ from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
 from app.models import Coin
 
-@coin_routes.route('', methods=['GET'])
+coin_routes = Blueprint('coins', __name__)
+
+@coin_routes.route('/', methods=['GET'])
 def get_coins():
     coins = Coins.query.all()
     coins = [coin.to_dict() for coin in coins]
@@ -14,13 +16,13 @@ def get_coins():
         i += 1
     return coin_dict
 
-@coin_routes.route('</int:id>', methods=['GET'])
+@coin_routes.route('/<int:id>', methods=['GET'])
 def get_one_coin(id):
     coin = Coin.query.get(id)
     coin_dict = coin.to_dict
     return coin_dict
 
-@coin_routes.route('/int:id', methods=['PUT'])
+@coin_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_coin(id):
     coin = Coin.query.get(id)
@@ -30,6 +32,3 @@ def update_coin(id):
     coin.circsupply = body.get('circsupply')
     db.session.commit()
 
-
-    
-    

@@ -19,7 +19,7 @@ def seed_vault_coins():
 
         bitcoin= VaultCoin (
             vault_id= i,
-            coin_id= coin_select_one,
+            coin_id= 1,
             amount= 0.5
         )
 
