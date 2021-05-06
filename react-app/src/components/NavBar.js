@@ -1,12 +1,13 @@
 import React, {useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 import logo from '../image-assets/color_logo_with_background.png'
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
-  const displayState = useSelector(state => state.session.user);
+  const displayState = useSelector(state => state.display.display);
   const [title, setTitle] = useState(null)
+  const dispatch = useDispatch()
   // const selectedCoin = useSelector(state => state.coin.coin);
   const history = useHistory();
   const home = (
@@ -39,7 +40,7 @@ const NavBar = () => {
     if(sessionUser && displayState === 'prices') setTitle(prices);
     if(sessionUser && displayState === 'portfolio') setTitle(portfolio);
     // if(sessionUser && displayState === 'coin') setTitle(coinName);
-  },[])
+  },[dispatch, sessionUser])
 
 
 
