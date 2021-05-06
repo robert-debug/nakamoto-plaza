@@ -34,12 +34,12 @@ function App() {
         </div>
       <Switch>
         <Route path="/login" exact={true}>
-          <div className='maindiv'>
+          <div className='main-div'>
             <LoginForm />
           </div>
         </Route>
         <Route path="/sign-up" exact={true}>
-          <div className='maindiv'>
+          <div className='main-div'>
             <SignUpForm />
           </div>
         </Route>
@@ -49,7 +49,7 @@ function App() {
           </div>
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
-          <div className='maindiv'>
+          <div className='main-div'>
             <User />
           </div>
         </ProtectedRoute>
