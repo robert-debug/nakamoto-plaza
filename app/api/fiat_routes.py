@@ -2,10 +2,11 @@ from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.models import Fiat
 
+fiat_routes = Blueprint('fiats', __name__)
 
 @fiat_routes.route('', methods=['GET'])
 def get_coins():
-    fiats = fiats.query.all()
+    fiats = Fiat.query.all()
     fiats = [fiat.to_dict() for fiat in fiats]
     fiat_dict = {}
     i = 0
@@ -17,6 +18,6 @@ def get_coins():
 
 @fiat_routes.route('</int:id>', methods=['GET'])
 def get_one_fiat(id):
-    fiat = fiat.query.get(id)
+    fiat = Fiat.query.get(id)
     fiat_dict = fiat.to_dict
     return fiat_dict
