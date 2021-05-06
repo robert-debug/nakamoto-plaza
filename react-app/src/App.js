@@ -29,26 +29,37 @@ function App() {
   return (
     <BrowserRouter>
       <div className='app-container'>
-        <div className='.header-div'>
+        <div className='header-div'>
           <NavBar />
         </div>
       <Switch>
         <Route path="/login" exact={true}>
-          <LoginForm />
+          <div className='maindiv'>
+            <LoginForm />
+          </div>
         </Route>
         <Route path="/sign-up" exact={true}>
-          <SignUpForm />
+          <div className='maindiv'>
+            <SignUpForm />
+          </div>
         </Route>
         <ProtectedRoute path="/users" exact={true} >
-          <UsersList/>
+          <div>
+            <UsersList/>
+          </div>
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
-          <User />
+          <div className='maindiv'>
+            <User />
+          </div>
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
+      </div>
+      <div>
+
       </div>
     </BrowserRouter>
   );
