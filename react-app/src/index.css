@@ -1,1 +1,28 @@
-/* TODO Add site wide styles */
+/* grid */
+.app-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas: 
+        "header header header header header"
+        "sidebar main main main main"
+        "sidebar main main main main"
+        "sidebar main main main main"
+        "footer footer footer footer footer";
+}
+
+.header-div{
+    grid-area: header
+}
+
+.sidebar-div{
+    grid-area: sidebar
+}
+
+.main-div{
+    grid-area: main;
+}
+
+.footer-div{
+    grid-area: footer;
+}

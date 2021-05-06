@@ -28,7 +28,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <div className='app-container'>
+        <div className='.header-div'>
+          <NavBar />
+        </div>
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
@@ -46,6 +49,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
+      </div>
     </BrowserRouter>
   );
 }
