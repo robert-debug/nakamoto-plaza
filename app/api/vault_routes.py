@@ -11,4 +11,3 @@ def get_one_vault(id):
     vault_dict = coin.to_dict
     return vault_dict
 
-def 

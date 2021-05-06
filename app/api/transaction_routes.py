@@ -18,7 +18,7 @@ def get_transactions(user_id):
         i += 1
     return transaction_dict
 
-@transaction_routes.route('/<int:user_id>/coins/<int:coin_id', methods=['GET'])
+@transaction_routes.route('/<int:user_id>/coins/<int:coin_id>', methods=['GET'])
 @login_required
 def get_one_coin(user_id, coin_id):
     transactions = Transfer.query.filter_by(sender_id=user_id).filter_by(coin_id=coin_id).all()

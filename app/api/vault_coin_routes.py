@@ -17,7 +17,7 @@ def get_coins(user_id):
     return coin_dict
 
 
-@vault_coin_routes.route('/<int:user_id>/coins/<int:coin_id', methods=['GET'])
+@vault_coin_routes.route('/<int:user_id>/coins/<int:coin_id>', methods=['GET'])
 @login_required
 def get_one_coin(user_id, coin_id):
     vault_coin = VaultCoin.query.filter_by(user_id=user_id).filter_by(coin_id=coin_id)
