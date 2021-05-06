@@ -5,13 +5,13 @@ import datetime
 
 transfer_routes = Blueprint('transfers', __name__)
 
-@transfer_routes.route('</int:user_id>', methods=['GET'])
+@transfer_routes.route('/<int:user_id>', methods=['GET'])
 @login_required
 def get_tranfers(user_id):
-    transfers = Transfers.query.filter_by(sender_id=user_id).all()
-    transfered = Transfers.query.filter_by(receiver_id=user_id).all()
-    senders_coins = [transfers.to_dict() for transfer in transfers]
-    receivers_coins = [transfered.to_dict() for transfer in transfered]
+    transfers = Transfer.query.filter_by(sender_id=user_id).all()
+    transfered = Transfer.query.filter_by(receiver_id=user_id).all()
+    senders_coins = [transfer.to_dict() for transfer in transfers]
+    receivers_coins = [transfer.to_dict() for transfer in transfered]
     transfer_dict = {}
     i = 0
     while i < len(transfers):
@@ -24,13 +24,13 @@ def get_tranfers(user_id):
         i += 1
     return transfer_dict
 
-@transfer_routes.route('</int:user_id>/coins/</int:coin_id', methods=['GET'])
+@transfer_routes.route('/<int:user_id>/coins/<int:coin_id', methods=['GET'])
 @login_required
 def get_one_coin(user_id, coin_id):
     transfers = Transfer.query.filter_by(sender_id=user_id).filter_by(coin_id=coin_id).all()
-    transfered = Transfers.query.filter_by(receiver_id=user_id).filter_by(coin_id=coin_id).all()
+    transfered = Transfer.query.filter_by(receiver_id=user_id).filter_by(coin_id=coin_id).all()
     senders_coins = [transfers.to_dict() for transfer in transfers]
-    receivers_coins = [transfered.to_dict() for transfer in transfered]
+    receivers_coins = [transfer.to_dict() for transfer in transfered]
     transfer_dict = {}
     i = 0
     while i < len(transfers):
@@ -44,7 +44,7 @@ def get_one_coin(user_id, coin_id):
     return transfer_dict
 
 
-@transfer_routes.route('', methods=['POST'])
+@transfer_routes.route('/', methods=['POST'])
 @login_required
 def transfer():
     body = request.get_json()
@@ -57,16 +57,16 @@ def transfer():
         newcoin = VaultCoin.query.filter_by(user_id=receiver_id).filter_by(coin_id=coin_id)
         coin.amount = coin.amount - coinamt
         newcoin.amount = newcoin.amount + coinamt
-        new_transfer = Comment(
+        new_transfer = Transfer(
             sender_id=sender_id,
             receiver_id=receiver_id,
-            coin_id= coin_id
-            coinamt= coinamt
+            coin_id= coin_id,
+            coinamt= coinamt,
             date= datetime.datetime()
         )
         db.session.add(new_transfer)
         db.session.commit()
-        return new_comment.to_dict()
-    return {'Errors':['Insufficient currency']}
+        return new_transfer.to_dict()
+    return {'errors':['Insufficient currency']}
 
 

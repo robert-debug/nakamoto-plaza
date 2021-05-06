@@ -4,7 +4,7 @@ from app.models import Fiat
 
 fiat_routes = Blueprint('fiats', __name__)
 
-@fiat_routes.route('', methods=['GET'])
+@fiat_routes.route('/', methods=['GET'])
 def get_coins():
     fiats = Fiat.query.all()
     fiats = [fiat.to_dict() for fiat in fiats]
@@ -16,7 +16,7 @@ def get_coins():
         i += 1
     return fiat_dict
 
-@fiat_routes.route('</int:id>', methods=['GET'])
+@fiat_routes.route('/<int:id>', methods=['GET'])
 def get_one_fiat(id):
     fiat = Fiat.query.get(id)
     fiat_dict = fiat.to_dict
