@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.models import Transfer, VaultCoin
+import datetime
 
 transfer_routes = Blueprint('transfers', __name__)
 
@@ -45,4 +46,27 @@ def get_one_coin(user_id, coin_id):
 
 @transfer_routes.route('', methods=['POST'])
 @login_required
+def transfer():
+    body = request.get_json()
+    sender_id = body.get('sender_id')
+    coin_id = body.get('coin_id')
+    coinamt = body.get('coinamt')
+    coin = VaultCoin.query.filter_by(user_id=sender_id).filter_by(coin_id=coin_id)
+    if coinamt >= coin.amount:
+        receiver_id = body.get('receiver_id')
+        newcoin = VaultCoin.query.filter_by(user_id=receiver_id).filter_by(coin_id=coin_id)
+        coin.amount = coin.amount - coinamt
+        newcoin.amount = newcoin.amount + coinamt
+        new_transfer = Comment(
+            sender_id=sender_id,
+            receiver_id=receiver_id,
+            coin_id= coin_id
+            coinamt= coinamt
+            date= datetime.datetime()
+        )
+        db.session.add(new_transfer)
+        db.session.commit()
+        return new_comment.to_dict()
+    return {'Errors':['Insufficient currency']}
+
 
