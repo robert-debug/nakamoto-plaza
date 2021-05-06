@@ -72,7 +72,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div>
-          <LogoutButton />
+          { sessionUser ? <LogoutButton /> : null}
         </div>
       </div>
   );

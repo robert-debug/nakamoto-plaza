@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import SideBar from "./components/SideBar"
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 
@@ -54,6 +55,9 @@ function App() {
           </div>
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
+          <div className='sidebar-div'>
+            <SideBar />
+          </div>
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
