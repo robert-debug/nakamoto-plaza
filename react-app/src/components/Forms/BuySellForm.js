@@ -7,25 +7,41 @@ import { getCoins } from '../../store/session';
 const BuySellForm = () =>{
     const dispatch = useDispatch();
     const coins = useSelector(state => state.coin)
-    const coins = useSelector
+    const selectedCoin = useSelector(state => state.coin.coin)
+    const price = useSelector(state => state.coin.coin.price)
     const sessionId = useSelector(state => state.session.user.id)
     const [purchase, setpurchase] = useState(true);
     const [coinAmt, setCoinAmt] = useState(0);
-    const [fiatPrice, setFiatPrice] = useState(0);
-    const price = useSelector(state => state.coin.coin.price)
+    const [fiatPrice, setFiatPrice] = useState(price);
     const fiatId = 1;
-    const [coinId, setCoinId] = useState(0);
-    if (coinId === 0) setCoinId
+    const [coin, setCoin] = useState('');
+    if (coinId === '') setCoinId('BTC')
     const onSubmit = (e)=>{
 
     }
-
+    const onFiat = (e) =>{
+        setFiatPrice(e.target.value)
+    }
+    const o
     return(
         <div>
-            <div>Buy</div><div>Sell</div>
+            <div onClick={onBuy}>Buy</div><div onClick={onSell}>Sell</div>
             <form onSubmit={onSubmit}>
-                
-
+            <input
+            type="number"
+            name="fiatprice"
+            onChange={onAmount}
+            value={`$${fiatPrice}`}
+          ></input>
+            <select value={usCoin} onChange={updateCoin}>
+            {
+              coins.map(state => (
+                <div>
+                    <option key={coin.id} value={coin.symbol}>{coin.name}</option>
+                </div>
+              ))
+            }
+          </select>
             </form>
         </div>
     )
