@@ -9,12 +9,12 @@ const MainDisplay = () =>{
     const { showDisplay } = useContext(DisplayStateContext) 
     
     return(
-        <>
-        {showDisplay === 'Home' ? null : null}
-        {showDisplay === 'Portfolio' ? null : null}
-        {showDisplay === 'Prices' ? <Prices/> : null}
-        {showDisplay === 'coin' ? null : null}
-        </>
+        <div className='main-display'>
+            {showDisplay === 'Home' ? null : null}
+            {showDisplay === 'Portfolio' ? null : null}
+            {showDisplay === 'Prices' ? <Prices/> : null}
+            {showDisplay === 'coin' ? null : null}
+        </div>
     )
 }
 export default MainDisplay

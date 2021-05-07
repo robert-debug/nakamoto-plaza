@@ -27,12 +27,12 @@ const Prices = () =>{
                     </tr>
                 </th>
                 <tbody>
-                    {coins.map =( coin => {
+                    {coins.map( coin => {
                         console.log(coin)
                         return (
                         <tr>
                             <td>{console.log(coin)}
-                                <img src={coin.logo_url}/>
+                                <img alt={`${coin.id}-logo`}src={coin.logo_url} className='coin-logo'/>
                                 <span>{coin.name}</span>
                                 <span>{coin.symbol}</span>
                             </td>
