@@ -4,7 +4,7 @@ export const DisplayStateContext = createContext();
 export const useDisplayState = () => useContext(DisplayStateContext);
 
 const DisplayStateProvider = ({children}) => {
-    const [showDisplay, setShowDisplay] = useState('home');
+    const [showDisplay, setShowDisplay] = useState('Home');
 
     return (
         <DisplayStateContext.Provider value={{showDisplay, setShowDisplay}}>

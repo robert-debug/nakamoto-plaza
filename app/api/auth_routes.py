@@ -63,17 +63,22 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        body = request.get_json()
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            firstname=body['firstname'],
+            lastname=body['lastname'],
+            fakebankinfo=body['fakebankinfo'],
+            state=body['state']
         )
         db.session.add(user)
         db.session.commit()
         username = form.data['username']
         new_user = User.query.filter_by(username=username)
         vault = Vault(
-            user_id = newuser.id
+            user_id = new_user.id
         )
         db.session.add(vault)
         db.session.commit()

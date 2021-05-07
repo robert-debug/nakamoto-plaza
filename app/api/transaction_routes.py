@@ -37,6 +37,7 @@ def get_one_coin(user_id, coin_id):
 def transactions():
     body = request.get_json()
     user_id = body.get('sender_id')
+    fiat_id = body.get('fiat_id')
     coin_id = body.get('coin_id')
     coinamt = body.get('coinamt')
     fiatprice = body.get('fiatprice')
@@ -50,10 +51,12 @@ def transactions():
     new_transfer = Transfer(
         sender_id=sender_id,
         receiver_id=receiver_id,
-        coin_id= coin_id,
-        coinamt= coinamt,
-        date= datetime.datetime()
+        coin_id=coin_id,
+        coinamt=coinamt,
+        fiatprice=fiatprice,
+        purchase=purchase,
+        date=date
     )
     db.session.add(new_transfer)
     db.session.commit()
-    return new_comment.to_dict()
+    return new_transfer.to_dict()
