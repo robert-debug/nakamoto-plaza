@@ -10,15 +10,32 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [fakeBankInfo, setFakeBankInfo] = useState("");
+  const [usState, setUSState] = useState("");
+  const statesArray = 
+  ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password));
+      await dispatch(signUp(username, email, password, firstName, lastName, fakeBankInfo, usState));
     }
   };
 
   const updateUsername = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const updateFirstName = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const updateLastName = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const updateLastName = (e) => {
     setUsername(e.target.value);
   };
 
@@ -39,7 +56,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form onSubmit={onSignUp} className='form'>
       <div>
         <label>User Name</label>
         <input
@@ -77,6 +94,41 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
+      <div>
+        <label>First Name</label>
+        <input
+          type="text"
+          name="firstname"
+          onChange={updateFirstName}
+          value={username}
+        ></input>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input
+          type="text"
+          name="lastname"
+          onChange={updateLastName}
+          value={lastName}
+        ></input>
+      </div>
+      <div>
+        <label>Fake (Fake!) Bank Info</label>
+        <input
+          type="number"
+          name="fakebankinfo"
+          onChange={updatefakeBankInfo}
+          value={fakeBankInfo}
+        ></input>
+      </div>
+      <div>
+        <label>
+          State
+        </label>
+        <select value={usState} onChange={setUSState}>
+
+        </select>
+      </div>            
       <button type="submit">Sign Up</button>
     </form>
   );

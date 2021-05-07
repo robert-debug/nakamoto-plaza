@@ -57,7 +57,7 @@
 }
 
 .logo{
-    height: 150px;
+    height: 130px;
     cursor: pointer;  
 }
 
@@ -65,7 +65,7 @@
 .sidebar{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
 }
 .home-img{
     filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);

@@ -58,7 +58,9 @@ function App() {
           <div className='sidebar-div'>
             <SideBar />
           </div>
-          <h1>My Home Page</h1>
+          <div className='main-div'>
+            <h1>My Home Page</h1>
+          </div>
         </ProtectedRoute>
       </Switch>
       </div>
