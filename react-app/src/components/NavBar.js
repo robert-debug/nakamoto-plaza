@@ -42,22 +42,13 @@ const NavBar = () => {
           {display}
         </div>
         <div>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </div>
-        <div>
           { sessionUser ? <LogoutButton /> : null}
+        </div>
+        <div>
+          { sessionUser ? null : null }
+        </div>
+        <div>
+          { sessionUser ? null : null }
         </div>
       </div>
   );
