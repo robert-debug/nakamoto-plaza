@@ -28,16 +28,21 @@ const SignUpForm = () => {
   };
 
   const updateFirstName = (e) => {
-    setUsername(e.target.value);
+    setFirstName(e.target.value);
   };
 
   const updateLastName = (e) => {
-    setUsername(e.target.value);
+    setLastName(e.target.value);
   };
 
-  const updateLastName = (e) => {
-    setUsername(e.target.value);
+  const updateUSState = (e) => {
+    setUSState(e.target.value);
   };
+
+  const updateFakeBankInfo = (e) => {
+    setFakeBankInfo(e.target.value);
+  };
+
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -113,11 +118,11 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Fake (Fake!) Bank Info</label>
+        <label>Fake (Fake!) Bank Number</label>
         <input
           type="number"
           name="fakebankinfo"
-          onChange={updatefakeBankInfo}
+          onChange={updateFakeBankInfo}
           value={fakeBankInfo}
         ></input>
       </div>
@@ -125,8 +130,12 @@ const SignUpForm = () => {
         <label>
           State
         </label>
-        <select value={usState} onChange={setUSState}>
-
+        <select value={usState} onChange={updateUSState}>
+          {
+            statesArray.map(state => (
+              <option key={state} value={state}>{state}</option>
+            ))
+          }
         </select>
       </div>            
       <button type="submit">Sign Up</button>
