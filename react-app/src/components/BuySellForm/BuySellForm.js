@@ -3,23 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { getCoins } from '../../store/session';
-
-const BuySellForm = ({props}) =>{
+import { makeTransaction } from '../../store/transactfers'
+const BuySellForm = ({ props }) =>{
     const setShowModal = props.setShowModal
     const dispatch = useDispatch();
     const coins = useSelector(state => state.coin)
-    const selectedCoin = useSelector(state => state.coin.coin)
     const price = useSelector(state => state.coin.coin.price)
     const sessionId = useSelector(state => state.session.user.id)
     const [purchase, setPurchase] = useState(true);
     const [coinAmt, setCoinAmt] = useState(0);
     const [fiatPrice, setFiatPrice] = useState(price);
     const coinIdObj = {'BTC': 1, 'ETH': 2, 'DOGE': 3, 'XRP':4, 'ADA': 5, 'UNI': 6, 'LTC': 7, 'XLM': 8, 'ETC': 9, 'TRX': 10, 'AAVE': 11, 'Cosmos': 12}
+    const [coin, setCoin] = useState(0);
     const fiatId = 1;
-    const [coin, setCoin] = useState('');
-    if (coinId === '') setCoinId('BTC')
+    setCoin(props.coin)
+
     const onSubmit = (e)=> {
-        
+        const coinId = coinIdObj[coin]
+        dispatch(makeTransaction(coinAmt, purchase, fiatPrice, fiatId, coinId, sessionId))
     }
 
     const onFiat = (e) => {
@@ -39,7 +40,7 @@ const BuySellForm = ({props}) =>{
     }
 
     const updateCoin = (e) => {
-        setCoinId(coinIdObj[e.target.value])
+        setCoin(e.target.value)
     }
 
     return(

@@ -49,8 +49,8 @@ def transactions():
     else:
         coin.amount = newcoin.amount - coinamt
     new_transfer = Transfer(
-        sender_id=sender_id,
-        receiver_id=receiver_id,
+        user_id=user_id,
+        fiat_id=fiat_id,
         coin_id=coin_id,
         coinamt=coinamt,
         fiatprice=fiatprice,
