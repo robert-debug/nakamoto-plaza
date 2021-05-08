@@ -27,7 +27,7 @@ export const requestTransactions = () => async (dispatch) => {
 }
 
 export const makeTransaction = (coinAmt, fiatPrice, purchase, fiatId, coinId, sessionId) => async (dispatch)=> {
-    const response = await fetch("/api/auth/signup", {
+    const response = await fetch("/api/transactions", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const makeTransaction = (coinAmt, fiatPrice, purchase, fiatId, coinId, se
         }),
     });
     const data = await response.json();
-    dispatch(setUser(data));
+    dispatch(postTransaction(data));
 }
 const initialState = { list : [] }
 
@@ -57,7 +57,13 @@ const transactionReducer = (state= initialState, action)=> {
             
             return { list: transactionList, ...transactionObj}
         }
-
+        case CREATE: {
+            state.list.push(action.payload);
+            const newTransactionId = action.payload.id;
+            return {...state, newTransactionId : action.payload }
+        }
+        default:
+            return state;
     }
 }
 

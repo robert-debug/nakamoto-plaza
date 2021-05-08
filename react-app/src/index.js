@@ -12,13 +12,13 @@ const store = configureStore();
 const Root = () => {
   return(
     <Provider store={store}>
-      <ModalStateProvider>
-        <ModalProvider>
-          <DisplayStateProvider>
-           <App />
-          </DisplayStateProvider>
-        </ModalProvider>
-      </ModalStateProvider>
+      <DisplayStateProvider>
+        <ModalStateProvider>
+          <ModalProvider>
+            <App />
+          </ModalProvider>
+        </ModalStateProvider>
+      </DisplayStateProvider>
     </Provider>
   )
 }
