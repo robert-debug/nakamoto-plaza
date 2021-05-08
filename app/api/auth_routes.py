@@ -45,6 +45,7 @@ def login():
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+# def makeVaults()
 
 @auth_routes.route('/logout')
 def logout():
@@ -64,8 +65,9 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         body = request.get_json()
+        username = form.data['username']
         user = User(
-            username=form.data['username'],
+            username=username,
             email=form.data['email'],
             password=form.data['password'],
             firstname=body['firstname'],
@@ -75,21 +77,23 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
-        username = form.data['username']
-        new_user = User.query.filter_by(username=username)
+        new_user = User.query.filter_by(username=username).first()
+        new_user = new_user.to_dict()
         vault = Vault(
-            user_id = new_user.id
+            user_id = new_user['id']
         )
         db.session.add(vault)
         db.session.commit()
-        new_vault = Vault.query.filter_by(user_id = newuser.id)
-        coins = Coins.query.all()
+        new_vault = Vault.query.filter_by(user_id = new_user['id']).first()
+        coins = Coin.query.all()
         for coin in coins:
-            vault_coin = Vault(
+            vault_coin = VaultCoin(
                 vault_id = new_vault.id,
                 coin_id = coin.id,
                 amount = 0
-        )
+            )
+            db.session.add(vault_coin)
+            db.session.commit()
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
