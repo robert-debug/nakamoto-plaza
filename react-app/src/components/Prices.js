@@ -17,7 +17,7 @@ const Prices = () =>{
     return(
         <>
             <table className='prices-table'>
-                <th>
+                <thead>
                     <tr>
                         <th>Name</th>
                         <th>Price</th>
@@ -25,27 +25,27 @@ const Prices = () =>{
                         <th>Market cap</th>
                         <th></th>
                     </tr>
-                </th>
-                <tbody>
-                    {coins.map( coin => {
-                        console.log(coin)
-                        return (
-                        <tr>
-                            <td>{console.log(coin)}
-                                <img alt={`${coin.id}-logo`}src={coin.logo_url} className='coin-logo'/>
-                                <span>{coin.name}</span>
-                                <span>{coin.symbol}</span>
-                            </td>
-                            <td>{coin.price}</td>
-                            <td>{coin['1d'].price_change_pct * 100}%</td>
-                            <td>{coin.market_cap}</td>
-                            <td onClick={onClick}><div className='prices-buy-button'>Buy</div></td>
-                        </tr>
-                )})}
-                </tbody>
+                </thead>
+                    <tbody>
+                        {coins.map( coin => {
+                            console.log(coin)
+                            return (
+                            <tr>
+                                <td>{console.log(coin)}
+                                    <img alt={`${coin.id}-logo`}src={coin.logo_url} className='coin-logo'/>
+                                    <span>{coin.name}</span>
+                                    <span>{coin.symbol}</span>
+                                </td>
+                                <td>{coin.price}</td>
+                                <td>{coin['1d'].price_change_pct * 100}%</td>
+                                <td>{coin.market_cap}</td>
+                                <td onClick={onClick}><div className='prices-buy-button'>Buy</div></td>
+                            </tr>
+                            )})}
+                    </tbody>
             </table>
         </>
     )
 }
 
-export default Prices
+export default Prices;

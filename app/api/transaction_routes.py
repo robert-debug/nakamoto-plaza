@@ -43,7 +43,7 @@ def transactions():
     fiatprice = body.get('fiatprice')
     purchase = body.get('purchase')
     date = datetime.datetime()
-    coin = VaultCoin.query.filter_by(user_id=user_id).filter_by(coin_id=coin_id)
+    coin = VaultCoin.query.filter_by(user_id=user_id).filter_by(coin_id=coin_id).first()
     if purchase == True:
         coin.amount = coin.amount + coinamt
     else:

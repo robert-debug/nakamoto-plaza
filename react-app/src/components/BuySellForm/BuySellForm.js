@@ -4,7 +4,8 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { getCoins } from '../../store/session';
 
-const BuySellForm = () =>{
+const BuySellForm = ({props}) =>{
+    const setShowModal = props.setShowModal
     const dispatch = useDispatch();
     const coins = useSelector(state => state.coin)
     const selectedCoin = useSelector(state => state.coin.coin)
@@ -18,14 +19,14 @@ const BuySellForm = () =>{
     const [coin, setCoin] = useState('');
     if (coinId === '') setCoinId('BTC')
     const onSubmit = (e)=> {
-
+        
     }
 
     const onFiat = (e) => {
-        const paymentAmount = e.target.value()
-        setFiatPrice(e.target.value)
-        
-        setAmount()
+        const paymentAmount = e.target.value
+        setFiatPrice(paymentAmount)
+        const amount = e.target.value / coin.price
+        setCoinAmt(amount)
     }
 
     const onSell = (e) => {
@@ -66,3 +67,5 @@ const BuySellForm = () =>{
     )
 
 }
+
+export default BuySellForm; 
