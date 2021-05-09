@@ -27,7 +27,8 @@ export const requestTransactions = () => async (dispatch) => {
 }
 
 export const makeTransaction = (coinAmt, fiatPrice, purchase, fiatId, coinId, sessionId) => async (dispatch)=> {
-    const response = await fetch("/api/transactions", {
+    console.log( 'amount:', coinAmt, 'price:', fiatPrice, 'purchase:', purchase, 'fiatId:', fiatId, 'coinId:', coinId, 'userId:',sessionId)
+    const response = await fetch("/api/transactions/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

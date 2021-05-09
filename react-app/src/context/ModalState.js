@@ -17,4 +17,3 @@ const ModalStateProvider = ({children}) => {
 };
 
 export default ModalStateProvider;
-
