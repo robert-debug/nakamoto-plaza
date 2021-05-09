@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import { makeTransaction } from '../../store/transaction'
+import { makeTransfers } from '../../store/transfer'
 import { DisplayStateContext } from '../../context/Display'
 const BuySellForm = ({ props }) =>{
     const history = useHistory()
@@ -19,7 +19,7 @@ const BuySellForm = ({ props }) =>{
     const onSubmit = (e)=> {
         e.preventDefault();
         const coinId = coinIdObj[coinSymbol]
-        dispatch(makeTransaction(sessionId, receiverIdentification, coinAmt, coinId, sessionId))
+        dispatch(makeTransfers(sessionId, receiverIdentification, coinAmt, coinId, sessionId))
         setShowModal(false)
         setShowDisplay('Portfolio')
         history.push('/')
@@ -54,6 +54,7 @@ const BuySellForm = ({ props }) =>{
                     name= 'receiverIdentification'
                     placeholder= 'Email'
                     value={receiverIdentification}
+                    onChange={updateReceiver}
                 ></input>
                 <select value={coinSymbol} onChange={updateCoin}>
                 {

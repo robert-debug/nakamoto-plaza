@@ -49,10 +49,10 @@ export const makeTransaction = (coinAmt, fiatPrice, purchase, fiatId, coinId, se
             'coin_id': coinId
         }),
     });
-    if (data.errors) {
-        return data;
-    }
     const data = await response.json();
+    if (data.errors) {
+        return dispatch(errors(data));
+    }
     dispatch(postTransaction(data));
 }
 const initialState = { list : [] }

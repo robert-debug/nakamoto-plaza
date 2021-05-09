@@ -35,6 +35,7 @@ def get_one_coin(user_id, coin_id):
 @transaction_routes.route('/', methods=['POST'])
 @login_required
 def transactions():
+    print('#####################')
     body = request.get_json()
     user_id = body.get('user_id')
     fiat_id = body.get('fiat_id')
@@ -46,7 +47,6 @@ def transactions():
     date = datetime.datetime.now()
     vault = Vault.query.filter_by(user_id=user_id).first()
     vault = vault.to_dict()
-    print('#####################', coin_id)
     coin = VaultCoin.query.filter_by(vault_id=vault['id']).filter_by(coin_id=coin_id).first()
     print('$$$$$$$$$$$', coin.amount)
     if purchase == True:

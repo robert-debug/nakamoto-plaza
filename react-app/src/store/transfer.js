@@ -32,7 +32,7 @@ export const requestTransfers = () => async (dispatch) => {
 }
 
 export const makeTransfers = (sessionId, receiverIdentification, coinAmt, coinId ) => async (dispatch)=> {
-    const response = await fetch("/api/transactions/", {
+    const response = await fetch("/api/transfers/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -44,10 +44,10 @@ export const makeTransfers = (sessionId, receiverIdentification, coinAmt, coinId
             'coin_id': coinId
         }),
     });
-    if (data.errors) {
-        return data;
-    }
     const data = await response.json();
+    if (data.errors) {
+        return dispatch(errors(data));
+    }
     dispatch(postTransfer(data));
 }
 const initialState = { list : [] }
@@ -67,7 +67,7 @@ const transferReducer = (state= initialState, action)=> {
             state.list.push(action.payload);
             const newTransferId = action.payload.id;
             const object = {}
-            object[newTransferId]= action.payload.id
+            object[newTransferId]= action.payload
             return {...state, ...object }
         }
         case ERROR:{
