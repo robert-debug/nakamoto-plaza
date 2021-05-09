@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Modal } from '../../context/Modal'
-import BuySellForm from './BuySellForm'
+import Transfer from './TransferForm'
 
 const TransferModal = () => {
     const [ showModal, setShowModal ] = useState(false);
@@ -9,7 +9,7 @@ const TransferModal = () => {
             <button className= 'content-button' onClick={() => setShowModal(true)}>Buy</button>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
-                        <BuySellForm className='buy-sell-form' props={{ coin }} />
+                        <TransferForm className='tranfer-form' props={{ setShowModal }} />
                     </Modal>
                     )
                 }

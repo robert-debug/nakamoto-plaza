@@ -54,4 +54,4 @@ const coinReducer = (state=initialState, action) => {
     }
 }
 
-export default coinReducer
+export default coinReducer;

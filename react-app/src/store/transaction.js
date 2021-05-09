@@ -1,3 +1,5 @@
+import transferReducer from "./transfer"
+
 const LOAD = 'transactions/LOAD'
 const CREATE = 'transactions/CREATE'
 
@@ -68,3 +70,4 @@ const transactionReducer = (state= initialState, action)=> {
     }
 }
 
+export default transferReducer;
