@@ -28,7 +28,8 @@ class Transaction(db.Model):
         back_populates="transactions"
     ) 
 
-    def to_dict(self):{
+    def to_dict(self):
+        return {
         'id': self.id,
         'fiat_id': self.fiat_id,
         'user_id': self.user_id,
@@ -36,5 +37,5 @@ class Transaction(db.Model):
         'coinamt': self.coinamt,
         'fiatprice': self.fiatprice,
         'purchase': self.purchase,
-        'date': self.date
+        'date': self.date.strftime("%m/%d/%Y, %H:%M:%S")
     }

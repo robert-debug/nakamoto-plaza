@@ -30,7 +30,7 @@ export const requestOneCoin = (symbol) => async(dispatch) => {
     dispatch(getOneCoin(coin))
 }
 
-const initialState = {list: null, userCoins: null, coin: null}
+const initialState = {list: [], userCoins: [], coin: null}
 
 const coinReducer = (state=initialState, action) => {
     console.log(action)
@@ -54,4 +54,4 @@ const coinReducer = (state=initialState, action) => {
     }
 }
 
-export default coinReducer
+export default coinReducer;

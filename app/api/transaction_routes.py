@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
-from app.models import Transaction, VaultCoin
+from app.models import Transaction, VaultCoin, Vault, db
 import datetime
 
 transaction_routes = Blueprint('transactions', __name__)
@@ -21,7 +21,7 @@ def get_transactions(user_id):
 @transaction_routes.route('/<int:user_id>/coins/<int:coin_id>', methods=['GET'])
 @login_required
 def get_one_coin(user_id, coin_id):
-    transactions = Transfer.query.filter_by(sender_id=user_id).filter_by(coin_id=coin_id).all()
+    transactions = Transaction.query.filter_by(user_id=user_id).filter_by(coin_id=coin_id).all()
     transactions = [transaction.to_dict() for transaction in transactions]
     transaction_dict = {}
     i = 0
@@ -36,27 +36,39 @@ def get_one_coin(user_id, coin_id):
 @login_required
 def transactions():
     body = request.get_json()
-    user_id = body.get('sender_id')
+    user_id = body.get('user_id')
     fiat_id = body.get('fiat_id')
     coin_id = body.get('coin_id')
     coinamt = body.get('coinamt')
     fiatprice = body.get('fiatprice')
     purchase = body.get('purchase')
-    date = datetime.datetime()
-    coin = VaultCoin.query.filter_by(user_id=user_id).filter_by(coin_id=coin_id)
+    coinamt = round(coinamt, 8)
+    date = datetime.datetime.now()
+    vault = Vault.query.filter_by(user_id=user_id).first()
+    vault = vault.to_dict()
+    print('#####################', coin_id)
+    coin = VaultCoin.query.filter_by(vault_id=vault['id']).filter_by(coin_id=coin_id).first()
+    print('$$$$$$$$$$$', coin.amount)
     if purchase == True:
         coin.amount = coin.amount + coinamt
+        db.session.commit()
     else:
-        coin.amount = newcoin.amount - coinamt
-    new_transfer = Transfer(
-        sender_id=sender_id,
-        receiver_id=receiver_id,
+        if (coin.amount < coinamt):
+            return { 'errors' : ['Insufficient tokens']}
+        coin.amount = coin.amount - coinamt
+        db.session.commit()
+    new_transfer = Transaction(
+        user_id=user_id,
+        fiat_id=fiat_id,
         coin_id=coin_id,
         coinamt=coinamt,
         fiatprice=fiatprice,
         purchase=purchase,
         date=date
-    )
+        )
     db.session.add(new_transfer)
     db.session.commit()
-    return new_transfer.to_dict()
+    print
+    new_transfer = new_transfer.to_dict()
+    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', new_transfer)
+    return new_transfer

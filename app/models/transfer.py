@@ -33,6 +33,6 @@ class Transfer(db.Model):
             'receiver_id': self.receiver_id,
             'coin_id': self.coin_id,
             'coinamt': self.coinamt,
-            'date': datetime_to_string(self.date)
+            'date':  self.date.strftime("%m/%d/%Y, %H:%M:%S")
         }
 

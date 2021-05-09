@@ -49,7 +49,7 @@ def seed_coins():
 
     cardano = Coin(
         name='Cardano',
-        symbol='Ada',
+        symbol='ADA',
         lastaskprice=1.17488424,
         lastaskpricedate=datetimes,
         maxsupply=45000000000,

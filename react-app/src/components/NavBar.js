@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 import logo from '../image-assets/color_logo_with_background.png'
 import { DisplayStateContext } from '../context/Display'
-
+import BuySellFormModal from '../components/BuySellFormModal/index'
+import { requestCoins } from '../store/coins'
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const [title, setTitle] = useState(null)
@@ -17,7 +18,9 @@ const NavBar = () => {
     <h2>{showDisplay}</h2>
     </>
   )
-
+  useEffect(()=>{
+    dispatch(requestCoins())
+  },[dispatch])
   
   useEffect(() =>{
     if(!sessionUser) setTitle(null);
@@ -42,13 +45,13 @@ const NavBar = () => {
           {display}
         </div>
         <div>
-          { sessionUser ? <LogoutButton /> : null}
+          { sessionUser ? <BuySellFormModal props={{coin: 'BTC'}}/>: null}
         </div>
         <div>
           { sessionUser ? null : null }
         </div>
         <div>
-          { sessionUser ? null : null }
+          { sessionUser ? <LogoutButton />: null }
         </div>
       </div>
   );

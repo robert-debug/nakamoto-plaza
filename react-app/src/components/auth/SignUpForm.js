@@ -37,6 +37,7 @@ const SignUpForm = () => {
   };
 
   const updateUSState = (e) => {
+    console.log(e.target.value)
     setUSState(e.target.value);
   };
 
@@ -135,7 +136,7 @@ const SignUpForm = () => {
           <select value={usState} onChange={updateUSState}>
             {
               statesArray.map(state => (
-                <option key={state} value={usState}>{state}</option>
+                <option key={state} value={state}>{state}</option>
               ))
             }
           </select>
