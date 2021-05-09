@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
-from app.models import Transaction, VaultCoin, Vault
+from app.models import Transaction, VaultCoin, Vault, db
 import datetime
 
 transaction_routes = Blueprint('transactions', __name__)
@@ -42,14 +42,21 @@ def transactions():
     coinamt = body.get('coinamt')
     fiatprice = body.get('fiatprice')
     purchase = body.get('purchase')
-    date = datetime.datetime()
+    coinamt = round(coinamt, 8)
+    date = datetime.datetime.now()
     vault = Vault.query.filter_by(user_id=user_id).first()
-    vault = vault.to_dict
+    vault = vault.to_dict()
+    print('#####################', coin_id)
     coin = VaultCoin.query.filter_by(vault_id=vault['id']).filter_by(coin_id=coin_id).first()
+    print('$$$$$$$$$$$', coin.amount)
     if purchase == True:
         coin.amount = coin.amount + coinamt
+        db.session.commit()
     else:
-        coin.amount = newcoin.amount - coinamt
+        if (coin.amount < coinamt):
+            return { 'errors' : ['Insufficient tokens']}
+        coin.amount = coin.amount - coinamt
+        db.session.commit()
     new_transfer = Transaction(
         user_id=user_id,
         fiat_id=fiat_id,
@@ -58,7 +65,10 @@ def transactions():
         fiatprice=fiatprice,
         purchase=purchase,
         date=date
-    )
+        )
     db.session.add(new_transfer)
     db.session.commit()
-    return new_transfer.to_dict()
+    print
+    new_transfer = new_transfer.to_dict()
+    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', new_transfer)
+    return new_transfer

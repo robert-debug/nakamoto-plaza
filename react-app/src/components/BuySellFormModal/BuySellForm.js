@@ -6,6 +6,7 @@ import { requestCoins } from '../../store/coins';
 import { makeTransaction } from '../../store/transaction'
 const BuySellForm = ({ props }) =>{
     console.log(props.coin)
+    const setShowModal = props.setShowModal
     const dispatch = useDispatch();
     const coins = useSelector(state => state.coin.list)
     const priceFinder = useSelector(state => state.coin)
@@ -22,6 +23,7 @@ const BuySellForm = ({ props }) =>{
         e.preventDefault();
         const coinId = coinIdObj[coinSymbol]
         dispatch(makeTransaction(coinAmt, fiatPrice, purchase,  fiatId, coinId, sessionId))
+        setShowModal(false)
     }
 
     const onFiat = (e) => {
@@ -45,7 +47,7 @@ const BuySellForm = ({ props }) =>{
     }
 
     return(
-        <div>
+        <div className='form-div'>
               <div onClick={onBuy}>Buy</div><div onClick={onSell}>Sell</div>
               <form onSubmit={onSubmit}>
                  <input

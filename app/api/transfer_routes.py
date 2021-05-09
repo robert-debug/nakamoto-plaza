@@ -52,12 +52,12 @@ def transfer():
     coin_id = body.get('coin_id')
     coinamt = body.get('coinamt')
     vault = Vault.query.filter_by(user_id=sender_id).first()
-    vault = vault.to_dict
+    vault = vault.to_dict()
     coin = VaultCoin.query.filter_by(vault_id=vault['id']).filter_by(coin_id=coin_id)
     if coinamt >= coin.amount:
         receiver_id = body.get('receiver_id')
         new_vault = Vault.query.filter_by(user_id=receiver_id).first()
-        new_vault = new_vault.to_dict
+        new_vault = new_vault.to_dict()
         newcoin = VaultCoin.query.filter_by(vault_id=new_vault['id']).filter_by(coin_id=coin_id)
         coin.amount = coin.amount - coinamt
         newcoin.amount = newcoin.amount + coinamt
@@ -66,11 +66,11 @@ def transfer():
             receiver_id=receiver_id,
             coin_id= coin_id,
             coinamt= coinamt,
-            date= datetime.datetime()
+            date= datetime.datetime.now()
         )
         db.session.add(new_transfer)
         db.session.commit()
         return new_transfer.to_dict()
-    return {'errors':['Insufficient currency']}
+    return {'errors':['Insufficient tokens']}
 
 
