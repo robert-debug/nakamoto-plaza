@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import { requestCoins } from '../../store/coins';
+import { DisplayStateContext } from '../../context/Display'
 import { makeTransaction } from '../../store/transaction'
 const BuySellForm = ({ props }) =>{
     console.log(props.coin)
+    const history = useHistory()
     const setShowModal = props.setShowModal
     const dispatch = useDispatch();
     const coins = useSelector(state => state.coin.list)
@@ -17,13 +18,17 @@ const BuySellForm = ({ props }) =>{
     const [fiatPrice, setFiatPrice] = useState(0);
     const coinIdObj = {'BTC': 1, 'ETH': 2, 'DOGE': 3, 'XRP':4, 'ADA': 5, 'UNI': 6, 'LTC': 7, 'XLM': 8, 'ETC': 9, 'TRX': 10, 'AAVE': 11, 'Cosmos': 12}
     const [coinSymbol, setCoinSymbol] = useState(props.coin);
+    const { showDisplay, setShowDisplay} = useContext(DisplayStateContext)
     const fiatId = 1;
+
 
     const onSubmit = (e)=> {
         e.preventDefault();
         const coinId = coinIdObj[coinSymbol]
         dispatch(makeTransaction(coinAmt, fiatPrice, purchase,  fiatId, coinId, sessionId))
         setShowModal(false)
+        setShowDisplay('Portfolio')
+        history.push('/')
     }
 
     const onFiat = (e) => {

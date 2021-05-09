@@ -1,6 +1,6 @@
 const LOAD = 'transferss/LOAD'
 const CREATE = 'transfers/CREATE'
-
+const ERROR = 'transfers/ERROR'
 const getTransfers = (list) =>({
     type: LOAD,
     list
@@ -8,6 +8,11 @@ const getTransfers = (list) =>({
 
 const postTransfer = (payload) =>({
     type: CREATE,
+    payload
+})
+
+const errors = (payload) =>({
+    type: ERROR,
     payload
 })
 
@@ -33,13 +38,15 @@ export const makeTransfers = (sessionId, receiverIdentification, coinAmt, coinId
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            purchase,
             'sender_id': sessionId,
             'receiver_identification': receiverIdentification,
             'coinamt': coinAmt,
             'coin_id': coinId
         }),
     });
+    if (data.errors) {
+        return data;
+    }
     const data = await response.json();
     dispatch(postTransfer(data));
 }
@@ -59,8 +66,13 @@ const transferReducer = (state= initialState, action)=> {
         case CREATE: {
             state.list.push(action.payload);
             const newTransferId = action.payload.id;
-            return {...state, newTransferId : action.payload }
+            const object = {}
+            object[newTransferId]= action.payload.id
+            return {...state, ...object }
         }
+        case ERROR:{
+            return {...state, errors: action.payload.errors}
+        }    
         default:
             return state;
     }

@@ -6,6 +6,7 @@ import logo from '../image-assets/color_logo_with_background.png'
 import { DisplayStateContext } from '../context/Display'
 import BuySellFormModal from '../components/BuySellFormModal/index'
 import { requestCoins } from '../store/coins'
+import TransferModal from '../components/TransferModal/index'
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const [title, setTitle] = useState(null)
@@ -48,7 +49,7 @@ const NavBar = () => {
           { sessionUser ? <BuySellFormModal props={{coin: 'BTC'}}/>: null}
         </div>
         <div>
-          { sessionUser ? null : null }
+          { sessionUser ? <TransferModal /> : null }
         </div>
         <div>
           { sessionUser ? <LogoutButton />: null }

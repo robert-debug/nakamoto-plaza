@@ -2,7 +2,7 @@ import transferReducer from "./transfer"
 
 const LOAD = 'transactions/LOAD'
 const CREATE = 'transactions/CREATE'
-
+const ERROR = 'transactions/ERROR'
 const getTransactions = (list) =>({
     type: LOAD,
     list
@@ -10,6 +10,11 @@ const getTransactions = (list) =>({
 
 const postTransaction = (payload) =>({
     type: CREATE,
+    payload
+})
+
+const errors = (payload) =>({
+    type: ERROR,
     payload
 })
 
@@ -44,6 +49,9 @@ export const makeTransaction = (coinAmt, fiatPrice, purchase, fiatId, coinId, se
             'coin_id': coinId
         }),
     });
+    if (data.errors) {
+        return data;
+    }
     const data = await response.json();
     dispatch(postTransaction(data));
 }
@@ -63,11 +71,16 @@ const transactionReducer = (state= initialState, action)=> {
         case CREATE: {
             state.list.push(action.payload);
             const newTransactionId = action.payload.id;
-            return {...state, newTransactionId : action.payload }
+            const object = {}
+            object[newTransactionId]= action.payload.id
+            return {...state, ...object }
         }
+        case ERROR:{
+            return {...state, errors: action.payload.errors}
+        }    
         default:
             return state;
     }
 }
 
-export default transferReducer;
+export default transactionReducer;
