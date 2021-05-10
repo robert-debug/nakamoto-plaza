@@ -1,0 +1,2 @@
+export const coinIdObj = {'BTC': 1, 'ETH': 2, 'DOGE': 3, 'XRP':4, 'ADA': 5, 'UNI': 6, 'LTC': 7, 'XLM': 8, 'ETC': 9, 'TRX': 10, 'AAVE': 11, 'ATOM': 12}
+export const idCoinObj = {1:'BTC', 2:'ETH', 3:'DOGE', 4:'XRP', 5:'ADA', 6:'UNI', 7: 'LTC', 8:'XLM', 9:'ETC', 10:'TRX', 11:'AAVE', 12:'ATOM'}

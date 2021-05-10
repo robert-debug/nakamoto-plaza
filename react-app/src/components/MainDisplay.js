@@ -5,13 +5,14 @@ import LogoutButton from './auth/LogoutButton';
 import logo from '../image-assets/color_logo_with_background.png'
 import { DisplayStateContext } from '../context/Display'
 import Prices from './Prices'
+import Portfolio from './Portfolio'
 const MainDisplay = () =>{
     const { showDisplay } = useContext(DisplayStateContext) 
     
     return(
         <div className='main-display'>
             {showDisplay === 'Home' ? null : null}
-            {showDisplay === 'Portfolio' ? null : null}
+            {showDisplay === 'Portfolio' ? <Portfolio /> : null}
             {showDisplay === 'Prices' ? <Prices/> : null}
             {showDisplay === 'coin' ? null : null}
         </div>

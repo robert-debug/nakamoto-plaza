@@ -7,6 +7,7 @@ coin_routes = Blueprint('coins', __name__)
 @coin_routes.route('/', methods=['GET'])
 def get_coins():
     coins = Coins.query.all()
+    print('########################', coins)
     coins = [coin.to_dict() for coin in coins]
     coin_dict = {}
     i = 0

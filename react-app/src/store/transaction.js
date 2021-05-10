@@ -29,6 +29,7 @@ export const requestTransactions = (id) => async (dispatch) => {
     if (data.errors) {
         return;
     }
+    console.log(data)
     dispatch(getTransactions(data))
     
 }
@@ -61,12 +62,12 @@ const transactionReducer = (state= initialState, action)=> {
     switch(action.type){
         case LOAD: {
             const transactionList = action.list
-            const transactionObj = {}
-            transactionList.map(transaction =>{
-                transactionObj[transaction.id] = transaction
-            })
-            
-            return { list: transactionList, ...transactionObj}
+            console.log(transactionList)
+            const newList = []
+            for (const key in transactionList){
+                newList.unshift(transactionList[key])
+            }
+            return { list: newList, ...transactionList}
         }
         case CREATE: {
             state.list.push(action.payload);

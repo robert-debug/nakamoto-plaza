@@ -4,6 +4,8 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { DisplayStateContext } from '../../context/Display'
 import { makeTransaction } from '../../store/transaction'
+import { coinIdObj } from '../../utilities'
+
 const BuySellForm = ({ props }) =>{
     console.log(props.coin)
     const history = useHistory()
