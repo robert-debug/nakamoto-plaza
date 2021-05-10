@@ -16,8 +16,8 @@ const errors = (payload) =>({
     payload
 })
 
-export const requestTransfers = () => async (dispatch) => {
-    const response = await fetch('/api/transfers/', {
+export const requestTransfers = (id) => async (dispatch) => {
+    const response = await fetch(`/api/transfers/${id}`, {
         headers: {
             'Content-Type': 'application/json'
         }

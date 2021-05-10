@@ -18,8 +18,8 @@ const errors = (payload) =>({
     payload
 })
 
-export const requestTransactions = () => async (dispatch) => {
-    const response = await fetch('/api/transactions/', {
+export const requestTransactions = (id) => async (dispatch) => {
+    const response = await fetch(`/api/transactions/${id}`, {
         headers: {
             'Content-Type': 'application/json'
         }

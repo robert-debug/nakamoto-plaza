@@ -24,6 +24,13 @@ export const requestCoins = () => async(dispatch)=> {
     dispatch(getCoins(coins))
 }
 
+export const requestUserCoins = (userId) => async(dispatch)=> {
+    const response = await fetch(`/api/coins/${userId}`)
+    const coins = await response.json()
+    console.log(coins)
+    dispatch(getUserCoins(coins))
+}
+
 export const requestOneCoin = (symbol) => async(dispatch) => {
     const response = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=2dea8624d0f169a05115d37d8ed28cc2&ids=${symbol}&interval=1d,30d&convert=EUR&per-page=100&page=1`)
     const coin = await response.json()
@@ -48,6 +55,9 @@ const coinReducer = (state=initialState, action) => {
         case ONE: {
             const coin = action.payload[0];
             return {...state, coin: coin}
+        }
+        case USER: {
+            return { ...state, userCoins: action.list}
         }
         default: 
             return state;
