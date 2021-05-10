@@ -8,6 +8,7 @@ import { DisplayStateContext } from '../context/Display'
 import Prices from './Prices'
 import Portfolio from './Portfolio'
 import Home from './Home'
+import Coin from './Coin'
 
 const MainDisplay = () =>{
     const dispatch = useDispatch()
@@ -20,7 +21,7 @@ const MainDisplay = () =>{
             {showDisplay === 'Home' ? <Home /> : null}
             {showDisplay === 'Portfolio' ? <Portfolio /> : null}
             {showDisplay === 'Prices' ? <Prices/> : null}
-            {showDisplay === 'coin' ? null : null}
+            {showDisplay === 'coin' ? <Coin /> : null}
         </div>
     )
 }
