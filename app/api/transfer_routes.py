@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
-from app.models import Transfer, VaultCoin, Vault
+from app.models import Transfer, VaultCoin, Vault, User, db
 import datetime
 
 transfer_routes = Blueprint('transfers', __name__)
@@ -49,16 +49,28 @@ def get_one_coin(user_id, coin_id):
 def transfer():
     body = request.get_json()
     sender_id = body.get('sender_id')
+    print('$$$$$$$$$$$$$$$$$$$$$$', sender_id)
     coin_id = body.get('coin_id')
     coinamt = body.get('coinamt')
+    coinamt = float(coinamt)
+    receiver_email = body.get('receiver_identification')
+    try:
+        receiver = User.query.filter_by(email=receiver_email).first()
+    except:
+        return {'errors': 'No such user'}
+    receiver = receiver.to_dict()
+    receiver_id = receiver['id']
     vault = Vault.query.filter_by(user_id=sender_id).first()
     vault = vault.to_dict()
-    coin = VaultCoin.query.filter_by(vault_id=vault['id']).filter_by(coin_id=coin_id)
-    if coinamt >= coin.amount:
-        receiver_id = body.get('receiver_id')
+    print('########################', vault['id'])
+    coin = VaultCoin.query.filter_by(vault_id=vault['id']).filter_by(coin_id=coin_id).first()
+    coinAmount = coin.to_dict()
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!',coin)
+    print('########################', coinamt)
+    if coinamt <= coinAmount['amount']:
         new_vault = Vault.query.filter_by(user_id=receiver_id).first()
         new_vault = new_vault.to_dict()
-        newcoin = VaultCoin.query.filter_by(vault_id=new_vault['id']).filter_by(coin_id=coin_id)
+        newcoin = VaultCoin.query.filter_by(vault_id=new_vault['id']).filter_by(coin_id=coin_id).first()
         coin.amount = coin.amount - coinamt
         newcoin.amount = newcoin.amount + coinamt
         new_transfer = Transfer(

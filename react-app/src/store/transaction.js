@@ -2,7 +2,7 @@ import transferReducer from "./transfer"
 
 const LOAD = 'transactions/LOAD'
 const CREATE = 'transactions/CREATE'
-
+const ERROR = 'transactions/ERROR'
 const getTransactions = (list) =>({
     type: LOAD,
     list
@@ -13,8 +13,13 @@ const postTransaction = (payload) =>({
     payload
 })
 
-export const requestTransactions = () => async (dispatch) => {
-    const response = await fetch('/api/transactions/', {
+const errors = (payload) =>({
+    type: ERROR,
+    payload
+})
+
+export const requestTransactions = (id) => async (dispatch) => {
+    const response = await fetch(`/api/transactions/${id}`, {
         headers: {
             'Content-Type': 'application/json'
         }
@@ -45,6 +50,9 @@ export const makeTransaction = (coinAmt, fiatPrice, purchase, fiatId, coinId, se
         }),
     });
     const data = await response.json();
+    if (data.errors) {
+        return dispatch(errors(data));
+    }
     dispatch(postTransaction(data));
 }
 const initialState = { list : [] }
@@ -63,11 +71,16 @@ const transactionReducer = (state= initialState, action)=> {
         case CREATE: {
             state.list.push(action.payload);
             const newTransactionId = action.payload.id;
-            return {...state, newTransactionId : action.payload }
+            const object = {}
+            object[newTransactionId]= action.payload.id
+            return {...state, ...object }
         }
+        case ERROR:{
+            return {...state, errors: action.payload.errors}
+        }    
         default:
             return state;
     }
 }
 
-export default transferReducer;
+export default transactionReducer;

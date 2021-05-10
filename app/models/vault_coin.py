@@ -23,5 +23,6 @@ class VaultCoin(db.Model):
         return {
             "id": self.id,
             "vault_id": self.vault_id,
-            "coin_id": self.coin_id
+            "coin_id": self.coin_id,
+            'amount': self.amount
         }

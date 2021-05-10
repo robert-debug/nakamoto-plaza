@@ -1,62 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import { requestCoins } from '../../store/coins';
-import { makeTransaction } from '../../store/transaction'
+import { makeTransfers } from '../../store/transfer'
+import { DisplayStateContext } from '../../context/Display'
 const BuySellForm = ({ props }) =>{
-    console.log(props.coin)
+    const history = useHistory()
     const setShowModal = props.setShowModal
     const dispatch = useDispatch();
     const coins = useSelector(state => state.coin.list)
-    const priceFinder = useSelector(state => state.coin)
-    console.log(priceFinder)
     const sessionId = useSelector(state => state.session.user.id)
-    const [purchase, setPurchase] = useState(true);
     const [coinAmt, setCoinAmt] = useState(0);
-    const [fiatPrice, setFiatPrice] = useState(0);
+    const [receiverIdentification, setReceiverIdentification ] = useState('')
     const coinIdObj = {'BTC': 1, 'ETH': 2, 'DOGE': 3, 'XRP':4, 'ADA': 5, 'UNI': 6, 'LTC': 7, 'XLM': 8, 'ETC': 9, 'TRX': 10, 'AAVE': 11, 'Cosmos': 12}
-    const [coinSymbol, setCoinSymbol] = useState(props.coin);
-    const fiatId = 1;
+    const [coinSymbol, setCoinSymbol] = useState('BTC');
+    const { showDisplay, setShowDisplay} = useContext(DisplayStateContext)
 
     const onSubmit = (e)=> {
         e.preventDefault();
         const coinId = coinIdObj[coinSymbol]
-        dispatch(makeTransaction(coinAmt, fiatPrice, purchase,  fiatId, coinId, sessionId))
+        dispatch(makeTransfers(sessionId, receiverIdentification, coinAmt, coinId, sessionId))
         setShowModal(false)
+        setShowDisplay('Portfolio')
+        history.push('/')
     }
 
-    const onFiat = (e) => {
-        const paymentAmount = e.target.value
-        setFiatPrice(paymentAmount)
-        const amount = e.target.value / priceFinder[coinSymbol].price
+    const updateAmount = (e) => {
+        const amount = e.target.value
         setCoinAmt(amount)
-    }
-
-    const onSell = (e) => {
-        setPurchase(false)
-    }
-
-    
-    const onBuy = (e) => {
-        setPurchase(true)
     }
 
     const updateCoin = (e) => {
         setCoinSymbol(e.target.value)
     }
 
+    const updateReceiver = (e) => {
+        setReceiverIdentification(e.target.value)
+    }
+
     return(
         <div className='form-div'>
-              <div onClick={onBuy}>Buy</div><div onClick={onSell}>Sell</div>
+              <div>Transfer</div>
               <form onSubmit={onSubmit}>
                  <input
                     type="number"
-                    name="fiatprice"
-                    onChange={onFiat}
-                    value={fiatPrice}
+                    name="coinAmt"
+                    onChange={updateAmount}
+                    value={coinAmt}
                 ></input>
-                <label>Price per coin: {priceFinder[coinSymbol].price}</label>
+                <label>To:</label>
+                <input
+                    type= 'text'
+                    name= 'receiverIdentification'
+                    placeholder= 'Email'
+                    value={receiverIdentification}
+                    onChange={updateReceiver}
+                ></input>
                 <select value={coinSymbol} onChange={updateCoin}>
                 {
                     coins.map(coin => (
@@ -64,7 +63,7 @@ const BuySellForm = ({ props }) =>{
                     ))
                 }
                 </select>
-                <button type="submit">Buy {coinSymbol}</button>
+                <button type="submit">Transfer {coinSymbol}</button>
             </form>
         </div>
     )

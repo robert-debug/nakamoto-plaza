@@ -1,6 +1,6 @@
 const LOAD = 'transferss/LOAD'
 const CREATE = 'transfers/CREATE'
-
+const ERROR = 'transfers/ERROR'
 const getTransfers = (list) =>({
     type: LOAD,
     list
@@ -11,8 +11,13 @@ const postTransfer = (payload) =>({
     payload
 })
 
-export const requestTransfers = () => async (dispatch) => {
-    const response = await fetch('/api/transfers/', {
+const errors = (payload) =>({
+    type: ERROR,
+    payload
+})
+
+export const requestTransfers = (id) => async (dispatch) => {
+    const response = await fetch(`/api/transfers/${id}`, {
         headers: {
             'Content-Type': 'application/json'
         }
@@ -27,13 +32,12 @@ export const requestTransfers = () => async (dispatch) => {
 }
 
 export const makeTransfers = (sessionId, receiverIdentification, coinAmt, coinId ) => async (dispatch)=> {
-    const response = await fetch("/api/transactions/", {
+    const response = await fetch("/api/transfers/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            purchase,
             'sender_id': sessionId,
             'receiver_identification': receiverIdentification,
             'coinamt': coinAmt,
@@ -41,6 +45,9 @@ export const makeTransfers = (sessionId, receiverIdentification, coinAmt, coinId
         }),
     });
     const data = await response.json();
+    if (data.errors) {
+        return dispatch(errors(data));
+    }
     dispatch(postTransfer(data));
 }
 const initialState = { list : [] }
@@ -59,8 +66,13 @@ const transferReducer = (state= initialState, action)=> {
         case CREATE: {
             state.list.push(action.payload);
             const newTransferId = action.payload.id;
-            return {...state, newTransferId : action.payload }
+            const object = {}
+            object[newTransferId]= action.payload
+            return {...state, ...object }
         }
+        case ERROR:{
+            return {...state, errors: action.payload.errors}
+        }    
         default:
             return state;
     }
