@@ -8,10 +8,6 @@ const Prices = () =>{
     const { showDisplay } = useContext(DisplayStateContext) 
     const coins = useSelector(state => state.coin.list)
 
-    useEffect(()=>{
-        dispatch(requestCoins());
-    }, [dispatch])
-
     if (!coins) return null
 
     return(

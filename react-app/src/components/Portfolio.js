@@ -12,30 +12,31 @@ const Portfolio = () =>{
     const sessionUser = useSelector(state => state.session.user);
     const { showDisplay } = useContext(DisplayStateContext) 
     const coins = useSelector(state => state.coin)
-    console.log(coins)
     const userCoins = useSelector(state => state.coin.userCoins)
     const transactions = useSelector(state => state.transaction.list)
     const transfers = useSelector(state => state.transfer.list)
-
+    
     useEffect(()=>{
         dispatch(requestUserCoins(sessionUser.id))
         dispatch(requestTransactions(sessionUser.id))
         dispatch(requestTransfers(sessionUser.id))
     }, [dispatch])
-    if (!coins[1]) return null
+    if (!coins['BTC']) return null
     if (!userCoins) return null
     if (!transactions) return null
     if (!transfers) return null
-
+    
+    console.log(userCoins)
     const amount = (amount, symbol) => {
-        console.log(symbol)
-        return amount * coins[idCoinObj[symbol]].price
+        return amount * coins[symbol].price
     }
 
     const denominator = () =>{
         let num = 0
         for (let i = 0; i < userCoins.length; i++){
-            const add = userCoins[i].amount * coins[userCoins[i].symbol].price
+            console.log(userCoins[i])
+            console.log(coins[idCoinObj[userCoins[i].coin_id]], idCoinObj[userCoins[i].coin_id])
+            const add = userCoins[i].amount * coins[idCoinObj[userCoins[i].coin_id]].price
             num += add
         }
         return num
@@ -58,12 +59,12 @@ const Portfolio = () =>{
                             return (
                             <tr>
                                 <td>{console.log(coins)}
-                                    <img alt={`${coins[idCoinObj[coin.coin_id]]}-logo`}src={coins[idCoinObj[coin.coin_id]].logo_url} className='coin-logo'/>
-                                    <span>{coins[coinIdObj[coin.coin_id]]}</span>
-                                    <span>{coins[idCoinObj[coin.coin_id]]}</span>
+                                    <img alt={`${coins[idCoinObj[coin.coin_id]].id}-logo`}src={coins[idCoinObj[coin.coin_id]].logo_url} className='coin-logo'/>
+                                    <span>{coins[idCoinObj[coin.coin_id]].name}</span>
+                                    <span>{coins[idCoinObj[coin.coin_id]].symbol}</span>
                                 </td>
-                                <td>{amount(coin.amount, coins[idCoinObj[coin.coin_id]])}</td>
-                                <td>{amount(coin.amount, coins[idCoinObj[coin.coin_id]])/denominator()}%</td>
+                                <td>{amount(coin.amount, idCoinObj[coin.coin_id])}</td>
+                                <td>{amount(coin.amount, idCoinObj[coin.coin_id])/denominator()}%</td>
                             </tr>
                             )})}
                     </tbody>
