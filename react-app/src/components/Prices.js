@@ -3,12 +3,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { DisplayStateContext } from '../context/Display'
 import { requestCoins } from '../store/coins'
 import BuySellFormModal from './BuySellFormModal/index'
+import { requestOneCoin } from '../store/coins'
 const Prices = () =>{
-    const dispatch = useDispatch();
-    const { showDisplay } = useContext(DisplayStateContext) 
+    const dispatch = useDispatch(); 
     const coins = useSelector(state => state.coin.list)
-
+    const { showDisplay, setShowDisplay } = useContext(DisplayStateContext);
+    const [selectedCoin, setSelectedCoin] = useState('BTC')
+    
     if (!coins) return null
+    const onClick = (id) =>{
+        setShowDisplay('coin')
+        dispatch(requestOneCoin(id))
+    }
 
     return(
         <>
@@ -27,10 +33,10 @@ const Prices = () =>{
                             console.log(coin)
                             return (
                             <tr>
-                                <td>{console.log(coin)}
+                                <td key={coin.id} value={coin.id} onClick={() => onClick(coin.id)}>{console.log(coin)}
                                     <img alt={`${coin.id}-logo`}src={coin.logo_url} className='coin-logo'/>
-                                    <span>{coin.name}</span>
-                                    <span>{coin.symbol}</span>
+                                    <span value={coin.id}>{coin.name}</span>
+                                    <span value={coin.id}>{coin.symbol}</span>
                                 </td>
                                 <td>{coin.price}</td>
                                 <td>{coin['1d'].price_change_pct * 100}%</td>
