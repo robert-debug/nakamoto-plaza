@@ -12,16 +12,27 @@ def get_tranfers(user_id):
     transfered = Transfer.query.filter_by(receiver_id=user_id).all()
     senders_coins = [transfer.to_dict() for transfer in transfers]
     receivers_coins = [transfer.to_dict() for transfer in transfered]
+    senders_coins.extend(receivers_coins)
+    for coin in senders_coins:
+        user = User.query.get(coin['sender_id'])
+        user2 = User.query.get(coin['receiver_id'])
+        user = user.to_dict()
+        user2= user2.to_dict()
+        coin['sender'] = user
+        coin['receiver'] = user2
+    print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$',senders_coins)
+    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', receivers_coins)
+    for coin in receivers_coins:
+        user = User.query.get(coin['receiver_id'])
+        user = user.to_dict()
+    senders_coins.extend(receivers_coins)
     transfer_dict = {}
     i = 0
-    while i < len(transfers):
-        key = transfers[i]['id']
-        transfer_dict[key] = transfers[i]
+    while i < len(senders_coins):
+        key = senders_coins[i]['id']
+        transfer_dict[key] = senders_coins[i]
         i += 1
-    while i < len(transfered):
-        key = transfered[i]['id']
-        transfer_dict[key] = transfered[i]
-        i += 1
+
     return transfer_dict
 
 @transfer_routes.route('/<int:user_id>/coins/<int:coin_id>', methods=['GET'])
@@ -31,16 +42,19 @@ def get_one_coin(user_id, coin_id):
     transfered = Transfer.query.filter_by(receiver_id=user_id).filter_by(coin_id=coin_id).all()
     senders_coins = [transfers.to_dict() for transfer in transfers]
     receivers_coins = [transfer.to_dict() for transfer in transfered]
+    print('###################################', senders_coins)
+    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', receivers_coins)
     transfer_dict = {}
     i = 0
     while i < len(transfers):
         key = transfers[i]['id']
-        transfer_dict[key] = transfers[i]
+        transfer_dict[key] = senders_coins[i]
         i += 1
     while i < len(transfered):
         key = transfered[i]['id']
-        transfer_dict[key] = transfered[i]
+        transfer_dict[key] = receivers_coins[i]
         i += 1
+    print()
     return transfer_dict
 
 

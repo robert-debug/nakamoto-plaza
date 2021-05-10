@@ -18,22 +18,24 @@ const getOneCoin = (payload) =>({
 })
 
 export const requestCoins = () => async(dispatch)=> {
-    const response = await fetch('https://api.nomics.com/v1/currencies/ticker?key=2dea8624d0f169a05115d37d8ed28cc2&ids=BTC,ETH,XRP,ADA,XLM,LTC,UNI,ETC,AAVE,ATOM,DOGE,TRX&interval=1d,30d&convert=EUR&per-page=100&page=1')
+    const response = await fetch('https://api.nomics.com/v1/currencies/ticker?key=2dea8624d0f169a05115d37d8ed28cc2&ids=BTC,ETH,XRP,ADA,XLM,LTC,UNI,ETC,AAVE,ATOM,DOGE,TRX&interval=1d,7d,30d,365d,ytd&convert=USD&per-page=100&page=1')
     const coins = await response.json()
     console.log(coins)
     dispatch(getCoins(coins))
 }
 
 export const requestUserCoins = (userId) => async(dispatch)=> {
-    const response = await fetch(`/api/coins/${userId}`)
+    const response = await fetch(`/api/vault-coins/${userId}`)
     const coins = await response.json()
     console.log(coins)
     dispatch(getUserCoins(coins))
 }
 
 export const requestOneCoin = (symbol) => async(dispatch) => {
-    const response = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=2dea8624d0f169a05115d37d8ed28cc2&ids=${symbol}&interval=1d,30d&convert=EUR&per-page=100&page=1`)
+    console.log(symbol)
+    const response = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=2dea8624d0f169a05115d37d8ed28cc2&ids=${symbol}&interval=1h,1d,30d,365d,ytd&convert=USD&per-page=100&page=1`)
     const coin = await response.json()
+    console.log(coin)
     dispatch(getOneCoin(coin))
 }
 
@@ -54,10 +56,16 @@ const coinReducer = (state=initialState, action) => {
         }
         case ONE: {
             const coin = action.payload[0];
+            console.log(coin)
             return {...state, coin: coin}
         }
         case USER: {
-            return { ...state, userCoins: action.list}
+            const coinList = action.list
+            const newList = []
+            for (const key in coinList){
+                newList.push(coinList[key])
+            }
+            return { ...state, userCoins: newList}
         }
         default: 
             return state;

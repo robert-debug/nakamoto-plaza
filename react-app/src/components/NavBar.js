@@ -9,6 +9,7 @@ import { requestCoins } from '../store/coins'
 import TransferModal from '../components/TransferModal/index'
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
+  const selectedCoin = useSelector(state => state.coin.coin);
   const [title, setTitle] = useState(null)
   const dispatch = useDispatch()
   const { showDisplay, setShowDisplay} = useContext(DisplayStateContext)
@@ -17,6 +18,12 @@ const NavBar = () => {
   const display = (
     <>
     <h2>{showDisplay}</h2>
+    </>
+  )
+  
+  const coinName =(
+    <>
+    <h2>{selectedCoin?.name}</h2>
     </>
   )
   useEffect(()=>{
@@ -43,7 +50,7 @@ const NavBar = () => {
           <img className='logo' alt='logo' src={logo}/>
         </div>
         <div className='location-label'>
-          {display}
+          { showDisplay == 'coin' && selectedCoin ? coinName : display }
         </div>
         <div>
           { sessionUser ? <BuySellFormModal props={{coin: 'BTC'}}/>: null}

@@ -4,6 +4,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { makeTransfers } from '../../store/transfer'
 import { DisplayStateContext } from '../../context/Display'
+import { coinIdObj } from '../../utilities'
 const BuySellForm = ({ props }) =>{
     const history = useHistory()
     const setShowModal = props.setShowModal
@@ -12,7 +13,6 @@ const BuySellForm = ({ props }) =>{
     const sessionId = useSelector(state => state.session.user.id)
     const [coinAmt, setCoinAmt] = useState(0);
     const [receiverIdentification, setReceiverIdentification ] = useState('')
-    const coinIdObj = {'BTC': 1, 'ETH': 2, 'DOGE': 3, 'XRP':4, 'ADA': 5, 'UNI': 6, 'LTC': 7, 'XLM': 8, 'ETC': 9, 'TRX': 10, 'AAVE': 11, 'Cosmos': 12}
     const [coinSymbol, setCoinSymbol] = useState('BTC');
     const { showDisplay, setShowDisplay} = useContext(DisplayStateContext)
 

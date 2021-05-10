@@ -56,12 +56,11 @@ const transferReducer = (state= initialState, action)=> {
     switch(action.type){
         case LOAD: {
             const transferList = action.list
-            const transferObj = {}
-            transferList.map(transfer =>{
-                transferObj[transfer.id] = transfer
-            })
-            
-            return { list: transferList, ...transferObj}
+            const newList = []
+            for (const key in transferList){
+                newList.unshift(transferList[key])
+            }
+            return { list: newList, ...transferList}
         }
         case CREATE: {
             state.list.push(action.payload);

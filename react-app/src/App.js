@@ -11,6 +11,7 @@ import SideBar from "./components/SideBar"
 import MainDisplay from "./components/MainDisplay"
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
+import Portfolio from "./components/Portfolio"
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
