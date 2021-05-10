@@ -60,7 +60,7 @@ const coinReducer = (state=initialState, action) => {
             const coinList = action.list
             const newList = []
             for (const key in coinList){
-                newList.unshift(coinList[key])
+                newList.push(coinList[key])
             }
             return { ...state, userCoins: newList}
         }

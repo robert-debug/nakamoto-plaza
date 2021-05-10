@@ -63,8 +63,8 @@ const Portfolio = () =>{
                                     <span>{coins[idCoinObj[coin.coin_id]].name}</span>
                                     <span>{coins[idCoinObj[coin.coin_id]].symbol}</span>
                                 </td>
-                                <td>{amount(coin.amount, idCoinObj[coin.coin_id])}</td>
-                                <td>{amount(coin.amount, idCoinObj[coin.coin_id])/denominator()}%</td>
+                                <td>$ {(amount(coin.amount, idCoinObj[coin.coin_id])).toFixed(2)}</td>
+                                <td>{((amount(coin.amount, idCoinObj[coin.coin_id])/denominator()) * 100).toFixed(2)}%</td>
                             </tr>
                             )})}
                     </tbody>
@@ -80,6 +80,7 @@ const Portfolio = () =>{
                             <span>{idCoinObj[transaction.coin_id]}</span>
                             <span>${transaction.fiatprice}</span>
                             <span>Token amount: {transaction.coinamt}</span>
+                            <span>Date: {transaction.date}</span>
                         </div>)
                     })
                         
@@ -96,6 +97,7 @@ const Portfolio = () =>{
                         <span>Sender: {transfer.sender.email}</span>
                         <span>Receiver: {transfer.receiver.email}</span>
                         <span>Token amount: {transfer.coinamt}</span>
+                        <span>Date: {transfer.date}</span>
                     </div>)
                     })
                 }
