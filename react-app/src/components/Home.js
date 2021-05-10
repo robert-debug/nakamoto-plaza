@@ -1,7 +1,7 @@
 import React, {useEffect, useContext, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DisplayStateContext } from '../context/Display'
-import { requestUserCoins } from '../store/coins'
+import { requestSparkline, requestUserCoins } from '../store/coins'
 import BuySellFormModal from './BuySellFormModal/index'
 import { coinIdObj } from '../utilities'
 import { idCoinObj } from '../utilities'
@@ -15,9 +15,8 @@ const Home = () =>{
 
     useEffect(()=>{
         dispatch(requestUserCoins(sessionUser.id))
+        dispatch(requestSparkline())
     }, [dispatch])
-
-    console.log(userCoins)
 
     if (!coins['BTC']) return null
     if (!userCoins) return null
@@ -28,10 +27,10 @@ const Home = () =>{
 
 
     let biggest = 0;
-    for (let i = 0; i < userCoins.length; i++){
-        const newAmount = amount(userCoins[i].amount, coins[idCoinObj[userCoins[i].coin_id]].id)
-        const biggestAmount = amount(userCoins[biggest].amount, coins[idCoinObj[userCoins[biggest].coin_id]].id)
-        console.log(newAmount, biggestAmount, userCoins[i].coin_id, userCoins[biggest].coin_id)
+    for (let i = 0; i < userCoins?.length; i++){
+        const newAmount = amount(userCoins[i]?.amount, coins[idCoinObj[userCoins[i].coin_id]].id)
+        const biggestAmount = amount(userCoins[biggest]?.amount, coins[idCoinObj[userCoins[biggest].coin_id]].id)
+        console.log(newAmount, biggestAmount, userCoins[i]?.coin_id, userCoins[biggest]?.coin_id)
         if(newAmount > biggestAmount) biggest = i
     }
 
@@ -43,7 +42,7 @@ const Home = () =>{
             </div>
             <div className='home-info-div'>
                 {userCoins.map( coin => {
-                    console.log(idCoinObj[coin.coin_id], coins[idCoinObj[coin.coin_id]])
+                    if(coin.amount === 0) return null
                     return (
                         <div>
                             <img alt={`${coins[idCoinObj[coin.coin_id]].id}-logo`}src={coins[idCoinObj[coin.coin_id]].logo_url} className='coin-logo'/>
