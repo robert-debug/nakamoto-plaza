@@ -2,7 +2,7 @@ const LOAD = 'coins/LOAD'
 const ONE = 'coins/ONE'
 const USER = 'coins/USER'
 const SPARK = 'coins/SPARK'
-const ONEDAY = 'coins/ONEDAY'
+
 const getCoins = (list) =>({
     type: LOAD,
     list
@@ -23,10 +23,6 @@ const getSparkline = (payload) => ({
     payload
 })
 
-const getOneDay = (payload) => ({
-    type: ONEDAY,
-    payload
-})
 
 export const requestCoins = () => async(dispatch)=> {
     const response = await fetch('https://api.nomics.com/v1/currencies/ticker?key=2dea8624d0f169a05115d37d8ed28cc2&ids=BTC,ETH,XRP,ADA,XLM,LTC,UNI,ETC,AAVE,ATOM,DOGE,TRX&interval=1d,7d,30d,365d,ytd&convert=USD&per-page=100&page=1')
@@ -71,7 +67,7 @@ export const requestSparklineOneDay = (symbol) => async(dispatch) =>{
     const response = await fetch(`https://www.alphavantage.co/query?function=CRYPTO_INTRADAY&symbol=${symbol}}&market=USD&interval=30min&apikey=4EVCTZM7MXVNN237`)
     const coins = await response.json();
     console.log(coins)
-    dispatch(getOneDay(coins))
+    dispatch(getSparkline(coins))
 }
 
 export const requestSparklineIntraDay = (symbol) => async(dispatch) =>{

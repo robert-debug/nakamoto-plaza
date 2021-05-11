@@ -14,11 +14,8 @@ const Chart = ( { props } ) =>{
     const userCoins = useSelector(state => state.coin.userCoins)
     const spark = useSelector(state => state.coin.spark)
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
-    const oneHourData = [];
-    const oneDayData = [];
-    const oneWeekData = [];
-    const oneMonthData = [];
-    const oneYearData = [];
+    let data = [];
+
     // const [selectedCoin, setSelectedCoin] = useState('BTC')
     // useEffect(()=>{
     //     setSelectedCoin(props)
@@ -29,10 +26,11 @@ const Chart = ( { props } ) =>{
     if(!userCoins || !coins || !spark ) return (<p>Loading...</p>) 
     let i = 0
     for (const key in spark['Time Series Crypto (5min)']){
-        oneHourData.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
+        data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
     }
-    console.log('############################################', oneHourData.length)
-    oneHourData.splice(0,87)
+    console.log('############################################', data.length)
+    data.splice(0,87)
+
 
     // const customLabel=()
 
@@ -44,17 +42,11 @@ const Chart = ( { props } ) =>{
                 <span value={coins[coinDisplay].id}>{coins[coinDisplay].name}</span>
                 <span value={coins[coinDisplay].id}>{coins[coinDisplay].symbol}</span>
             </div> */}
-            <div>
-                <span>1H</span>
-                <span>Day</span>
-                <span>Week</span>
-                <span>Month</span>
-                <span>Year</span>
-            </div>
+
                 <LineChart
                     width={500}
                     height={300}
-                    data={oneHourData}
+                    data={data}
                     margin={{
                     top: 5,
                 right: 30,

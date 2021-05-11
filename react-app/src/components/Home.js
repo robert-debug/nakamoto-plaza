@@ -1,12 +1,13 @@
 import React, {useEffect, useContext, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DisplayStateContext } from '../context/Display'
-import { requestSparkline, requestSparklineIntraDay, requestUserCoins, requestOneCoin, requestCoins } from '../store/coins'
+import { requestSparkline, requestSparklineWeekly, requestSparklineDaily, requestSparklineIntraDay, requestUserCoins, requestOneCoin, requestCoins } from '../store/coins'
 import BuySellFormModal from './BuySellFormModal/index'
 import { coinIdObj } from '../utilities'
 import { idCoinObj } from '../utilities'
 import Chart from './Chart'
 import { CoinStateContext } from '../context/CoinContext'
+import { ChartStateContext } from '../context/ChartContext'
 
 const Home = () =>{
     const dispatch = useDispatch();
@@ -14,9 +15,10 @@ const Home = () =>{
     const { showDisplay } = useContext(DisplayStateContext) 
     const coins = useSelector(state => state.coin)
     const userCoins = useSelector(state => state.coin.userCoins)
-    // const [ selectedCoin, setSelectedCoin ] = useState('BTC')
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
-    if (!coins['ETH']) return(<p>Loading...</p>) 
+    const { chartDisplay, setChartDisplay } = useContext(ChartStateContext)
+    const [selectedCoin, setSelectedCoin] = useState(coinDisplay)
+    if (!coins[selectedCoin]) return(<p>Loading...</p>) 
     if (!userCoins) return(<p>Loading...</p>)
     const amount = (amount, symbol) => {
         return amount * coins[symbol].price
@@ -33,20 +35,48 @@ const Home = () =>{
     setCoinDisplay(coins[idCoinObj[biggest]]?.id)
 
     const onClick = (symbol) => {
+        setSelectedCoin(symbol)
         setCoinDisplay(symbol)
+        setChartDisplay('1h')
         dispatch(requestSparklineIntraDay(symbol))
-        this.forceUpdate()
+    }
+    const onHour = (symbol) => {
+        setChartDisplay('1h')
+        dispatch(requestSparklineIntraDay(coinDisplay))
+    }
+    const onDay = (symbol) => {
+        setChartDisplay('1d')
+        dispatch(requestSparklineIntraDay(coinDisplay))
+    }
+    const onWeek = (symbol) => {
+        setChartDisplay('1d')
+        dispatch(requestSparklineDaily(coinDisplay))
+    }
+    const onMonth = (symbol) => {
+        setChartDisplay('1d')
+        dispatch(requestSparklineDaily(coinDisplay))
+    }
+    const onYear = (symbol) => {
+        setChartDisplay('1d')
+        dispatch(requestSparklineWeekly(coinDisplay))
     }
     return (
         <>
             <div className='chart-div'>
             <div className='chart-top-div'>
-                <h2>{coins[coinDisplay].price}</h2>
-                <img alt={`${coins[coinDisplay].id}-logo`}src={coins[coinDisplay].logo_url} className='coin-logo'/>
-                <span value={coins[coinDisplay].id}>{coins[coinDisplay].name}</span>
-                <span value={coins[coinDisplay].id}>{coins[coinDisplay].symbol}</span>
+                <h2>{coins[selectedCoin].price}</h2>
+                <img alt={`${coins[selectedCoin].id}-logo`}src={coins[selectedCoin].logo_url} className='coin-logo'/>
+                <span value={coins[selectedCoin].id}>{coins[selectedCoin].name}</span>
+                <span value={coins[selectedCoin].id}>{coins[selectedCoin].symbol}</span>
             </div>
-                <Chart props={coinDisplay}/>
+            <div>
+                <span onClick={onHour}>1H</span>
+                <span onClick={onDay}>Day</span>
+                <span onClick={onWeek}>Week</span>
+                <span onClick={onMonth}>Month</span>
+                <span onClick={onYear}>Year</span>
+            </div>
+                <Chart props={coinDisplay, chartDisplay}/>
 
             </div>
             <div className='home-info-div'>
