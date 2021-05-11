@@ -1,23 +1,30 @@
 import React, {useEffect, useContext, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DisplayStateContext } from '../context/Display'
-import { requestCoins } from '../store/coins'
+import { requestCoins, requestSparklineIntraDay } from '../store/coins'
 import BuySellFormModal from './BuySellFormModal/index'
 import { requestOneCoin } from '../store/coins'
+import { CoinStateContext } from '../context/CoinContext'
 const Prices = () =>{
     const dispatch = useDispatch(); 
     const coins = useSelector(state => state.coin.list)
     const { showDisplay, setShowDisplay } = useContext(DisplayStateContext);
-    const [selectedCoin, setSelectedCoin] = useState('BTC')
-    
+    // const [selectedCoin, setSelectedCoin] = useState('BTC')
+    const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
     if (!coins) return null
     const onClick = (id) =>{
         setShowDisplay('coin')
+        setCoinDisplay(id)
         dispatch(requestOneCoin(id))
+        dispatch(requestSparklineIntraDay(id))
+        // setSelectedCoin(id)
     }
 
     return(
         <>
+            <div className='chart-div' id='chart-div'>
+            
+            </div>
             <table className='prices-table'>
                 <thead>
                     <tr>
@@ -41,7 +48,7 @@ const Prices = () =>{
                                 <td>{coin.price}</td>
                                 <td>{coin['1d'].price_change_pct * 100}%</td>
                                 <td>{coin.market_cap}</td>
-                                <td><BuySellFormModal props={{'coin':coin.symbol}}/></td>
+                                <td><BuySellFormModal props={'1h'}/></td>
                             </tr>
                             )})}
                     </tbody>

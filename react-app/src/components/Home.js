@@ -1,11 +1,13 @@
 import React, {useEffect, useContext, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DisplayStateContext } from '../context/Display'
-import { requestSparkline, requestUserCoins } from '../store/coins'
+import { requestSparkline, requestSparklineWeekly, requestSparklineOneDay, requestSparklineDaily, requestSparklineIntraDay, requestUserCoins, requestOneCoin, requestCoins } from '../store/coins'
 import BuySellFormModal from './BuySellFormModal/index'
 import { coinIdObj } from '../utilities'
 import { idCoinObj } from '../utilities'
 import Chart from './Chart'
+import { CoinStateContext } from '../context/CoinContext'
+import { ChartStateContext } from '../context/ChartContext'
 
 const Home = () =>{
     const dispatch = useDispatch();
@@ -13,11 +15,11 @@ const Home = () =>{
     const { showDisplay } = useContext(DisplayStateContext) 
     const coins = useSelector(state => state.coin)
     const userCoins = useSelector(state => state.coin.userCoins)
-
-
-    if (!coins['ETH']) return null
-    if (!userCoins) return null
-
+    const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
+    const { chartDisplay, setChartDisplay } = useContext(ChartStateContext)
+    const [selectedCoin, setSelectedCoin] = useState(coinDisplay)
+    if (!coins[selectedCoin]) return(<p>Loading...</p>) 
+    if (!userCoins) return(<p>Loading...</p>)
     const amount = (amount, symbol) => {
         return amount * coins[symbol].price
     }
@@ -30,19 +32,58 @@ const Home = () =>{
         console.log(newAmount, biggestAmount, userCoins[i]?.coin_id, userCoins[biggest]?.coin_id)
         if(newAmount > biggestAmount) biggest = i
     }
+    setCoinDisplay(coins[idCoinObj[biggest]]?.id)
 
+    const onClick = (symbol) => {
+        setSelectedCoin(symbol)
+        setCoinDisplay(symbol)
+        setChartDisplay('1h')
+        dispatch(requestSparklineIntraDay(symbol))
+    }
+    const onHour = (symbol) => {
+        setChartDisplay('1h')
+        dispatch(requestSparklineIntraDay(coinDisplay))
+    }
+    const onDay = (symbol) => {
+        setChartDisplay('1d')
+        dispatch(requestSparklineOneDay(coinDisplay))
+    }
+    const onWeek = (symbol) => {
+        setChartDisplay('1w')
+        dispatch(requestSparklineDaily(coinDisplay))
+    }
+    const onMonth = (symbol) => {
+        setChartDisplay('1m')
+        dispatch(requestSparklineDaily(coinDisplay))
+    }
+    const onYear = (symbol) => {
+        setChartDisplay('1y')
+        dispatch(requestSparklineWeekly(coinDisplay))
+    }
     return (
         <>
             <div className='chart-div'>
-                <h1>{idCoinObj[userCoins[biggest].coin_id]}</h1>
-                <Chart props={idCoinObj[userCoins[biggest].coin_id]}/>
+            <div className='chart-top-div'>
+                <h2>{coins[selectedCoin].price}</h2>
+                <img alt={`${coins[selectedCoin].id}-logo`}src={coins[selectedCoin].logo_url} className='coin-logo'/>
+                <span value={coins[selectedCoin].id}>{coins[selectedCoin].name}</span>
+                <span value={coins[selectedCoin].id}>{coins[selectedCoin].symbol}</span>
+            </div>
+            <div>
+                <span onClick={onHour}>1H</span>
+                <span onClick={onDay}>Day</span>
+                <span onClick={onWeek}>Week</span>
+                <span onClick={onMonth}>Month</span>
+                <span onClick={onYear}>Year</span>
+            </div>
+                <Chart props={coinDisplay, chartDisplay}/>
 
             </div>
             <div className='home-info-div'>
                 {userCoins.map( coin => {
                     if(coin.amount === 0) return null
                     return (
-                        <div>
+                        <div onClick={() => onClick(coins[idCoinObj[coin.coin_id]].id)}>
                             <img alt={`${coins[idCoinObj[coin.coin_id]].id}-logo`}src={coins[idCoinObj[coin.coin_id]].logo_url} className='coin-logo'/>
                             <span>{coins[idCoinObj[coin.coin_id]].name}</span>
                             <span>{coins[idCoinObj[coin.coin_id]].symbol}</span>

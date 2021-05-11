@@ -16,11 +16,13 @@ const Portfolio = () =>{
     const transactions = useSelector(state => state.transaction.list)
     const transfers = useSelector(state => state.transfer.list)
     
+
     if (!coins['BTC']) return null
     if (!userCoins) return null
     if (!transactions) return null
     if (!transfers) return null
     
+
     console.log(userCoins)
     const amount = (amount, symbol) => {
         return amount * coins[symbol].price
