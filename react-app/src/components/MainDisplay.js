@@ -11,19 +11,21 @@ import Prices from './Prices'
 import Portfolio from './Portfolio'
 import Home from './Home'
 import Coin from './Coin'
-
+import { CoinStateContext } from '../context/CoinContext'
 const MainDisplay = () =>{
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
-    const { showDisplay } = useContext(DisplayStateContext) 
+    const { showDisplay } = useContext(DisplayStateContext)
+    const { coinDisplay } = useContext(CoinStateContext)
+
     useEffect(()=>{
         dispatch(requestCoins());
-        dispatch(requestOneCoin('BTC'))
-        dispatch(requestSparklineIntraDay('BTC'))
+        dispatch(requestOneCoin(coinDisplay))
         dispatch(requestUserCoins(sessionUser.id))
         dispatch(requestTransactions(sessionUser.id))
         dispatch(requestTransfers(sessionUser.id))
-    }, [dispatch])
+        dispatch(requestSparklineIntraDay(coinDisplay))
+    }, [])
 
     return(
         <div className='main-display'>

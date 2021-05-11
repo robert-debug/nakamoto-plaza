@@ -1,11 +1,12 @@
 import React, {useEffect, useContext, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DisplayStateContext } from '../context/Display'
-import { requestSparkline, requestUserCoins } from '../store/coins'
+import { requestSparkline, requestSparklineIntraDay, requestUserCoins, requestOneCoin, requestCoins } from '../store/coins'
 import BuySellFormModal from './BuySellFormModal/index'
 import { coinIdObj } from '../utilities'
 import { idCoinObj } from '../utilities'
 import Chart from './Chart'
+import { CoinStateContext } from '../context/CoinContext'
 
 const Home = () =>{
     const dispatch = useDispatch();
@@ -13,11 +14,10 @@ const Home = () =>{
     const { showDisplay } = useContext(DisplayStateContext) 
     const coins = useSelector(state => state.coin)
     const userCoins = useSelector(state => state.coin.userCoins)
-
-
-    if (!coins['ETH']) return null
-    if (!userCoins) return null
-
+    // const [ selectedCoin, setSelectedCoin ] = useState('BTC')
+    const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
+    if (!coins['ETH']) return(<p>Loading...</p>) 
+    if (!userCoins) return(<p>Loading...</p>)
     const amount = (amount, symbol) => {
         return amount * coins[symbol].price
     }
@@ -30,19 +30,30 @@ const Home = () =>{
         console.log(newAmount, biggestAmount, userCoins[i]?.coin_id, userCoins[biggest]?.coin_id)
         if(newAmount > biggestAmount) biggest = i
     }
+    setCoinDisplay(coins[idCoinObj[biggest]]?.id)
 
+    const onClick = (symbol) => {
+        setCoinDisplay(symbol)
+        dispatch(requestSparklineIntraDay(symbol))
+        this.forceUpdate()
+    }
     return (
         <>
             <div className='chart-div'>
-                <h1>{idCoinObj[userCoins[biggest].coin_id]}</h1>
-                <Chart props={idCoinObj[userCoins[biggest].coin_id]}/>
+            <div className='chart-top-div'>
+                <h2>{coins[coinDisplay].price}</h2>
+                <img alt={`${coins[coinDisplay].id}-logo`}src={coins[coinDisplay].logo_url} className='coin-logo'/>
+                <span value={coins[coinDisplay].id}>{coins[coinDisplay].name}</span>
+                <span value={coins[coinDisplay].id}>{coins[coinDisplay].symbol}</span>
+            </div>
+                <Chart props={coinDisplay}/>
 
             </div>
             <div className='home-info-div'>
                 {userCoins.map( coin => {
                     if(coin.amount === 0) return null
                     return (
-                        <div>
+                        <div onClick={() => onClick(coins[idCoinObj[coin.coin_id]].id)}>
                             <img alt={`${coins[idCoinObj[coin.coin_id]].id}-logo`}src={coins[idCoinObj[coin.coin_id]].logo_url} className='coin-logo'/>
                             <span>{coins[idCoinObj[coin.coin_id]].name}</span>
                             <span>{coins[idCoinObj[coin.coin_id]].symbol}</span>

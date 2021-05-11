@@ -6,8 +6,8 @@ import App from './App';
 import configureStore from './store';
 import { ModalProvider } from './context/Modal';
 import ModalStateProvider from './context/ModalState';
-import DisplayStateContext  from './context/Display'
 import DisplayStateProvider from './context/Display';
+import CoinStateProvider from './context/CoinContext'
 const store = configureStore();
 
 const Root = () => {
@@ -16,7 +16,9 @@ const Root = () => {
       <ModalStateProvider>
         <ModalProvider>
           <DisplayStateProvider>
-            <App />
+            <CoinStateProvider>
+              <App />
+            </CoinStateProvider>
           </DisplayStateProvider>
         </ModalProvider>
       </ModalStateProvider>

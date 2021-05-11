@@ -5,20 +5,20 @@ import { requestUserCoins } from '../store/coins'
 import BuySellFormModal from './BuySellFormModal/index'
 import { coinIdObj } from '../utilities'
 import { idCoinObj } from '../utilities'
-
+import Chart from './Chart'
 const Coin = () =>{
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const { showDisplay } = useContext(DisplayStateContext) 
     const coin = useSelector(state => state.coin.coin)
-
+    
     if (!coin) return null
 
     return (
         <>
             <div className='chart-div'>
                 <h1>{coin?.symbol}</h1>
-
+                <Chart props={coin?.symbol}/>
             </div>
             <div className='coin-info-div'>
 

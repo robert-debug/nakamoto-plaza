@@ -3,6 +3,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createChart } from 'lightweight-charts';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
+import { CoinStateContext } from '../context/CoinContext'
 
 const Chart = ( { props } ) =>{
     console.log(props)
@@ -11,47 +12,38 @@ const Chart = ( { props } ) =>{
     const [lineArray, setLineArray] = useState([])
     const coins = useSelector(state => state.coin)
     const userCoins = useSelector(state => state.coin.userCoins)
-    const coin = useSelector(state => state.coin.coin)
     const spark = useSelector(state => state.coin.spark)
-    const oneHourData = []
-                
+    const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
+    const oneHourData = [];
+    const oneDayData = [];
+    const oneWeekData = [];
+    const oneMonthData = [];
+    const oneYearData = [];
+    // const [selectedCoin, setSelectedCoin] = useState('BTC')
+    // useEffect(()=>{
+    //     setSelectedCoin(props)
+    // }, [props])
+    // props=props
+    // console.log(selectedCoin)
                
-    if(!userCoins || !coins || !spark) return null
+    if(!userCoins || !coins || !spark ) return (<p>Loading...</p>) 
     let i = 0
     for (const key in spark['Time Series Crypto (5min)']){
-        console.log(spark['Time Series Crypto (5min)'])
         oneHourData.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
     }
-    oneHourData.splice(20)
+    console.log('############################################', oneHourData.length)
+    oneHourData.splice(0,87)
 
     // const customLabel=()
-    const CoinChart = (
-        <LineChart
-        width={500}
-        height={300}
-        data={oneHourData}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5
-        }}
-      > 
-        <Line type='monotone' datakey='price' stroke='#1652F0' dot='false'/>
-        <CartesianGrid/>
-        <XAxis dataKey="time" />
-        <YAxis hide='true'/>
-        <Tooltip />
-      </LineChart>
-    )
+
     return (
         <div className='chart-info-container'>
-            <div className='chart-top-div'>
+            {/* <div className='chart-top-div'>
                 <h2>{coins[props].price}</h2>
-                <img alt={`${coins[props].id}-logo`}src={coins[props].logo_url} className='coin-logo'/>
-                <span value={coins[props].id}>{coins[props].name}</span>
-                <span value={coins[props].id}>{coins[props].symbol}</span>
-            </div>
+                <img alt={`${coins[coinDisplay].id}-logo`}src={coins[coinDisplay].logo_url} className='coin-logo'/>
+                <span value={coins[coinDisplay].id}>{coins[coinDisplay].name}</span>
+                <span value={coins[coinDisplay].id}>{coins[coinDisplay].symbol}</span>
+            </div> */}
             <div>
                 <span>1H</span>
                 <span>Day</span>

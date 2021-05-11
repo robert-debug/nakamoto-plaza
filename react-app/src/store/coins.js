@@ -1,7 +1,8 @@
 const LOAD = 'coins/LOAD'
 const ONE = 'coins/ONE'
 const USER = 'coins/USER'
-const SPARK = 'coins'
+const SPARK = 'coins/SPARK'
+const ONEDAY = 'coins/ONEDAY'
 const getCoins = (list) =>({
     type: LOAD,
     list
@@ -19,6 +20,11 @@ const getOneCoin = (payload) =>({
 
 const getSparkline = (payload) => ({
     type: SPARK,
+    payload
+})
+
+const getOneDay = (payload) => ({
+    type: ONEDAY,
     payload
 })
 
@@ -65,7 +71,7 @@ export const requestSparklineOneDay = (symbol) => async(dispatch) =>{
     const response = await fetch(`https://www.alphavantage.co/query?function=CRYPTO_INTRADAY&symbol=${symbol}}&market=USD&interval=30min&apikey=4EVCTZM7MXVNN237`)
     const coins = await response.json();
     console.log(coins)
-    dispatch(getSparkline(coins))
+    dispatch(getOneDay(coins))
 }
 
 export const requestSparklineIntraDay = (symbol) => async(dispatch) =>{
@@ -75,7 +81,7 @@ export const requestSparklineIntraDay = (symbol) => async(dispatch) =>{
     dispatch(getSparkline(coins))
 }
 
-const initialState = {list: [], userCoins: [], coin: null, spark: null}
+const initialState = {list: [], userCoins: [], coin: null, spark: null, oneDay: null}
 
 const coinReducer = (state=initialState, action) => {
     console.log(action)
@@ -88,7 +94,7 @@ const coinReducer = (state=initialState, action) => {
                 coinObj[coin.id] = coin
             })
             
-            return { userCoins: state.userCoins, ...coinObj, list: coinList, coin: state.coin, spark: state.spark}
+            return { userCoins: state.userCoins, ...coinObj, list: coinList, coin: state.coin, spark: state.spark, oneDay:state.oneDay}
         }
         case ONE: {
             const coin = action.payload[0];
