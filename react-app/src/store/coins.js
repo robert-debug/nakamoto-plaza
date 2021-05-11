@@ -48,7 +48,7 @@ export const requestSparklineWeekly = (symbol) => async(dispatch) =>{
 }
 
 export const requestSparklineDaily = (symbol) => async(dispatch) =>{
-    const response = await fetch(`https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${symbol}&market=USD&apikey=4EVCTZM7MXVNN237`)
+    const response = await fetch(`https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${symbol}&market=CNY&apikey=4EVCTZM7MXVNN237`)
     const coins = await response.json();
     console.log(coins)
     dispatch(getSparkline(coins))
@@ -61,8 +61,15 @@ export const requestSparklineMonthly = (symbol) => async(dispatch) =>{
     dispatch(getSparkline(coins))
 }
 
+export const requestSparklineOneDay = (symbol) => async(dispatch) =>{
+    const response = await fetch(`https://www.alphavantage.co/query?function=CRYPTO_INTRADAY&symbol=${symbol}}&market=USD&interval=30min&apikey=4EVCTZM7MXVNN237`)
+    const coins = await response.json();
+    console.log(coins)
+    dispatch(getSparkline(coins))
+}
+
 export const requestSparklineIntraDay = (symbol) => async(dispatch) =>{
-    const response = await fetch(`https://www.alphavantage.co/query?function=CRYPTO_INTRADAY&symbol=${symbol}}&market=USD&interval=5min&apikey=demo4EVCTZM7MXVNN237`)
+    const response = await fetch(`https://www.alphavantage.co/query?function=CRYPTO_INTRADAY&symbol=${symbol}&market=USD&interval=5min&apikey=4EVCTZM7MXVNN237`)
     const coins = await response.json();
     console.log(coins)
     dispatch(getSparkline(coins))

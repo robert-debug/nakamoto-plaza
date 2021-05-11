@@ -6,7 +6,7 @@ import logo from '../image-assets/color_logo_with_background.png'
 import { DisplayStateContext } from '../context/Display'
 import { requestTransactions } from '../store/transaction';
 import { requestTransfers } from '../store/transfer'
-import { requestSparklineWeekly, requestUserCoins, requestCoins } from '../store/coins'
+import { requestSparklineWeekly, requestUserCoins, requestCoins, requestSparklineIntraDay, requestSparklineDaily } from '../store/coins'
 import Prices from './Prices'
 import Portfolio from './Portfolio'
 import Home from './Home'
@@ -18,7 +18,7 @@ const MainDisplay = () =>{
     const { showDisplay } = useContext(DisplayStateContext) 
     useEffect(()=>{
         dispatch(requestCoins());
-        dispatch(requestSparklineWeekly('BTC'))
+        dispatch(requestSparklineIntraDay('BTC'))
         dispatch(requestUserCoins(sessionUser.id))
         dispatch(requestTransactions(sessionUser.id))
         dispatch(requestTransfers(sessionUser.id))
