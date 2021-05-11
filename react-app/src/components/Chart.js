@@ -6,14 +6,16 @@ import { createChart } from 'lightweight-charts';
 const Home = () =>{
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const { showDisplay } = useContext(DisplayStateContext) 
+    const { showDisplay } = useContext(DisplayStateContext)
+    const [lineArray, setLineArray] = useState([])
     const coins = useSelector(state => state.coin)
     const userCoins = useSelector(state => state.coin.userCoins)
     const coin = useSelector(state => state.coin.coin)
     const CoinChart = createChart(document.body, { 
         width: 500, height: 400
   });
-    const line
+    const lineSeries = CoinChart.addLineSeries();
+    lineSeries.setData(lineArray)
     
     useEffect(()=>{
         dispatch(requestUserCoins(sessionUser.id))

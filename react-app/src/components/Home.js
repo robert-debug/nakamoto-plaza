@@ -13,10 +13,6 @@ const Home = () =>{
     const coins = useSelector(state => state.coin)
     const userCoins = useSelector(state => state.coin.userCoins)
 
-    useEffect(()=>{
-        dispatch(requestUserCoins(sessionUser.id))
-        dispatch(requestSparkline())
-    }, [dispatch])
 
     if (!coins['BTC']) return null
     if (!userCoins) return null

@@ -145,7 +145,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.4);
   }
   
   .modal-content {
@@ -154,6 +154,23 @@
   }
   /*prices*/
   .prices-table{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+
+  }
+  /* portfolio */
+  .portfolio-table{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+
+  }
+  /* home */
+  .home-info-div{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+
+  }
+  .trans-container{
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
 

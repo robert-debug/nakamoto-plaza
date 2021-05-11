@@ -16,11 +16,6 @@ const Portfolio = () =>{
     const transactions = useSelector(state => state.transaction.list)
     const transfers = useSelector(state => state.transfer.list)
     
-    useEffect(()=>{
-        dispatch(requestUserCoins(sessionUser.id))
-        dispatch(requestTransactions(sessionUser.id))
-        dispatch(requestTransfers(sessionUser.id))
-    }, [dispatch])
     if (!coins['BTC']) return null
     if (!userCoins) return null
     if (!transactions) return null
@@ -34,8 +29,6 @@ const Portfolio = () =>{
     const denominator = () =>{
         let num = 0
         for (let i = 0; i < userCoins.length; i++){
-            console.log(userCoins[i])
-            console.log(coins[idCoinObj[userCoins[i].coin_id]], idCoinObj[userCoins[i].coin_id])
             const add = userCoins[i].amount * coins[idCoinObj[userCoins[i].coin_id]].price
             num += add
         }
@@ -44,7 +37,7 @@ const Portfolio = () =>{
 
     return(
         <>
-            <table className='Portfolio-table'>
+            <table className='portfolio-table'>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -55,10 +48,9 @@ const Portfolio = () =>{
                 </thead>
                     <tbody>
                         {userCoins.map( coin => {
-                            console.log(idCoinObj[coin.coin_id], coins[idCoinObj[coin.coin_id]])
                             return (
                             <tr>
-                                <td>{console.log(coins)}
+                                <td>
                                     <img alt={`${coins[idCoinObj[coin.coin_id]].id}-logo`}src={coins[idCoinObj[coin.coin_id]].logo_url} className='coin-logo'/>
                                     <span>{coins[idCoinObj[coin.coin_id]].name}</span>
                                     <span>{coins[idCoinObj[coin.coin_id]].symbol}</span>
@@ -87,7 +79,7 @@ const Portfolio = () =>{
                     
                 }
             </div>
-            <div className='trans-div'>
+            <div className='trans-container'>
                 {
                     transfers.map((transfer, i) => {
                     return(

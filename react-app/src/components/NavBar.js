@@ -26,10 +26,7 @@ const NavBar = () => {
     <h2>{selectedCoin?.name}</h2>
     </>
   )
-  useEffect(()=>{
-    dispatch(requestCoins())
-  },[dispatch])
-  
+
   useEffect(() =>{
     if(!sessionUser) setTitle(null);
     if(sessionUser && showDisplay === !'coin') setTitle(showDisplay);
