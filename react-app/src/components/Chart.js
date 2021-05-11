@@ -2,7 +2,7 @@ import React, {useEffect, useContext, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createChart } from 'lightweight-charts';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts'
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
 
 const Chart = ( { props } ) =>{
     console.log(props)
@@ -15,11 +15,12 @@ const Chart = ( { props } ) =>{
     const spark = useSelector(state => state.coin.spark)
     const oneHourData = []
                 
-                
+               
     if(!userCoins || !coins || !spark) return null
+    let i = 0
     for (const key in spark['Time Series Crypto (5min)']){
         console.log(spark['Time Series Crypto (5min)'])
-        oneHourData.unshift({ 'time': key, 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
+        oneHourData.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
     }
     oneHourData.splice(20)
 
@@ -36,10 +37,11 @@ const Chart = ( { props } ) =>{
           bottom: 5
         }}
       > 
-      <Line type='monotone' datakey='price' stroke='#1652F0' dot='false'/>
-      <CartesianGrid/>
-      <XAxis dataKey="time" />
-      <YAxis hide='true'/>
+        <Line type='monotone' datakey='price' stroke='#1652F0' dot='false'/>
+        <CartesianGrid/>
+        <XAxis dataKey="time" />
+        <YAxis hide='true'/>
+        <Tooltip />
       </LineChart>
     )
     return (
@@ -52,9 +54,27 @@ const Chart = ( { props } ) =>{
             </div>
             <div>
                 <span>1H</span>
-                <span>1Day</span>
+                <span>Day</span>
+                <span>Week</span>
+                <span>Month</span>
+                <span>Year</span>
             </div>
-            <CoinChart />
+                <LineChart
+                    width={500}
+                    height={300}
+                    data={oneHourData}
+                    margin={{
+                    top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5
+                }}> 
+                <Line type='monotone' dataKey='price' stroke='#1652F0'/>
+                <CartesianGrid/>
+                <XAxis dataKey="time" />
+                <YAxis hide='true'/>
+                <Tooltip />
+            </LineChart>
         </div>
     )
 }
