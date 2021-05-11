@@ -5,6 +5,7 @@ import { requestSparkline, requestUserCoins } from '../store/coins'
 import BuySellFormModal from './BuySellFormModal/index'
 import { coinIdObj } from '../utilities'
 import { idCoinObj } from '../utilities'
+import Chart from './Chart'
 
 const Home = () =>{
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const Home = () =>{
     const userCoins = useSelector(state => state.coin.userCoins)
 
 
-    if (!coins['BTC']) return null
+    if (!coins['ETH']) return null
     if (!userCoins) return null
 
     const amount = (amount, symbol) => {
@@ -34,6 +35,7 @@ const Home = () =>{
         <>
             <div className='chart-div'>
                 <h1>{idCoinObj[userCoins[biggest].coin_id]}</h1>
+                <Chart props={idCoinObj[userCoins[biggest].coin_id]}/>
 
             </div>
             <div className='home-info-div'>
