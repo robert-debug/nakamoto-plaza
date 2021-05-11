@@ -14,6 +14,7 @@ const Prices = () =>{
     if (!coins) return null
     const onClick = (id) =>{
         setShowDisplay('coin')
+        setCoinDisplay(id)
         dispatch(requestOneCoin(id))
         dispatch(requestSparklineIntraDay(id))
         // setSelectedCoin(id)
@@ -47,7 +48,7 @@ const Prices = () =>{
                                 <td>{coin.price}</td>
                                 <td>{coin['1d'].price_change_pct * 100}%</td>
                                 <td>{coin.market_cap}</td>
-                                <td><BuySellFormModal props={{'coin':coin.symbol}}/></td>
+                                <td><BuySellFormModal props={'1h'}/></td>
                             </tr>
                             )})}
                     </tbody>

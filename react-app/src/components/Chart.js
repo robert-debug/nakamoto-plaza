@@ -24,12 +24,35 @@ const Chart = ( { props } ) =>{
     // console.log(selectedCoin)
                
     if(!userCoins || !coins || !spark ) return (<p>Loading...</p>) 
-    let i = 0
-    for (const key in spark['Time Series Crypto (5min)']){
-        data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
+    if (props === '1h'){
+        for (const key in spark['Time Series Crypto (5min)']){
+            data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
+        }
+        data.splice(0,87)
     }
-    console.log('############################################', data.length)
-    data.splice(0,87)
+    if (props === '1d'){
+
+        for (const key in spark['Time Series Crypto (30min)']){
+            console.log('############################################', data.length)
+            data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (30min)'][key]['4. close']})
+        }
+    }
+    if (props === '1w'){
+        let i = 0;
+        for (const key in spark['Time Series (Digital Currency Daily)']){
+            data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series (Digital Currency Daily)'][key]['4. close(USD)']})
+            console.log('############################################', spark['Time Series (Digital Currency Daily)'][key], spark['Time Series (Digital Currency Daily)'][key]['4a. close (USD)'])
+            
+        }
+    }
+    if (props === '1m'){
+        let i = 0;
+        for (const key in spark['Time Series (Digital Currency Daily)']){
+            data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series (Digital Currency Daily)'][key]['4. close(USD)']})
+            console.log('############################################', spark['Time Series (Digital Currency Daily)'][key], spark['Time Series (Digital Currency Daily)'][key]['4a. close (USD)'])
+            i++;
+        }
+    }
 
 
     // const customLabel=()

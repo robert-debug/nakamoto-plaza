@@ -18,7 +18,8 @@ const Coin = () =>{
         <>
             <div className='chart-div'>
                 <h1>{coin?.symbol}</h1>
-                <Chart props={coin?.symbol}/>
+                <span>{coin?.price}</span>
+                <Chart props={'1h'}/>
             </div>
             <div className='coin-info-div'>
 

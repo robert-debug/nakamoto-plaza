@@ -1,7 +1,7 @@
 import React, {useEffect, useContext, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DisplayStateContext } from '../context/Display'
-import { requestSparkline, requestSparklineWeekly, requestSparklineDaily, requestSparklineIntraDay, requestUserCoins, requestOneCoin, requestCoins } from '../store/coins'
+import { requestSparkline, requestSparklineWeekly, requestSparklineOneDay, requestSparklineDaily, requestSparklineIntraDay, requestUserCoins, requestOneCoin, requestCoins } from '../store/coins'
 import BuySellFormModal from './BuySellFormModal/index'
 import { coinIdObj } from '../utilities'
 import { idCoinObj } from '../utilities'
@@ -46,18 +46,18 @@ const Home = () =>{
     }
     const onDay = (symbol) => {
         setChartDisplay('1d')
-        dispatch(requestSparklineIntraDay(coinDisplay))
+        dispatch(requestSparklineOneDay(coinDisplay))
     }
     const onWeek = (symbol) => {
-        setChartDisplay('1d')
+        setChartDisplay('1w')
         dispatch(requestSparklineDaily(coinDisplay))
     }
     const onMonth = (symbol) => {
-        setChartDisplay('1d')
+        setChartDisplay('1m')
         dispatch(requestSparklineDaily(coinDisplay))
     }
     const onYear = (symbol) => {
-        setChartDisplay('1d')
+        setChartDisplay('1y')
         dispatch(requestSparklineWeekly(coinDisplay))
     }
     return (
