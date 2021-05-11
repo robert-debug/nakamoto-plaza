@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createChart } from 'lightweight-charts';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts'
 
-const Chart = () =>{
+const Chart = ( { props } ) =>{
+    console.log(props)
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [lineArray, setLineArray] = useState([])
@@ -13,24 +14,52 @@ const Chart = () =>{
     const coin = useSelector(state => state.coin.coin)
     const spark = useSelector(state => state.coin.spark)
     const oneHourData = []
-
                 
                 
-    if(!coin || !userCoins || coins || !spark)
+    if(!userCoins || !coins || !spark) return null
+    for (const key in spark['Time Series Crypto (5min)']){
+        console.log(spark['Time Series Crypto (5min)'])
+        oneHourData.unshift({ 'time': key, 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
+    }
+    oneHourData.splice(20)
 
+    // const customLabel=()
+    const CoinChart = (
+        <LineChart
+        width={500}
+        height={300}
+        data={oneHourData}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5
+        }}
+      > 
+      <Line type='monotone' datakey='price' stroke='#1652F0' dot='false'/>
+      <CartesianGrid/>
+      <XAxis dataKey="time" />
+      <YAxis hide='true'/>
+      </LineChart>
+    )
     return (
         <div className='chart-info-container'>
             <div className='chart-top-div'>
-                <h2>{coin.price}</h2>
-                <img alt={`${coin.id}-logo`}src={coin.logo_url} className='coin-logo'/>
-                <span value={coin.id}>{coin.name}</span>
-                <span value={coin.id}>{coin.symbol}</span>
+                <h2>{coins[props].price}</h2>
+                <img alt={`${coins[props].id}-logo`}src={coins[props].logo_url} className='coin-logo'/>
+                <span value={coins[props].id}>{coins[props].name}</span>
+                <span value={coins[props].id}>{coins[props].symbol}</span>
             </div>
+            <div>
+                <span>1H</span>
+                <span>1Day</span>
+            </div>
+            <CoinChart />
         </div>
     )
 }
 
-export default Chart
+export default Chart;
 
 // coin: {
 //     id: 'BTC',
