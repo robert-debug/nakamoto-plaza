@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { DisplayStateContext } from '../../context/Display'
-import { makeTransaction } from '../../store/transaction'
+import { makeTransaction, requestTransactions } from '../../store/transaction'
 import { coinIdObj } from '../../utilities'
+import { requestUserCoins } from '../../store/coins'
 
 const BuySellForm = ({ props }) =>{
     console.log(props.coin)
@@ -29,6 +30,8 @@ const BuySellForm = ({ props }) =>{
         const coinId = coinIdObj[coinSymbol]
         dispatch(makeTransaction(coinAmt, fiatPrice, purchase,  fiatId, coinId, sessionId))
         setShowModal(false)
+        dispatch(requestTransactions(sessionId))
+        dispatch(requestUserCoins(sessionId))
         setShowDisplay('Portfolio')
         history.push('/')
     }
@@ -71,7 +74,7 @@ const BuySellForm = ({ props }) =>{
                     ))
                 }
                 </select>
-                <button type="submit">Buy {coinSymbol}</button>
+                <button type="submit">{purchase === true ? 'Buy' : 'Sell' } {coinSymbol}</button>
             </form>
         </div>
     )
