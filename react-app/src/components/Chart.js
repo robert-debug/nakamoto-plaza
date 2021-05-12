@@ -40,20 +40,30 @@ const Chart = ( { props } ) =>{
     if (props === '1w'){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Daily)']){
-            data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series (Digital Currency Daily)'][key]['4. close(USD)']})
-            console.log('############################################', spark['Time Series (Digital Currency Daily)'][key], spark['Time Series (Digital Currency Daily)'][key]['4a. close (USD)'])
-            
+            data.unshift({ 'time': key, 'price': spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)']})
+            console.log('############################################', spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)'])
+            i++;
+            if (i > 6) break;
         }
     }
     if (props === '1m'){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Daily)']){
-            data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series (Digital Currency Daily)'][key]['4. close(USD)']})
-            console.log('############################################', spark['Time Series (Digital Currency Daily)'][key], spark['Time Series (Digital Currency Daily)'][key]['4a. close (USD)'])
+            data.unshift({ 'time': key, 'price': spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)']})
+            console.log('############################################', spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)'])
             i++;
+            if (i > 29) break;
         }
     }
-
+    if (props === '1y'){
+        let i = 0;
+        for (const key in spark['Time Series (Digital Currency Weekly)']){
+            data.unshift({ 'time': key, 'price': spark['Time Series (Digital Currency Weekly)'][key]['4b. close (USD)']})
+            console.log('############################################', spark['Time Series (Digital Currency Weekly)'][key]['4b. close (USD)'])
+            i++;
+            if (i > 29) break;
+        }
+    }
 
     // const customLabel=()
 
