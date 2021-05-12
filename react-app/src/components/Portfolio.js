@@ -43,7 +43,8 @@ const Portfolio = () =>{
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Amount</th>
+                        <th>Balance Value</th>
+                        <th>Balance</th>
                         <th>Allocation</th>
                         <th></th>
                     </tr>
@@ -58,6 +59,7 @@ const Portfolio = () =>{
                                     <span>{coins[idCoinObj[coin.coin_id]].symbol}</span>
                                 </td>
                                 <td>$ {(amount(coin.amount, idCoinObj[coin.coin_id])).toFixed(2)}</td>
+                                <td>{coin.amount}</td>
                                 <td>{((amount(coin.amount, idCoinObj[coin.coin_id])/denominator()) * 100).toFixed(2)}%</td>
                             </tr>
                             )})}

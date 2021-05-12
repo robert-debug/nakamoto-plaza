@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import  { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { Redirect } from "react-router-dom";
-import { login } from "../../store/session";
+import { login, demoLogin } from "../../store/session";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -14,6 +14,14 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+    if (data.errors) {
+      setErrors(data.errors);
+    }
+  };
+  
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
     if (data.errors) {
       setErrors(data.errors);
     }
@@ -59,6 +67,7 @@ const LoginForm = () => {
             onChange={updatePassword}
           />
           <button type="submit">Login</button>
+          <button type="submit" onClick={demoLogin}>Demo User</button>
         </div>
       </form>
       <div>
