@@ -40,7 +40,7 @@ export const requestOneCoin = (symbol) => async(dispatch) => {
     console.log(symbol)
     const response = await fetch(`https://api.nomics.com/v1/currencies/ticker?key=2dea8624d0f169a05115d37d8ed28cc2&ids=${symbol}&interval=1h,1d&convert=USD&per-page=100&page=1`,
     {
-        mode: 'cors',
+        mode: 'no-cors'
     })
     const coin = await response.json()
     dispatch(getOneCoin(coin))
