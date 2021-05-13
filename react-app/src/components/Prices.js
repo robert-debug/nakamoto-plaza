@@ -45,9 +45,9 @@ const Prices = () =>{
                                     <span value={coin.id}>{coin.name}</span>
                                     <span value={coin.id}>{coin.symbol}</span>
                                 </td>
-                                <td>{coin.price}</td>
-                                <td>{coin['1d'].price_change_pct * 100}%</td>
-                                <td>{coin.market_cap}</td>
+                                <td>${parseFloat(coin.price).toFixed(2)}</td>
+                                <td>{(coin['1d'].price_change_pct * 100).toFixed(2)}.%</td>
+                                <td>${new Intl.NumberFormat().format(coin.market_cap)}</td>
                                 <td><BuySellFormModal props={'1h'}/></td>
                             </tr>
                             )})}
