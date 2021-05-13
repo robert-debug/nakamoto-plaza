@@ -76,7 +76,7 @@
     background-color: #1652F0;
     color: white;
     width: 100px;
-    border: none;
+    border: 0.2em solid #1652F0;
     transition: all 0.2s;
 /*     padding: 0.35em 1.2em;
     border: 0.1em solid #FFFFFF;
@@ -97,7 +97,7 @@
     background-color: #1652F0;
     color: white;
     width: 100px;
-    border: none;
+    border: 0.2em solid #1652F0;
     transition: all 0.2s;
 }
 .logout-button:hover {
