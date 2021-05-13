@@ -43,7 +43,7 @@ const NavBar = () => {
   }
   return (
       <div className='navbar'>
-        <div className='logo-loc-div'>
+        <div className='logo-loc-container'>
           <div className='logo-div' onClick={onClick}>
             <img className='logo' alt='logo' src={logo}/>
           </div>
@@ -51,7 +51,7 @@ const NavBar = () => {
             { showDisplay == 'coin' && selectedCoin ? coinName : display }
           </div>
         </div>
-        <div>
+        <div className='button-icon-container'>
           <div>
             { sessionUser ? <BuySellFormModal props={{coin: 'BTC'}}/>: null}
           </div>
@@ -60,9 +60,11 @@ const NavBar = () => {
           </div>
           <div>
             <div className='user-icon'>
-
+              <span>{sessionUser.firstname} {sessionUser.lastname}</span>
             </div>
-            { sessionUser ? <LogoutButton />: null }
+            <div >
+              { sessionUser ? <LogoutButton />: null }
+            </div>
           </div>
           </div>
       </div>

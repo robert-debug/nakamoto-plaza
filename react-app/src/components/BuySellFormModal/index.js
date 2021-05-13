@@ -8,7 +8,7 @@ const BuySellFormModal = ({ props }) => {
     const [ showModal, setShowModal ] = useState(false);
     return(
         <>
-            <button className= 'content-button' onClick={() => setShowModal(true)}>Buy/Sell</button>
+            <button className= 'buy-button' onClick={() => setShowModal(true)}>Buy/Sell</button>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <BuySellForm className='buy-sell-form' props={{ coin, setShowModal }} />

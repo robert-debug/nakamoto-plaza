@@ -88,6 +88,7 @@ const Home = () =>{
                             <span>{coins[idCoinObj[coin.coin_id]].name}</span>
                             <span>{coins[idCoinObj[coin.coin_id]].symbol}</span>
                             <span>$ {(amount(coin.amount, idCoinObj[coin.coin_id])).toFixed(2)}</span>
+                            <span>{coins.amount}</span>
                         </div>
                                 )})}
             </div>
