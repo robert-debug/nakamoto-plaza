@@ -52,19 +52,14 @@ const NavBar = () => {
           </div>
         </div>
         <div className='button-icon-container'>
-          <div>
-            { sessionUser ? <BuySellFormModal props={{coin: 'BTC'}}/>: null}
-          </div>
+            <div >
+              { sessionUser ? <LogoutButton />: null }
+            </div>
           <div>
             { sessionUser ? <TransferModal /> : null }
           </div>
           <div>
-            <div className='user-icon'>
-              <span>{sessionUser.firstname} {sessionUser.lastname}</span>
-            </div>
-            <div >
-              { sessionUser ? <LogoutButton />: null }
-            </div>
+            { sessionUser ? <BuySellFormModal props={{coin: 'BTC'}}/>: null}
           </div>
           </div>
       </div>

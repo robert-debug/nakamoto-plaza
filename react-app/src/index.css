@@ -12,7 +12,6 @@
     width: 100%;
     margin: 0;
     padding: 0
-    rgba
 }
 /* grid */
 .app-container{
@@ -50,8 +49,8 @@
     flex-direction: column;
     justify-content: center;
     align-content: baseline;
-    /* width: 100%;
-    height: 100%; */
+    width: 100%;
+    height: 100%;
 }
 
 .footer-div{
@@ -70,13 +69,15 @@
     justify-content: space-between;
 }
 .buy-button {
+    margin: 20px;
     display:inline-block;
     padding: .5em 1.2em;
     border-radius: 5px;
     background-color: #1652F0;
     color: white;
     width: 100px;
-    border: none
+    border: none;
+    transition: all 0.2s;
 /*     padding: 0.35em 1.2em;
     border: 0.1em solid #FFFFFF;
    margin: 0 0.3em 0.3em 0;
@@ -88,10 +89,48 @@
    text-align: center;
    transition: all 0.2s; */
 }
+.logout-button {
+    margin: 20px;
+    display:inline-block;
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #1652F0;
+    color: white;
+    width: 100px;
+    border: none;
+    transition: all 0.2s;
+}
+.logout-button:hover {
+    transform: scale(1.05)
+}
+.buy-button:hover {
+    transform: scale(1.05)
+}
+.send-button {
+    margin: 20px;
+    display:inline-block;
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: white;
+    color: #1652F0;
+    width: 100px;
+    border: 0.2em solid #1652F0;
+    transition: all 0.2s;
+}       
+.send-button:hover {
+    transform: scale(1.05)
+}
 .logo-loc-container{
-    width: 40%;
+    width: 30%;
     display: flex;
     justify-content: space-between;
+
+}
+.button-icon-container{
+    width: 30%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 
 }
 .logo{
@@ -114,19 +153,22 @@
     filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
     height: 65px;
     margin-bottom: 20px;
-    cursor: pointer;   
+    cursor: pointer;
+    transition: all 0.2s;   
 }
 .portfolio-img{
     filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
     height: 50px;
     margin-bottom: 20px;
-    cursor: pointer;  
+    cursor: pointer; 
+    transition: all 0.2s; 
 }
 
 .price-list-img{
     filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
     height: 60px;
     cursor: pointer;  
+    transition: all 0.2s;
 }
 /*main-dispaly*/
 .main-display{

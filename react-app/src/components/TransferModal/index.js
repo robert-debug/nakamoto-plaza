@@ -6,7 +6,7 @@ const TransferModal = () => {
     const [ showModal, setShowModal ] = useState(false);
     return(
         <>
-            <button className= 'content-button' onClick={() => setShowModal(true)}>Send/Receive</button>
+            <button className= 'send-button' onClick={() => setShowModal(true)}>Send</button>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <TransferForm className='tranfer-form' props={{ setShowModal }} />
