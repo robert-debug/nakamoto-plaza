@@ -147,6 +147,7 @@ const SignUpForm = () => {
           <NavLink to="/login" exact={true} activeClassName="active">
             Already have a Nakamoto Plaza Account? Log in
           </NavLink>
+          <a className='nomics-link' target="_blank" href="https://nomics.com">{'Crypto Market Cap & Pricing Data Provided By Nomics'}</a>
         </div>
     </div>
   );

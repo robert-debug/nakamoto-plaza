@@ -74,6 +74,7 @@ const LoginForm = () => {
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Need an Account? Sign Up
           </NavLink>
+          <a className='nomics-link' target="_blank" href="https://nomics.com">{'Crypto Market Cap & Pricing Data Provided By Nomics'}</a>
       </div>
     </div>
   );
