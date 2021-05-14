@@ -38,7 +38,7 @@ const Portfolio = () =>{
     }
 
     return(
-        <>
+        <div className='portfolio-container'>
             <table className='portfolio-table'>
                 <thead>
                     <tr>
@@ -65,41 +65,42 @@ const Portfolio = () =>{
                             )})}
                     </tbody>
             </table>
-            <div className='trans-container'>
-                {
-                    transactions.map((transaction, i) => {
+            <div className='trans-holder'>                 
+                <div className='trans-container'>
+                    {
+                        transactions.map((transaction, i) => {
+                            return(
+                            <div key={i} className='trans-div' >
+                                {
+                                    transaction.purchase ? <h1>Purchase</h1>:<h1>Sale</h1>
+                                }
+                                <span>{idCoinObj[transaction.coin_id]}</span>
+                                <span>${transaction.fiatprice}</span>
+                                <span>Token amount: {transaction.coinamt}</span>
+                                <span>Date: {transaction.date}</span>
+                            </div>)
+                        })
+
+
+                    }
+                </div>
+                <div className='trans-container'>
+                    {
+                        transfers.map((transfer, i) => {
                         return(
-                        <div key={i} className='trans-div' >
-                            {
-                                transaction.purchase ? <h1>Purchase</h1>:<h1>Sale</h1>
-                            }
-                            <span>{idCoinObj[transaction.coin_id]}</span>
-                            <span>${transaction.fiatprice}</span>
-                            <span>Token amount: {transaction.coinamt}</span>
-                            <span>Date: {transaction.date}</span>
+                            <div key={i} className='trans-div' >
+                            <h1>Transfer</h1>
+                            <span>{idCoinObj[transfer.coin_id]}</span>
+                            <span>Sender: {transfer.sender.email}</span>
+                            <span>Receiver: {transfer.receiver.email}</span>
+                            <span>Token amount: {transfer.coinamt}</span>
+                            <span>Date: {transfer.date}</span>
                         </div>)
-                    })
-                        
-                    
-                }
+                        })
+                    }
+                </div>
             </div>
-            <div className='trans-container'>
-                {
-                    transfers.map((transfer, i) => {
-                    return(
-                        <div key={i} className='trans-div' >
-                        <h1>Transfer</h1>
-                        <span>{idCoinObj[transfer.coin_id]}</span>
-                        <span>Sender: {transfer.sender.email}</span>
-                        <span>Receiver: {transfer.receiver.email}</span>
-                        <span>Token amount: {transfer.coinamt}</span>
-                        <span>Date: {transfer.date}</span>
-                    </div>)
-                    })
-                }
-            </div>
-            
-        </>
+        </div>
     )
 }
 

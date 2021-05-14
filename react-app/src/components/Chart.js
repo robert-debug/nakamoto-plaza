@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createChart } from 'lightweight-charts';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
 import { CoinStateContext } from '../context/CoinContext'
-
+import { timeSpans, onYear, onMonth, onWeek, onDay, onHour } from './Home'
 const Chart = ( { props } ) =>{
     console.log(props)
     const dispatch = useDispatch();
