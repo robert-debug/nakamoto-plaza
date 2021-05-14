@@ -68,13 +68,13 @@ const Home = () =>{
                 <img alt={`${coins[selectedCoin].id}-logo`}src={coins[selectedCoin].logo_url} className='coin-logo'/>
                 <span value={coins[selectedCoin].id}>{coins[selectedCoin].name}</span>
                 <span value={coins[selectedCoin].id}>{coins[selectedCoin].symbol}</span>
-            </div>
             <div>
-                <span onClick={onHour}>1H</span>
-                <span onClick={onDay}>Day</span>
-                <span onClick={onWeek}>Week</span>
-                <span onClick={onMonth}>Month</span>
-                <span onClick={onYear}>Year</span>
+                <span className='time-span' onClick={onHour}>1H</span>
+                <span className='time-span' onClick={onDay}>Day</span>
+                <span className='time-span' onClick={onWeek}>Week</span>
+                <span className='time-span' onClick={onMonth}>Month</span>
+                <span className='time-span' onClick={onYear}>1/2Year</span>
+            </div> 
             </div>
                 <Chart props={coinDisplay, chartDisplay}/>
 
@@ -88,11 +88,11 @@ const Home = () =>{
                             <span>{coins[idCoinObj[coin.coin_id]].name}</span>
                             <span>{coins[idCoinObj[coin.coin_id]].symbol}</span>
                             <span>$ {(amount(coin.amount, idCoinObj[coin.coin_id])).toFixed(2)}</span>
+                            <span>{coins.amount}</span>
                         </div>
                                 )})}
             </div>
         </>
     )
 }
-
 export default Home

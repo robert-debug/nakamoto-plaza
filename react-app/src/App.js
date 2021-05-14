@@ -12,7 +12,6 @@ import MainDisplay from "./components/MainDisplay"
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 import Portfolio from "./components/Portfolio"
-import Footer from './components/Footer'
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -63,9 +62,6 @@ function App() {
           </div>
           <div className='main-div'>
             <MainDisplay />
-          </div>
-          <div className='footer-div'>
-            <Footer />
           </div>
         </ProtectedRoute>
       </Switch>

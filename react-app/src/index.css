@@ -5,14 +5,24 @@
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
 }
 #root{
-    height: 100%;
-    width: 100%;
+    position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
     margin: 0;
-    padding: 0
-    rgba
+    padding: 0;
 }
 /* grid */
 .app-container{
@@ -24,23 +34,40 @@
         "sidebar main main main main"
         "sidebar main main main main"
         "sidebar main main main main"
-        "footer footer footer footer footer";
+        "sidebar main main main main";
 
     position:absolute;
     top:0px;
     right:0px;
     bottom:0px;
     left:0px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
 }
 
 .header-div{
     grid-area: header;
     width: 100%;
-    height: 100%
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
 }
 
 .sidebar-div{
-    grid-area: sidebar
+    grid-area: sidebar;
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
 }
 
 .main-div{
@@ -50,13 +77,30 @@
     flex-direction: column;
     justify-content: center;
     align-content: baseline;
-    /* width: 100%;
-    height: 100%; */
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
 }
 
 .footer-div{
-    grid-area: footer;
-}
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    }
 
 /* navbar */
 
@@ -69,35 +113,140 @@
     display: flex;
     justify-content: space-between;
 }
+.buy-button {
+    margin: 20px;
+    display:inline-block;
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #1652F0;
+    color: white;
+    width: 100px;
+    border: 0.2em solid #1652F0;
+    transition: all 0.2s;
+}
+.logout-button {
+    margin: 20px;
+    display:inline-block;
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #1652F0;
+    color: white;
+    width: 100px;
+    border: 0.2em solid #1652F0;
+    transition: all 0.2s;
+}
+.logout-button:hover {
+    transform: scale(1.05)
+}
+.buy-button:hover {
+    transform: scale(1.05)
+}
+.send-button {
+    margin: 20px;
+    display:inline-block;
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: white;
+    color: #1652F0;
+    width: 100px;
+    border: 0.2em solid #1652F0;
+    transition: all 0.2s;
+}       
+.send-button:hover {
+    transform: scale(1.05)
+}
+.logo-loc-container{
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
 
+}
+.button-icon-container{
+    width: 30%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+
+}
 .logo{
     height: 130px;
     cursor: pointer;  
 }
-
+.location-label-shown{
+    margin-top: 20px;
+}
+.location-label-hidden{
+    display: none;
+}
 /* sidebar */
+.sidebar-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
 .sidebar{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 .home-img{
     filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
     height: 65px;
     margin-bottom: 20px;
-    cursor: pointer;   
+    margin-right:40px;
+    cursor: pointer;
+    transition: all 0.2s;   
 }
 .portfolio-img{
     filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
     height: 50px;
+    margin-right:40px;
     margin-bottom: 20px;
-    cursor: pointer;  
+    cursor: pointer; 
+    transition: all 0.2s; 
 }
 
 .price-list-img{
     filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
     height: 60px;
     cursor: pointer;  
+    transition: all 0.2s;
+    margin-bottom: 20px;
+    margin-right:40px;
+}
+.link-icon{
+    height: 40px;
+    cursor: pointer;  
+    transition: all 0.2s;
+    margin-right:40px;
+    margin-bottom: 20px;
+}
+.github-icon{
+    height: 40px;
+    cursor: pointer;  
+    transition: all 0.2s;
+    margin-right:40px;
+    margin-bottom: 20px;
+}
+.linkedin-icon{
+    height: 40px;
+    cursor: pointer;  
+    transition: all 0.2s;
+    margin-right:40px;
+    margin-bottom: 20px;
+}
+.angel-icon{
+    height: 40px;
+    cursor: pointer;  
+    transition: all 0.2s;
+    margin-right:40px;
+    margin-bottom:40px;
 }
 /*main-dispaly*/
 .main-display{
@@ -108,8 +257,8 @@
     align-content: center;
     width: 100%;
     height: 100%;
-    margin: 10px;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
 }
 /* forms */
 
@@ -153,29 +302,64 @@
     position: absolute;
     background-color: transparent;
   }
-  /*prices*/
-  .prices-table{
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+ 
+/*prices*/
+    .prices-table{
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;   
+    }
 
-  }
-  /* portfolio */
-  .portfolio-table{
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+/* portfolio */
+    .portfolio-container{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .portfolio-table{
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        width:100%
+    }
+    .trans-container{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex-shrink: 3; /* default 1 */
+        font-family: 'Roboto', sans-serif;
+        width: 20%  
+    }
+    .trans-div{
+        flex-shrink: 3; /* default 1 */
+        font-family: 'Roboto', sans-serif;
+        font-size:10px;
+        width: 20%
+    }
 
-  }
-  /* home */
-  .home-info-div{
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+/* home */
 
-  }
-  .trans-container{
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+    .chart-top-div{
+      width: 30%;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Roboto', sans-serif;
+      font-size: 10px;
+    }
 
-  }
+    .home-info-div{
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+
+    }
+
+    .trans-container{
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+
+    }
   /* misc */
 
   .coin-logo{
