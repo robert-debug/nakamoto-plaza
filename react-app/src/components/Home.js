@@ -60,11 +60,12 @@ const Home = () =>{
         setChartDisplay('1y')
         dispatch(requestSparklineWeekly(coinDisplay))
     }
+    console.log(coins[selectedCoin].price + 10000)
     return (
         <>
             <div className='chart-div'>
             <div className='chart-top-div'>
-                <h2 className= 'coin-price'>${coins[selectedCoin].price}</h2>
+                <h2 className= 'coin-price'>${parseInt(coins[selectedCoin].price).toFixed(2)}</h2>
                 <img alt={`${coins[selectedCoin].id}-logo`}src={coins[selectedCoin].logo_url} className='coin-logo'/>
                 <span value={coins[selectedCoin].id}>{coins[selectedCoin].name}</span>
                 <span value={coins[selectedCoin].id}>{coins[selectedCoin].symbol}</span>
@@ -83,12 +84,12 @@ const Home = () =>{
                 {userCoins.map( coin => {
                     if(coin.amount === 0) return null
                     return (
-                        <div className='on-hover' onClick={() => onClick(coins[idCoinObj[coin.coin_id]].id)}>
-                            <img alt={`${coins[idCoinObj[coin.coin_id]].id}-logo`}src={coins[idCoinObj[coin.coin_id]].logo_url} className='coin-logo'/>
-                            <span>{coins[idCoinObj[coin.coin_id]].name}</span>
-                            <span>{coins[idCoinObj[coin.coin_id]].symbol}</span>
-                            <span>$ {(amount(coin.amount, idCoinObj[coin.coin_id])).toFixed(2)}</span>
-                            <span>{coins.amount}</span>
+                        <div className='home-coins' onClick={() => onClick(coins[idCoinObj[coin.coin_id]].id)}>
+                            <img classname='coin-elements' alt={`${coins[idCoinObj[coin.coin_id]].id}-logo`}src={coins[idCoinObj[coin.coin_id]].logo_url} className='coin-logo'/>
+                            <span classname='coin-elements'>  {coins[idCoinObj[coin.coin_id]].name}  </span>
+                            <span classname='coin-elements'>  {coins[idCoinObj[coin.coin_id]].symbol}  </span>
+                            <span classname='coin-elements'>$ {(amount(coin.amount, idCoinObj[coin.coin_id])).toFixed(2)}</span>
+                            <span classname='coin-elements'>  {coins.amount}  </span>
                         </div>
                                 )})}
             </div>

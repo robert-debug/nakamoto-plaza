@@ -40,7 +40,7 @@ const Prices = () =>{
                             console.log(coin)
                             return (
                             <tr>
-                                <td key={coin.id} value={coin.id} onClick={() => onClick(coin.id)}>{console.log(coin)}
+                                <td key={coin.id} value={coin.id} className='prices-coins' onClick={() => onClick(coin.id)}>{console.log(coin)}
                                     <img alt={`${coin.id}-logo`}src={coin.logo_url} className='coin-logo'/>
                                     <span value={coin.id}>{coin.name}</span>
                                     <span value={coin.id}>{coin.symbol}</span>

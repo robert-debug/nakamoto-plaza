@@ -2,7 +2,7 @@ import React, {useEffect, useContext, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createChart } from 'lightweight-charts';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Label } from 'recharts'
 import { CoinStateContext } from '../context/CoinContext'
 import { timeSpans, onYear, onMonth, onWeek, onDay, onHour } from './Home'
 const Chart = ( { props } ) =>{
@@ -14,6 +14,8 @@ const Chart = ( { props } ) =>{
     const userCoins = useSelector(state => state.coin.userCoins)
     const spark = useSelector(state => state.coin.spark)
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
+    const toolTipStyle = { 'border-radius':'20px', 'color':'#F4F4F4'}
+    const contentStyle = { 'font-family': 'Roboto'}
     let data = [];
 
     // const [selectedCoin, setSelectedCoin] = useState('BTC')
@@ -26,6 +28,7 @@ const Chart = ( { props } ) =>{
     if(!userCoins || !coins || !spark ) return (<p>Loading...</p>) 
     if (props === '1h'){
         for (const key in spark['Time Series Crypto (5min)']){
+            
             data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
         }
         data.splice(0,87)
@@ -34,7 +37,7 @@ const Chart = ( { props } ) =>{
 
         for (const key in spark['Time Series Crypto (30min)']){
             console.log('############################################', data.length)
-            data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (30min)'][key]['4. close']})
+            data.unshift({ 'time': key.slice(11,19), 'price': `${spark['Time Series Crypto (30min)'][key]['4. close']}`})
         }
     }
     if (props === '1w'){
@@ -77,20 +80,21 @@ const Chart = ( { props } ) =>{
             </div> */}
 
                 <LineChart
-                    width={500}
-                    height={300}
+                    width={1100}
+                    height={400}
                     data={data}
                     margin={{
                     top: 5,
                 right: 30,
-                left: 20,
+                left: 90,
                 bottom: 5
                 }}> 
-                <Line type='monotone' dataKey='price' stroke='#1652F0'/>
-                <CartesianGrid/>
-                <XAxis dataKey="time" />
-                <YAxis hide='true'/>
-                <Tooltip />
+                <Line type='monotone' dataKey='price' stroke='#1652F0' dot={false}/>
+                <CartesianGrid vertical={false} horizontal={false}/>
+                <XAxis  tick={{ 'font-size': '1rem', 'font-family': 'Roboto', 'color': '#F4F4F4'}} dataKey="time" />
+                <YAxis hide={true} tick={{ 'font-size': '1rem', 'font-family': 'Roboto', 'color': '#F4F4F4'}}>
+                </YAxis>
+                <Tooltip wrapperStyle={{backgroundColor:'lightgray'}}labelStyle={{ fontSize: '1rem', fontFamily: "'Roboto', sans-serif"}}  />
             </LineChart>
         </div>
     )

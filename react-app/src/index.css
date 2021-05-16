@@ -77,7 +77,7 @@
     flex-direction: column;
     justify-content: center;
     align-content: baseline;
-    width: 100%;
+    width: 1000px;
     height: 100%;
     margin-top: 0;
     margin-bottom: 0;
@@ -308,6 +308,9 @@
       font-family: 'Roboto', sans-serif;
       font-size: 15px;   
     }
+    .prices-coins{
+        cursor: pointer; 
+    }
 
 /* portfolio */
     .portfolio-container{
@@ -352,16 +355,37 @@
     .home-info-div{
         font-family: 'Roboto', sans-serif;
         font-size: 15px;
-
+        display: flex;
+        flex-direction: row;
+        width:700px;
+        flex-wrap: wrap;
     }
-
+    .home-coins{
+        cursor: pointer; 
+        margin:10px;
+        width: 200px;
+    }
     .trans-container{
         font-family: 'Roboto', sans-serif;
         font-size: 15px;
 
     }
+    .coin-elements{
+        margin: 10px
+    }
   /* misc */
-
+  .recharts-cartesian-axis-ticks{
+    color: lightgray;
+    font-family: 'Roboto', sans-serif;
+  }
+  .recharts-cartesian-axis-tick{
+    color: lightgray;
+    font-family: 'Roboto', sans-serif;
+  }
+  .recharts-tooltip-wrapper{
+      color: black;
+      font-family: 'Roboto', sans-serif;
+  }
   .coin-logo{
       width: 20px;
   }
