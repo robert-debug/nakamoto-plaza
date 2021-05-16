@@ -55,10 +55,17 @@ const BuySellForm = ({ props }) =>{
     const updateCoin = (e) => {
         setCoinSymbol(e.target.value)
     }
+    if (!coins ||!priceFinder) return null
 
     return(
         <div className='form-div'>
-              <div onClick={onBuy}>Buy</div><div onClick={onSell}>Sell</div>
+            <div className='buy-sell'>
+                <div className={purchase ? 'buy-card-selected' : 'not-selected'} onClick={onBuy}>
+                    <span>Buy</span></div>
+                    <div className={!purchase ? 'sell-card-selected' : 'not-selected'} onClick={onSell}>
+                        <span>Sell</span>
+                    </div>
+            </div>
               <form onSubmit={onSubmit}>
                  <input
                     type="number"
@@ -74,7 +81,7 @@ const BuySellForm = ({ props }) =>{
                     ))
                 }
                 </select>
-                <button type="submit">{purchase === true ? 'Buy' : 'Sell' } {coinSymbol}</button>
+                <button className='buy-button' type="submit">{purchase === true ? 'Buy' : 'Sell' } {coinSymbol}</button>
             </form>
         </div>
     )

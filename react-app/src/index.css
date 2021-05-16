@@ -258,18 +258,58 @@
     padding: 0;
 }
 /* forms */
-
+.buy-sell{
+   color: black;
+   font-size: 20px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   margin-bottom: 40px;
+   font-family: 'Roboto', sans-serif;
+}
+.buy-card-selected{
+    border-right: 1px solid black;
+    width: 120px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.2s;
+}
+.sell-card-selected{
+    width: 120px;
+    height: 100px;
+    border-left:  1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.2s;
+}
+.not-selected{
+    border-bottom: 1px solid black;
+    width: 120px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(0,0,0,0.6);
+    
+}
 .form-div{
     border: #1652F0;
     border-radius: 6px;
     border-width: 2px;
-    width: 200px;
-    height: 300px;
+    width: 240px;
+    height: 340px;
+    font-family: 'Roboto', sans-serif;
     background-color: white;
     color: grey;
     text-align: left;
     font-size: 15px;
-    padding: 40px;
+    padding: 0px;
     box-shadow: 1px 1px 20px 1px var(--GREY_GRID);
 }
 
@@ -304,16 +344,13 @@
     .prices-container{
         position: inherit;
         margin-top: 350px;
-        width: 900px;
-        margin-left: 200px;
+        width: 100%;
+        margin-top: 450px;
     }
     .prices-table{
       font-family: 'Roboto', sans-serif;
       font-size: 20px;  
-      width: 800px; 
-    }
-    th, td{
-        margin: 20px;
+      width: 100%; 
     }
     .prices-coins{
         cursor: pointer; 
@@ -423,6 +460,14 @@
         position: relative;
         top:40px;
     }
+  /* coin */
+  .coin-info-div{
+      font-size: 20px;
+      padding: 10px;
+      width: 100%;
+      margin-left: 50px;
+  }
+
 
   /* misc */
   .recharts-cartesian-axis-ticks{
