@@ -36,7 +36,7 @@ const BuySellForm = ({ props }) =>{
         setPurchaseCompleted(true)
     }
     const onComplete = (e)=>{
-        setShowDisplay('Portfolio')
+        setShowDisplay('Home')
         setPurchaseCompleted(false)
         setShowModal(false)
     }

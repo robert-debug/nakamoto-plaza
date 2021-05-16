@@ -375,7 +375,38 @@ input {
     text-align: left;
     font-size: 15px;
     padding: 0px;
-    box-shadow: 1px 1px 20px 1px var(--GREY_GRID);
+}
+.send-form > select{
+    margin: 20px;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+.to-label{
+    font-size: 20px;
+}
+.transfer-h1{
+    margin-left: 85px;
+}
+.coin-send-input{
+    text-align: center;
+    width: 70%;
+    font-size: 50px;
+    margin-left: 51px;
+}
+.send-form-div{
+    justify-content: center;
+    border: #1652F0;
+    border-radius: 6px;
+    border-width: 2px;
+    width: 300px;
+    height: 400px;
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    color: grey;
+    text-align: left;
+    font-size: 15px;
+    padding: 10px;
 }
 
 

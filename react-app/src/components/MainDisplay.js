@@ -25,7 +25,7 @@ const MainDisplay = () =>{
         dispatch(requestTransactions(sessionUser.id))
         dispatch(requestTransfers(sessionUser.id))
         dispatch(requestSparklineIntraDay(coinDisplay))
-    }, [])
+    }, [showDisplay])
 
     return(
         <div className='main-display'>

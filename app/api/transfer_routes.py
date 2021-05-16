@@ -96,6 +96,13 @@ def transfer():
         )
         db.session.add(new_transfer)
         db.session.commit()
+        new_transfer = new_transfer.to_dict()
+        user = User.query.get(new_transfer['sender_id'])
+        user2 = User.query.get(new_transfer['receiver_id'])
+        user = user.to_dict()
+        user2= user2.to_dict()
+        coin['sender'] = user
+        coin['receiver'] = user2
         return new_transfer.to_dict()
     return {'errors':['Insufficient tokens']}
 
