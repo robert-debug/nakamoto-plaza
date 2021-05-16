@@ -269,7 +269,7 @@
 }
 .buy-card-selected{
     border-right: 1px solid black;
-    width: 120px;
+    width: 200px;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -278,7 +278,7 @@
     transition: all 0.2s;
 }
 .sell-card-selected{
-    width: 120px;
+    width: 200px;
     height: 100px;
     border-left:  1px solid black;
     display: flex;
@@ -289,7 +289,7 @@
 }
 .not-selected{
     border-bottom: 1px solid black;
-    width: 120px;
+    width: 200px;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -298,12 +298,77 @@
     background-color: rgba(0,0,0,0.6);
     
 }
+.money{
+    text-align: center;
+
+}
+
+.number-input {
+    text-align: center;
+    width: 70%;
+    font-size: 50px;
+
+}
+
+input {
+    border-radius: 5px;
+    border: 2px gray;
+    display: block;
+    box-sizing: border-box;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    width: 100%;
+    margin: 10px 0px 5px 0px;
+    padding: 10px;
+    outline: 0;
+  }
+  
+  input:focus {
+    border: 2px #1652F0;
+  }
+.money-input-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.money-input-div > i{
+    font-size: 50px;
+    width:15%
+}
+.coin-select{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-buy-button {
+    margin-top: 20px;
+    margin-left: 97px;
+    display:inline-block;
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #1652F0;
+    color: white;
+    width: 100px;
+    border: 0.2em solid #1652F0;
+    transition: all 0.2s;
+}
+.coin-price-label{
+    margin-left: 45px;
+}
+.coin-select > select{
+    margin: 20px;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: center;
+}
 .form-div{
+    justify-content: center;
     border: #1652F0;
     border-radius: 6px;
     border-width: 2px;
-    width: 240px;
-    height: 340px;
+    width: 300px;
+    height: 400px;
     font-family: 'Roboto', sans-serif;
     background-color: white;
     color: grey;
@@ -312,6 +377,7 @@
     padding: 0px;
     box-shadow: 1px 1px 20px 1px var(--GREY_GRID);
 }
+
 
 /* modals*/
 
@@ -470,6 +536,9 @@
 
 
   /* misc */
+  .errors{
+      color: red;
+  }
   .recharts-cartesian-axis-ticks{
     color: lightgray;
     font-family: 'Roboto', sans-serif;
@@ -488,4 +557,13 @@
   .nomics-link{
     font-family: 'Roboto', sans-serif;
     font-size: 5px;
+  }
+  .completed-div{
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      font-family: 'Roboto', sans-serif;
+      font-size: 5px;
+      background-color: white;
+      width: 200px;
   }

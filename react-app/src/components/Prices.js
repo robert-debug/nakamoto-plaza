@@ -12,7 +12,7 @@ const Prices = () =>{
     const { showDisplay, setShowDisplay } = useContext(DisplayStateContext);
     // const [selectedCoin, setSelectedCoin] = useState('BTC')
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
-    if (!coins) return null
+    if (!coins) return '...Loading'
     const onClick = (id) =>{
         setShowDisplay('coin')
         setCoinDisplay(id)
