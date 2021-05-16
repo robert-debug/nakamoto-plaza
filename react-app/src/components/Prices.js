@@ -5,6 +5,7 @@ import { requestCoins, requestSparklineIntraDay } from '../store/coins'
 import BuySellFormModal from './BuySellFormModal/index'
 import { requestOneCoin } from '../store/coins'
 import { CoinStateContext } from '../context/CoinContext'
+
 const Prices = () =>{
     const dispatch = useDispatch(); 
     const coins = useSelector(state => state.coin.list)
@@ -21,9 +22,9 @@ const Prices = () =>{
     }
 
     return(
-        <>
+        <div className="prices-container">
             <div className='chart-div' id='chart-div'>
-            
+                
             </div>
             <table className='prices-table'>
                 <thead>
@@ -42,8 +43,8 @@ const Prices = () =>{
                             <tr>
                                 <td key={coin.id} value={coin.id} className='prices-coins' onClick={() => onClick(coin.id)}>{console.log(coin)}
                                     <img alt={`${coin.id}-logo`}src={coin.logo_url} className='coin-logo'/>
-                                    <span value={coin.id}>{coin.name}</span>
-                                    <span value={coin.id}>{coin.symbol}</span>
+                                    <span value={coin.id}>    {coin.name}  </span>
+                                    <span value={coin.id}>    {coin.symbol}  </span>
                                 </td>
                                 <td>${parseFloat(coin.price).toFixed(2)}</td>
                                 <td>{(coin['1d'].price_change_pct * 100).toFixed(2)}.%</td>
@@ -54,7 +55,7 @@ const Prices = () =>{
                     </tbody>
             </table>
             
-        </>
+        </div>
     )
 }
 

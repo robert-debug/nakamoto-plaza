@@ -64,17 +64,20 @@ const Home = () =>{
     return (
         <>
             <div className='chart-div'>
+            
             <div className='chart-top-div'>
+            <div classname='chart-header-info'>
                 <h2 className= 'coin-price'>${parseInt(coins[selectedCoin].price).toFixed(2)}</h2>
                 <img alt={`${coins[selectedCoin].id}-logo`}src={coins[selectedCoin].logo_url} className='coin-logo'/>
                 <span value={coins[selectedCoin].id}>{coins[selectedCoin].name}</span>
                 <span value={coins[selectedCoin].id}>{coins[selectedCoin].symbol}</span>
-            <div>
-                <span className='time-span' onClick={onHour}>1H</span>
-                <span className='time-span' onClick={onDay}>Day</span>
-                <span className='time-span' onClick={onWeek}>Week</span>
-                <span className='time-span' onClick={onMonth}>Month</span>
-                <span className='time-span' onClick={onYear}>1/2Year</span>
+            </div>
+            <div classname='time-span-div'>
+                <span className='time-span' onClick={onHour}>   1H   </span>
+                <span className='time-span' onClick={onDay}>   Day   </span>
+                <span className='time-span' onClick={onWeek}>   Week   </span>
+                <span className='time-span' onClick={onMonth}>  Month  </span>
+                <span className='time-span' onClick={onYear}>  1/2Year  </span>
             </div> 
             </div>
                 <Chart props={coinDisplay, chartDisplay}/>

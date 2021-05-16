@@ -172,11 +172,8 @@
     height: 130px;
     cursor: pointer;  
 }
-.location-label-shown{
+.location-label{
     margin-top: 20px;
-}
-.location-label-hidden{
-    display: none;
 }
 /* sidebar */
 .sidebar-container{
@@ -304,9 +301,19 @@
   }
  
 /*prices*/
+    .prices-container{
+        position: inherit;
+        margin-top: 350px;
+        width: 900px;
+        margin-left: 200px;
+    }
     .prices-table{
       font-family: 'Roboto', sans-serif;
-      font-size: 15px;   
+      font-size: 20px;  
+      width: 800px; 
+    }
+    th, td{
+        margin: 20px;
     }
     .prices-coins{
         cursor: pointer; 
@@ -324,7 +331,7 @@
     }
     .portfolio-table{
         font-family: 'Roboto', sans-serif;
-        font-size: 12px;
+        font-size: 30px;
         width:100%
     }
     .trans-container{
@@ -345,11 +352,15 @@
 /* home */
 
     .chart-top-div{
-      width: 30%;
-      display: flex;
-      justify-content: space-between;
       font-family: 'Roboto', sans-serif;
-      font-size: 10px;
+      font-size: 15px;
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      width: 1015px;
+      justify-content: space-between;
+      margin-left: 50px;
+      flex-basis: 200px
     }
 
     .home-info-div{
@@ -359,11 +370,13 @@
         flex-direction: row;
         width:700px;
         flex-wrap: wrap;
+        margin-left: 110px;
     }
     .home-coins{
         cursor: pointer; 
         margin:10px;
-        width: 200px;
+        width: 300px;
+
     }
     .trans-container{
         font-family: 'Roboto', sans-serif;
@@ -371,8 +384,25 @@
 
     }
     .coin-elements{
-        margin: 10px
+        margin: 15px
     }
+    .chart-header-info{
+        margin-left: 100px;
+        min-width: 200px;
+        min-height: 200px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .time-span-div{
+        margin-top: 100px;
+    }
+    .time-span{
+        cursor: pointer;
+        position: relative;
+        top:40px;
+    }
+
   /* misc */
   .recharts-cartesian-axis-ticks{
     color: lightgray;
