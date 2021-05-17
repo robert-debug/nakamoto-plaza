@@ -15,10 +15,11 @@ import { CoinStateContext } from '../context/CoinContext'
 const MainDisplay = () =>{
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
-    const { showDisplay } = useContext(DisplayStateContext)
+    const { showDisplay, setShowDisplay } = useContext(DisplayStateContext)
     const { coinDisplay } = useContext(CoinStateContext)
 
     useEffect(()=>{
+        setShowDisplay('Home')
         dispatch(requestCoins());
         dispatch(requestOneCoin(coinDisplay))
         dispatch(requestUserCoins(sessionUser.id))
