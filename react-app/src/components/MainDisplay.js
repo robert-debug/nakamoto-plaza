@@ -24,8 +24,11 @@ const MainDisplay = () =>{
         dispatch(requestUserCoins(sessionUser.id))
         dispatch(requestTransactions(sessionUser.id))
         dispatch(requestTransfers(sessionUser.id))
-        dispatch(requestSparklineIntraDay(coinDisplay))
     }, [showDisplay])
+
+    useEffect(()=>{
+        dispatch(requestSparklineIntraDay(coinDisplay))
+    }, [])
 
     return(
         <div className='main-display'>
