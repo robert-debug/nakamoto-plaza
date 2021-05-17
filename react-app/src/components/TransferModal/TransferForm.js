@@ -13,10 +13,12 @@ const BuySellForm = ({ props }) =>{
     const dispatch = useDispatch();
     const coins = useSelector(state => state.coin.list)
     const sessionId = useSelector(state => state.session.user.id)
+    const errors = useSelector(state=> state.transfer.errors )
     const [coinAmt, setCoinAmt] = useState(0);
     const [receiverIdentification, setReceiverIdentification ] = useState('')
     const [coinSymbol, setCoinSymbol] = useState('BTC');
     const { showDisplay, setShowDisplay} = useContext(DisplayStateContext)
+    const [purchaseCompleted, setPurchaseCompleted] = useState(false)
 
     const onSubmit = (e)=> {
         e.preventDefault();
@@ -24,11 +26,13 @@ const BuySellForm = ({ props }) =>{
         dispatch(makeTransfers(sessionId, receiverIdentification, coinAmt, coinId, sessionId))
         dispatch(requestTransfers(sessionId))
         dispatch(requestUserCoins(sessionId))
-        setShowModal(false)
-        setShowDisplay('Portfolio')
-        history.push('/')
+        setPurchaseCompleted('true')
     }
-
+    const onComplete = (e)=>{
+        setShowDisplay('Home')
+        setPurchaseCompleted(false)
+        setShowModal(false)
+    }
     const updateAmount = (e) => {
         const amount = e.target.value
         setCoinAmt(amount)
@@ -43,16 +47,20 @@ const BuySellForm = ({ props }) =>{
     }
 
     return(
-        <div className='form-div'>
-              <div>Transfer</div>
-              <form onSubmit={onSubmit}>
+        <>
+        {
+            !purchaseCompleted ? 
+        <div className='send-form-div'>
+              <h1 className='transfer-h1'>Transfer</h1>
+              <form className='send-form' onSubmit={onSubmit}>
                  <input
+                 className='coin-send-input'
                     type="number"
                     name="coinAmt"
                     onChange={updateAmount}
                     value={coinAmt}
                 ></input>
-                <label>To:</label>
+                <label className='to-label'>To:</label>
                 <input
                     type= 'text'
                     name= 'receiverIdentification'
@@ -67,9 +75,25 @@ const BuySellForm = ({ props }) =>{
                     ))
                 }
                 </select>
-                <button type="submit">Transfer {coinSymbol}</button>
+                <button className='form-buy-button' type="submit">Transfer {coinSymbol}</button>
             </form>
-        </div>
+        </div> :
+                <div classname='form-div'>
+                {errors ?    errors.map(error => (
+                                <>
+                                    <p className='errors'>Errors</p>
+                                    <p classnam='errors' key={error}>{error}</p>
+                                </>
+                        )):<>
+                        <div classname='completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
+                            <p style={{fontFamily: "'Roboto', sans-serif", marginLeft:'30px' }}>Your Transfer Was Successful!</p>
+                            <button className='form-buy-button' onClick={onComplete}>Complete!</button>
+                        </div>
+                        </>
+                        }
+            </div>
+        }
+        </>
     )
 }
 

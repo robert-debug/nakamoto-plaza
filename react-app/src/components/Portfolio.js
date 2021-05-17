@@ -67,17 +67,18 @@ const Portfolio = () =>{
             </table>
             <div className='trans-holder'>                 
                 <div className='trans-container'>
+                    <h1>Transactions</h1>
                     {
                         transactions.map((transaction, i) => {
                             return(
                             <div key={i} className='trans-div' >
                                 {
-                                    transaction.purchase ? <h1>Purchase</h1>:<h1>Sale</h1>
+                                    transaction.purchase ? <h3>Purchase</h3>:<h3>Sale</h3>
                                 }
-                                <span>{idCoinObj[transaction.coin_id]}</span>
-                                <span>${transaction.fiatprice}</span>
-                                <span>Token amount: {transaction.coinamt}</span>
-                                <span>Date: {transaction.date}</span>
+                                <p>  {idCoinObj[transaction.coin_id]}  </p>
+                                <p>  ${transaction.fiatprice}  </p>
+                                <p>  Token amount: {transaction.coinamt}  </p>
+                                <p>  Date: {transaction.date}  </p>
                             </div>)
                         })
 
@@ -85,16 +86,17 @@ const Portfolio = () =>{
                     }
                 </div>
                 <div className='trans-container'>
+                    <h1>Transfers</h1>
                     {
                         transfers.map((transfer, i) => {
                         return(
                             <div key={i} className='trans-div' >
-                            <h1>Transfer</h1>
-                            <span>{idCoinObj[transfer.coin_id]}</span>
-                            <span>Sender: {transfer.sender.email}</span>
-                            <span>Receiver: {transfer.receiver.email}</span>
-                            <span>Token amount: {transfer.coinamt}</span>
-                            <span>Date: {transfer.date}</span>
+                            <h3>Transfers</h3>
+                            <p>  {idCoinObj[transfer.coin_id]}  </p>
+                            <p>  Sender: {transfer.sender.email}</p>
+                            <p>  Receiver: {transfer.receiver.email}</p>
+                            <p>  Token amount: {transfer.coinamt}</p>
+                            <p>  Date: {transfer.date}  </p>
                         </div>)
                         })
                     }

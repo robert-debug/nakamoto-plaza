@@ -43,28 +43,31 @@ const Coin = () =>{
     return (
         <>
             <div className='chart-div'>
-                <h1>{coin?.symbol}</h1>
-                <span>{coin?.price}</span>
-                <div>
-                    <span className='time-span' onClick={onHour}>1H</span>
-                    <span className='time-span' onClick={onDay}>Day</span>
-                    <span className='time-span' onClick={onWeek}>Week</span>
-                    <span className='time-span' onClick={onMonth}>Month</span>
-                    <span className='time-span' onClick={onYear}>1/2Year</span>
+                <div className='chart-top-div'>
+                    <div classname='chart-header-info'>
+                        <h2>  ${parseFloat(coin?.price).toFixed(2)}  </h2>
+                        <img alt={`${coin?.id}-logo`}src={coin?.logo_url} className='coin-logo'/>
+                        <span>  {coin?.name} </span>
+                        <span> {coin?.symbol} </span>
+                    </div>
+                    <div classname='time-span-div'>
+                        <span className='time-span' onClick={onHour}>  1H  </span>
+                        <span className='time-span' onClick={onDay}>  Day  </span>
+                        <span className='time-span' onClick={onWeek}>  Week  </span>
+                        <span className='time-span' onClick={onMonth}>  Month  </span>
+                        <span className='time-span' onClick={onYear}>  1/2Year  </span>
+                    </div>
                 </div>
-                <Chart props={'1h'}/>
+                <Chart props={chartDisplay}/>
 
             </div>
             <div className='coin-info-div'>
-
-                        <div>
-                            <img alt={`${coin?.id}-logo`}src={coin?.logo_url} className='coin-logo'/>
-                            <span>{coin?.name}</span>
-                            <span>Market Cap: ${coin?.market_cap}</span>
-                            <span>Volume: {coin['1d']?.volume}</span>
-                            <span>Circulating Supply: {coin?.circulating_supply}</span>
-                            <span>Max Supply {!coin.max_supply ? 'NA' : coin.max_supply}</span>
-                        </div>
+                            < img alt={`${coin?.id}-logo`}src={coin?.logo_url} className='coin-logo'/>
+                            <span> {coin?.name}  </span>
+                            <span>|  Volume: {coin['1d']?.volume}  </span>
+                            <span>|  Market Cap: ${coin?.market_cap}  </span>
+                            <span>|  Circulating Supply: {coin?.circulating_supply}  </span>
+                            <span>|  Max Supply {!coin.max_supply ? 'NA' : coin.max_supply}  </span>
 
             </div>
         </>
