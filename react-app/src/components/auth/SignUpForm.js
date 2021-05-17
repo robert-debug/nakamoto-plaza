@@ -64,7 +64,7 @@ const SignUpForm = () => {
 
   return (
     <div modal='form-div'>
-      <form onSubmit={onSignUp} className='form'>
+      <form onSubmit={onSignUp} className='auth-form'>
         <div>
           <label>User Name</label>
           <input
@@ -130,10 +130,10 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div>
-          <label>
+          <label className='state-label'>
             State
           </label>
-          <select value={usState} onChange={updateUSState}>
+          <select className='auth-select' value={usState} onChange={updateUSState}>
             {
               statesArray.map(state => (
                 <option key={state} value={state}>{state}</option>
@@ -141,14 +141,14 @@ const SignUpForm = () => {
             }
           </select>
         </div>            
-        <button type="submit">Sign Up</button>
+        <button className='buy-button' type="submit">Sign Up</button>
       </form>
-      <div>
+      <div className='switch-nomics'>
           <NavLink to="/login" exact={true} activeClassName="active">
             Already have a Nakamoto Plaza Account? Log in
           </NavLink>
-          <a className='nomics-link' target="_blank" href="https://nomics.com">{'Crypto Market Cap & Pricing Data Provided By Nomics'}</a>
         </div>
+          <a className='nomics-link' target="_blank" href="https://nomics.com">{'Crypto Market Cap & Pricing Data Provided By Nomics'}</a>
     </div>
   );
 };

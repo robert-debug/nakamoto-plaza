@@ -47,9 +47,12 @@ const NavBar = () => {
           <div className='logo-div' onClick={onClick}>
             <img className='logo' alt='logo' src={logo}/>
           </div>
-          <div className='location-label'>
-            { showDisplay == 'coin' && selectedCoin ? coinName : display }
-          </div>
+          {
+            sessionUser ?
+            <div className='location-label'>
+              { showDisplay == 'coin' && selectedCoin ? coinName : display }
+            </div> : null
+          }
         </div>
         <div className='button-icon-container'>
             <div >

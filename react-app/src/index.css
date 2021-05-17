@@ -408,6 +408,17 @@ input {
     font-size: 15px;
     padding: 10px;
 }
+.form-div{
+    font-family: 'Roboto', sans-serif;
+}
+.auth-form{
+    font-family: 'Roboto', sans-serif;
+}
+.auth-select{
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: center;
+}
 
 
 /* modals*/
@@ -474,7 +485,7 @@ input {
     }
     .portfolio-table{
         font-family: 'Roboto', sans-serif;
-        font-size: 30px;
+        font-size: 25px;
         width:100%;
         background-color: #f6f9fc;
     }
@@ -515,6 +526,7 @@ input {
       width: 1015px;
       justify-content: space-between;
       margin-left: 50px;
+      margin-top: 30px;
       flex-basis: 200px
     }
 
@@ -597,4 +609,12 @@ input {
       font-size: 5px;
       background-color: white;
       width: 200px;
+  }
+  .state-label{
+      margin-right: 10px;
+  }
+  .switch-nomics{
+    font-family: 'Roboto', sans-serif;
+    display: 'flex'
+    flex
   }

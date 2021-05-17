@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import  { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { Redirect } from "react-router-dom";
 import { login, demoLogin } from "../../store/session";
+import { requestTransactions } from '../../store/transaction';
+import { requestTransfers } from '../../store/transfer'
+import { requestSparklineWeekly, requestUserCoins, requestCoins, requestSparklineIntraDay, requestSparklineDaily, requestOneCoin } from '../../store/coins'
+import { CoinStateContext } from '../../context/CoinContext'
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -10,6 +14,9 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { coinDisplay } = useContext(CoinStateContext)
+  const sessionUser = useSelector(state => state.session.user);
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -66,16 +73,16 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
-          <button type="submit">Login</button>
-          <button type="submit" onClick={demoLogin}>Demo User</button>
+          <button className='buy-button' type="submit">Login</button>
+          <button className='send-button' type="submit" onClick={demoLogin}>Demo</button>
         </div>
       </form>
-      <div>
+      <div className='switch-nomics'>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Need an Account? Sign Up
           </NavLink>
-          <a className='nomics-link' target="_blank" href="https://nomics.com">{'Crypto Market Cap & Pricing Data Provided By Nomics'}</a>
       </div>
+          <a className='nomics-link' target="_blank" href="https://nomics.com">{'Crypto Market Cap & Pricing Data Provided By Nomics'}</a>
     </div>
   );
 };
