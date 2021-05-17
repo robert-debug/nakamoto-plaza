@@ -19,22 +19,27 @@ The goal of this week and a half long, full-stack project was to have 4 fully fu
 
 ### Login/Signup
 
-![Sign Up]()
-![Login]()
+When a user navigates to Nakamoto Plaza he is presented with a login form, a demo button, and a link to a signup form. From here the user logins as a existing user, or demo user, or creates a new account, which then creates vault and vault coins for them.
+
+![Sign Up](https://github.com/robert-debug/nakamoto-plaza/blob/master/react-app/src/image-assets/readme-images/SignupForm.png)
+![Login](https://github.com/robert-debug/nakamoto-plaza/blob/master/react-app/src/image-assets/readme-images/LoginForm.png)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-### Main/Profile Page
+### Home Page
 
+Once a user has signup or signed in, or navigates to the homepage via the home icon he sees his account home page, which includes a chart of his largest coin holding and of the current value of the coins in his account. He can click on those coins to see their value in a chart, or click on the time spans in the upper right hand corner of the chart to see different historical timeframes of data.
 
-![Home]()
+![Home](https://github.com/robert-debug/nakamoto-plaza/blob/master/react-app/src/image-assets/readme-images/Home.png)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 ### Portfolio Page
 
+A user can navigate to her Portfolio page via the Portfolio button. This displays a chart of their current coin coin holding, its current USD balance, the number of tokens held, and the percentage of their USD is in that holding. Below the table is a list of their transfers and tranactions.
 
-![Portfolio]()
+
+![Portfolio](https://github.com/robert-debug/nakamoto-plaza/blob/master/react-app/src/image-assets/readme-images/Portfolio.png)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -42,7 +47,7 @@ The goal of this week and a half long, full-stack project was to have 4 fully fu
 
 
 
-![Prices]()
+![Prices](https://github.com/robert-debug/nakamoto-plaza/blob/master/react-app/src/image-assets/readme-images/Prices.png)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -51,7 +56,8 @@ The goal of this week and a half long, full-stack project was to have 4 fully fu
 
 
 
-![Prices]()
+![Buy/ Sell Form](https://github.com/robert-debug/nakamoto-plaza/blob/master/react-app/src/image-assets/readme-images/BuyForm.png)
+![Transfer Form](https://github.com/robert-debug/nakamoto-plaza/blob/master/react-app/src/image-assets/readme-images/TransferForm.png)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
