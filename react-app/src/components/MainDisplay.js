@@ -17,19 +17,20 @@ const MainDisplay = () =>{
     const dispatch = useDispatch()
     const { showDisplay, setShowDisplay } = useContext(DisplayStateContext)
     const { coinDisplay } = useContext(CoinStateContext)
-
+    
     useEffect(()=>{
         setShowDisplay('Home')
+        dispatch(requestSparklineIntraDay(coinDisplay))
+    }, [])
+
+    useEffect(()=>{
         dispatch(requestCoins());
         dispatch(requestOneCoin(coinDisplay))
         dispatch(requestUserCoins(sessionUser.id))
         dispatch(requestTransactions(sessionUser.id))
         dispatch(requestTransfers(sessionUser.id))
     }, [showDisplay])
-
-    useEffect(()=>{
-        dispatch(requestSparklineIntraDay(coinDisplay))
-    }, [])
+    
 
     return(
         <div className='main-display'>
