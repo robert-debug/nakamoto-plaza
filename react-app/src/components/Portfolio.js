@@ -17,10 +17,10 @@ const Portfolio = () =>{
     const transfers = useSelector(state => state.transfer.list)
     
 
-    if (!coins['BTC']) return null
-    if (!userCoins) return null
-    if (!transactions) return null
-    if (!transfers) return null
+    if (!coins['BTC']) return 'Loading... Please refresh if loading is prolonged...'
+    if (!userCoins) return 'Loading... Please refresh if loading is prolonged...'
+    if (!transactions) return 'Loading... Please refresh if loading is prolonged...'
+    if (!transfers) return 'Loading... Please refresh if loading is prolonged...'
     
 
     console.log(userCoins)

@@ -18,8 +18,8 @@ const Home = () =>{
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
     const { chartDisplay, setChartDisplay } = useContext(ChartStateContext)
     const [selectedCoin, setSelectedCoin] = useState(coinDisplay)
-    if (!coins[selectedCoin]) return(<p>Loading...</p>) 
-    if (!userCoins) return(<p>Loading...</p>)
+    if (!coins[selectedCoin]) return(<p>Loading... Please refresh if loading is prolonged...</p>) 
+    if (!userCoins) return(<p>Loading... Please refresh if loading is prolonged...</p>)
     const amount = (amount, symbol) => {
         return amount * coins[symbol].price
     }
