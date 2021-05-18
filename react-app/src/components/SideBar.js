@@ -15,7 +15,6 @@ const SideBar = () => {
     const { showDisplay, setShowDisplay } = useContext(DisplayStateContext);
     const onHome = (e)=> {
         setShowDisplay('Home');
-        history.push('/');
     }
     const onPortfolio = (e)=> setShowDisplay('Portfolio')
     const onPrices = (e)=> setShowDisplay('Prices')
