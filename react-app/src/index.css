@@ -508,16 +508,16 @@ input {
         justify-content: space-between;
         flex-shrink: 3; /* default 1 */
         font-family: 'Roboto', sans-serif;
-        width: 40%;
-        margin-left: 10%;
+        width: 30%;
+        margin-left: 15%;
         
     }
     .trans-div{
         flex-shrink: 3; /* default 1 */
         font-family: 'Roboto', sans-serif;
         font-size:15px;
-        width: 50%;
-        margin-left: 10%
+        width: 100%;
+        margin-left: 10px;
     }
     th{
         text-align: center;

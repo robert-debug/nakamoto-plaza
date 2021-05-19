@@ -91,7 +91,7 @@ const Portfolio = () =>{
                         transfers.map((transfer, i) => {
                         return(
                             <div key={i} className='trans-div' >
-                            <h3>Transfers</h3>
+                            <h3>Transfer</h3>
                             <p>  {idCoinObj[transfer.coin_id]}  </p>
                             <p>  Sender: {transfer.sender.email}</p>
                             <p>  Receiver: {transfer.receiver.email}</p>
