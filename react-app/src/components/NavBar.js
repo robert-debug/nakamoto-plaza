@@ -44,8 +44,9 @@ const NavBar = () => {
   return (
       <div className='navbar'>
         <div className='logo-loc-container'>
+
           <div className='logo-div' onClick={onClick}>
-            <img className='logo' alt='logo' src={logo}/>
+            {sessionUser ? <img className='logo' alt='logo' src={logo}/>: null}
           </div>
           {
             sessionUser ?

@@ -7,6 +7,7 @@ import { requestTransactions } from '../../store/transaction';
 import { requestTransfers } from '../../store/transfer'
 import { requestSparklineWeekly, requestUserCoins, requestCoins, requestSparklineIntraDay, requestSparklineDaily, requestOneCoin } from '../../store/coins'
 import { CoinStateContext } from '../../context/CoinContext'
+import logo from '../../image-assets/color_logo_with_background.png'
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,10 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='form-div'>
+    <div className='login-form-div'>
+          <div className='logo-div'>
+            <img className='form-logo' alt='logo' src={logo}/>
+          </div>
       <form onSubmit={onLogin} className='form'>
         <div>
           {errors.map((error) => (

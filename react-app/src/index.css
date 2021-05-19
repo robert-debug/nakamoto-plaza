@@ -598,6 +598,12 @@ input {
   .coin-logo{
       width: 20px;
   }
+  .form-logo{
+      height:240px
+  }
+  .login-form-div{
+      margin-bottom: 50px;
+  }
   .nomics-link{
     font-family: 'Roboto', sans-serif;
     font-size: 5px;
