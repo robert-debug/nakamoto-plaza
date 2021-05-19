@@ -414,6 +414,19 @@ input {
 .auth-form{
     font-family: 'Roboto', sans-serif;
 }
+.signup-form{
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+.signup-interior-div > label{
+    padding: 5px;
+    margin: 5px;
+}
+
+.signup-interior-div > input{
+    padding: 5px;
+    margin: 5px;
+}
 .auth-select{
     border-radius: 20px;
     font-size: 20px;
@@ -601,6 +614,9 @@ input {
   .form-logo{
       height:240px
   }
+  .signup-form-logo{
+    height:240px
+}
   .login-form-div{
       margin-bottom: 50px;
   }
@@ -624,4 +640,7 @@ input {
     font-family: 'Roboto', sans-serif;
     display: 'flex'
     flex
+  }
+  .signup-logo-div{
+      margin-left: 25px;
   }

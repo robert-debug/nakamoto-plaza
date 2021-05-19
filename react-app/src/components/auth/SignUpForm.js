@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import logo from '../../image-assets/color_logo_with_background.png'
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -63,9 +64,12 @@ const SignUpForm = () => {
   }
 
   return (
-    <div modal='form-div'>
-      <form onSubmit={onSignUp} className='auth-form'>
-        <div>
+    <div modal='signup-form-div'>
+        <div className='signup-logo-div'>
+          <img className='signup-form-logo' alt='logo' src={logo}/>
+        </div>
+      <form onSubmit={onSignUp} className='signup-form'>
+        <div className= 'signup-interior-div'>
           <label>User Name</label>
           <input
             type="text"
@@ -74,7 +78,7 @@ const SignUpForm = () => {
             value={username}
           ></input>
         </div>
-        <div>
+        <div className= 'signup-interior-div'>
           <label>Email</label>
           <input
             type="text"
@@ -83,7 +87,7 @@ const SignUpForm = () => {
             value={email}
           ></input>
         </div>
-        <div>
+        <div className= 'signup-interior-div'>
           <label>Password</label>
           <input
            type="password"
@@ -92,7 +96,7 @@ const SignUpForm = () => {
             value={password}
           ></input>
         </div>
-        <div>
+        <div className= 'signup-interior-div'>
           <label>Repeat Password</label>
           <input
             type="password"
@@ -102,7 +106,7 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
-        <div>
+        <div className= 'signup-interior-div'>
           <label>First Name</label>
           <input
             type="text"
@@ -111,7 +115,7 @@ const SignUpForm = () => {
             value={firstName}
           ></input>
         </div>
-       <div>
+       <div className= 'signup-interior-div'>
          <label>Last Name</label>
          <input
            type="text"
@@ -120,7 +124,7 @@ const SignUpForm = () => {
            value={lastName}
          ></input>
         </div>
-        <div>
+        <div className= 'signup-interior-div'>
           <label>Fake (Fake!) Bank Number</label>
           <input
             type="number"
@@ -129,7 +133,7 @@ const SignUpForm = () => {
             value={fakeBankInfo}
           ></input>
         </div>
-        <div>
+        <div className= 'signup-interior-div'>
           <label className='state-label'>
             State
           </label>
