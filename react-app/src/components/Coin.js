@@ -50,7 +50,7 @@ const Coin = () =>{
                         <span>  {coin?.name} </span>
                         <span> {coin?.symbol} </span>
                     </div>
-                    <div classname='time-span-div'>
+                    <div className='coin-time-span-div'>
                         <span className='time-span' onClick={onHour}>  1H  </span>
                         <span className='time-span' onClick={onDay}>  Day  </span>
                         <span className='time-span' onClick={onWeek}>  Week  </span>
