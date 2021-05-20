@@ -8,14 +8,13 @@ import { coinIdObj } from '../../utilities'
 import { requestUserCoins } from '../../store/coins'
 
 const BuySellForm = ({ props }) =>{
-    console.log(props.coin)
+
     const history = useHistory()
     const setShowModal = props.setShowModal
     const dispatch = useDispatch();
     const coins = useSelector(state => state.coin.list)
     const priceFinder = useSelector(state => state.coin)
     const errors = useSelector(state=> state.transaction.errors )
-    console.log(priceFinder)
     const sessionId = useSelector(state => state.session.user.id)
     const [purchase, setPurchase] = useState(true);
     const [coinAmt, setCoinAmt] = useState(0);

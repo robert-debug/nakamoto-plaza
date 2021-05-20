@@ -543,7 +543,10 @@ input {
       margin-left: 50px;
       flex-basis: 200px
     }
-
+    .home-portfolio-h1{
+        font-family: 'Roboto', sans-serif;
+        margin-top: 0px;
+    }
     .home-info-div{
         font-family: 'Roboto', sans-serif;
         font-size: 15px;
@@ -555,7 +558,7 @@ input {
     }
     .home-coins{
         cursor: pointer; 
-        margin:10px;
+        margin:5px;
         width: 300px;
 
     }
@@ -565,7 +568,7 @@ input {
 
     }
     .coin-elements{
-        margin: 15px
+        margin: 10px
     }
     .chart-header-info{
         margin-left: 100px;

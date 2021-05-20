@@ -18,7 +18,7 @@ const Home = () =>{
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
     const { chartDisplay, setChartDisplay } = useContext(ChartStateContext)
     const [selectedCoin, setSelectedCoin] = useState(coinDisplay)
-    console.log('#####################', coinDisplay, chartDisplay, selectedCoin, userCoins, coins)
+    
     if (!coins[selectedCoin]) return(<p>Loading... Please refresh if loading is prolonged...</p>) 
     if (!userCoins) return(<p>Loading... Please refresh if loading is prolonged...</p>)
     const amount = (amount, symbol) => {
@@ -30,11 +30,10 @@ const Home = () =>{
     for (let i = 0; i < userCoins?.length; i++){
         const newAmount = amount(userCoins[i]?.amount, coins[idCoinObj[userCoins[i].coin_id]].id)
         const biggestAmount = amount(userCoins[biggest]?.amount, coins[idCoinObj[userCoins[biggest].coin_id]].id)
-        console.log(newAmount, biggestAmount, userCoins[i]?.coin_id, userCoins[biggest]?.coin_id)
         if(newAmount > biggestAmount) biggest = i
-    }console.log(userCoins[biggest])
+    }
     setCoinDisplay(coins[idCoinObj[userCoins[biggest].coin_id]]?.id)
-    console.log(coinDisplay)
+
     const onClick = (symbol) => {
         setSelectedCoin(symbol)
         setCoinDisplay(symbol)
@@ -61,7 +60,7 @@ const Home = () =>{
         setChartDisplay('1y')
         dispatch(requestSparklineWeekly(coinDisplay))
     }
-    console.log(coins[selectedCoin].price + 10000)
+
     return (
         <>
         <div className='chart-div'>
@@ -84,6 +83,7 @@ const Home = () =>{
                 <Chart props={coinDisplay, chartDisplay}/>
 
             </div>
+            <h3 className='home-portfolio-h1'>Your Portfolio</h3>
             <div className='home-info-div'>
                 {userCoins.map( coin => {
                     if(coin.amount === 0) return null

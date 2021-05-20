@@ -38,7 +38,6 @@ const SignUpForm = () => {
   };
 
   const updateUSState = (e) => {
-    console.log(e.target.value)
     setUSState(e.target.value);
   };
 

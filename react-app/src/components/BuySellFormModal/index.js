@@ -3,7 +3,7 @@ import { Modal } from '../../context/Modal'
 import BuySellForm from './BuySellForm'
 
 const BuySellFormModal = ({ props }) => {
-    console.log(props)
+
     const coin = props.coin
     const [ showModal, setShowModal ] = useState(false);
     return(
