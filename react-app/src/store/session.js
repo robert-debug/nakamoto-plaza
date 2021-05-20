@@ -76,6 +76,9 @@ export const signUp = (username, email, password, firstName, lastName, fakeBankI
         }),
     });
     const data = await response.json();
+    if (data.errors) {
+        return data.errors;
+    }
     dispatch(setUser(data));
 }
 
