@@ -29,13 +29,13 @@ export const requestTransactions = (id) => async (dispatch) => {
     if (data.errors) {
         return;
     }
-    console.log(data)
+
     dispatch(getTransactions(data))
     
 }
 
 export const makeTransaction = (coinAmt, fiatPrice, purchase, fiatId, coinId, sessionId) => async (dispatch)=> {
-    console.log( 'amount:', coinAmt, 'price:', fiatPrice, 'purchase:', purchase, 'fiatId:', fiatId, 'coinId:', coinId, 'userId:',sessionId)
+    
     const response = await fetch("/api/transactions/", {
         method: "POST",
         headers: {
@@ -52,6 +52,7 @@ export const makeTransaction = (coinAmt, fiatPrice, purchase, fiatId, coinId, se
     });
     const data = await response.json();
     if (data.errors) {
+        console.log(data, data.errors)
         return dispatch(errors(data));
     }
     dispatch(postTransaction(data));
@@ -62,7 +63,6 @@ const transactionReducer = (state= initialState, action)=> {
     switch(action.type){
         case LOAD: {
             const transactionList = action.list
-            console.log(transactionList)
             const newList = []
             for (const key in transactionList){
                 newList.unshift(transactionList[key])

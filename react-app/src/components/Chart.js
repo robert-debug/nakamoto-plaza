@@ -5,8 +5,8 @@ import { createChart } from 'lightweight-charts';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Label } from 'recharts'
 import { CoinStateContext } from '../context/CoinContext'
 import { timeSpans, onYear, onMonth, onWeek, onDay, onHour } from './Home'
+
 const Chart = ( { props } ) =>{
-    console.log(props)
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [lineArray, setLineArray] = useState([])
@@ -23,46 +23,41 @@ const Chart = ( { props } ) =>{
     //     setSelectedCoin(props)
     // }, [props])
     // props=props
-    // console.log(selectedCoin)
                
     if(!userCoins || !coins || !spark ) return (<p>Loading...</p>) 
-    if (props === '1h'){
+    if (props === '1h' && spark['Time Series Crypto (5min)']){
         for (const key in spark['Time Series Crypto (5min)']){
             
             data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
         }
         data.splice(0,87)
     }
-    if (props === '1d'){
+    if (props === '1d' && spark['Time Series Crypto (30min)']){
 
         for (const key in spark['Time Series Crypto (30min)']){
-            console.log('############################################', data.length)
             data.unshift({ 'time': key.slice(11,19), 'price': `${spark['Time Series Crypto (30min)'][key]['4. close']}`})
         }
     }
-    if (props === '1w'){
+    if (props === '1w' && spark['Time Series (Digital Currency Daily)']){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Daily)']){
             data.unshift({ 'time': key, 'price': spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)']})
-            console.log('############################################', spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)'])
             i++;
             if (i > 6) break;
         }
     }
-    if (props === '1m'){
+    if (props === '1m' && spark['Time Series (Digital Currency Daily)']){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Daily)']){
             data.unshift({ 'time': key, 'price': spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)']})
-            console.log('############################################', spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)'])
             i++;
             if (i > 29) break;
         }
     }
-    if (props === '1y'){
+    if (props === '1y' && ['Time Series (Digital Currency Weekly)']){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Weekly)']){
             data.unshift({ 'time': key, 'price': spark['Time Series (Digital Currency Weekly)'][key]['4b. close (USD)']})
-            console.log('############################################', spark['Time Series (Digital Currency Weekly)'][key]['4b. close (USD)'])
             i++;
             if (i > 29) break;
         }

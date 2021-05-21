@@ -48,7 +48,7 @@ def transactions():
     vault = Vault.query.filter_by(user_id=user_id).first()
     vault = vault.to_dict()
     coin = VaultCoin.query.filter_by(vault_id=vault['id']).filter_by(coin_id=coin_id).first()
-    print('$$$$$$$$$$$', coin.amount)
+    print('$$$$$$$$$$$', coin.amount, coinamt)
     if purchase == True:
         coin.amount = coin.amount + coinamt
         db.session.commit()

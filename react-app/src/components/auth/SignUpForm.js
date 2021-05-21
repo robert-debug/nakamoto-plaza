@@ -16,12 +16,18 @@ const SignUpForm = () => {
   const [lastName, setLastName] = useState("");
   const [fakeBankInfo, setFakeBankInfo] = useState("");
   const [usState, setUSState] = useState("");
+  const [errors, setErrors] = useState([]);
+
   const statesArray = 
   ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password, firstName, lastName, fakeBankInfo, usState));
+      let data = await dispatch(signUp(username, email, password, firstName, lastName, fakeBankInfo, usState));
+      console.log(data)
+      if (data) {
+        setErrors(data);
+      }
     }
   };
 
@@ -38,7 +44,6 @@ const SignUpForm = () => {
   };
 
   const updateUSState = (e) => {
-    console.log(e.target.value)
     setUSState(e.target.value);
   };
 
@@ -68,6 +73,9 @@ const SignUpForm = () => {
         <div className='signup-logo-div'>
           <img className='signup-form-logo' alt='logo' src={logo}/>
         </div>
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
       <form onSubmit={onSignUp} className='signup-form'>
         <div className= 'signup-interior-div'>
           <label>User Name</label>

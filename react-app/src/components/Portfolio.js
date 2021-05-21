@@ -23,7 +23,6 @@ const Portfolio = () =>{
     if (!transfers) return 'Loading... Please refresh if loading is prolonged...'
     
 
-    console.log(userCoins)
     const amount = (amount, symbol) => {
         return amount * coins[symbol].price
     }

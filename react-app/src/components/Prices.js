@@ -38,8 +38,8 @@ const Prices = () =>{
                 </thead>
                     <tbody>
                         {coins.map( coin => {
-                            console.log(coin)
                             return (
+
                             <tr>
                                 <td key={coin.id} value={coin.id} className='prices-coins' onClick={() => onClick(coin.id)}>{console.log(coin)}
                                     <img alt={`${coin.id}-logo`}src={coin.logo_url} className='coin-logo'/>
@@ -49,7 +49,7 @@ const Prices = () =>{
                                 <td>${parseFloat(coin.price).toFixed(2)}</td>
                                 <td>{(coin['1d'].price_change_pct * 100).toFixed(2)}.%</td>
                                 <td>${new Intl.NumberFormat().format(coin.market_cap)}</td>
-                                <td><BuySellFormModal props={'1h'}/></td>
+                                <td><BuySellFormModal props={{coin: coin.symbol}}/></td>
                             </tr>
                             )})}
                     </tbody>

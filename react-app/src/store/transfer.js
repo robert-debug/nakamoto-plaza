@@ -46,6 +46,7 @@ export const makeTransfers = (sessionId, receiverIdentification, coinAmt, coinId
     });
     const data = await response.json();
     if (data.errors) {
+        console.log(data, data.errors)
         return dispatch(errors(data));
     }
     dispatch(postTransfer(data));

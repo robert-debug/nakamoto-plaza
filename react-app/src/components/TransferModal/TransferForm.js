@@ -17,21 +17,26 @@ const BuySellForm = ({ props }) =>{
     const [coinAmt, setCoinAmt] = useState(0);
     const [receiverIdentification, setReceiverIdentification ] = useState('')
     const [coinSymbol, setCoinSymbol] = useState('BTC');
-    const { showDisplay, setShowDisplay} = useContext(DisplayStateContext)
+    const {showDisplay, setShowDisplay} = useContext(DisplayStateContext)
     const [purchaseCompleted, setPurchaseCompleted] = useState(false)
+    const [zeroErrors, setErrors] = useState([]);
 
     const onSubmit = (e)=> {
         e.preventDefault();
-        const coinId = coinIdObj[coinSymbol]
-        dispatch(makeTransfers(sessionId, receiverIdentification, coinAmt, coinId, sessionId))
-        dispatch(requestTransfers(sessionId))
-        dispatch(requestUserCoins(sessionId))
-        setPurchaseCompleted('true')
+        if(coinAmt > 0){
+            const coinId = coinIdObj[coinSymbol]
+            dispatch(makeTransfers(sessionId, receiverIdentification, coinAmt, coinId, sessionId))
+            dispatch(requestTransfers(sessionId))
+            dispatch(requestUserCoins(sessionId))
+            setPurchaseCompleted(true)
+        } else{
+            setErrors(['Please select a value greater than 0.'])
+        }
     }
     const onComplete = (e)=>{
-        setShowDisplay('Home')
-        setPurchaseCompleted(false)
-        setShowModal(false)
+            setShowDisplay('Home')
+            setPurchaseCompleted(false)
+            setShowModal(false)
     }
     const updateAmount = (e) => {
         const amount = e.target.value
@@ -51,6 +56,9 @@ const BuySellForm = ({ props }) =>{
         {
             !purchaseCompleted ? 
         <div className='send-form-div'>
+            {zeroErrors.map((error) => (
+            <div>{error}</div>
+            ))}
               <h1 className='transfer-h1'>Transfer</h1>
               <form className='send-form' onSubmit={onSubmit}>
                  <input
@@ -80,12 +88,12 @@ const BuySellForm = ({ props }) =>{
         </div> :
                 <div classname='form-div'>
                 {errors ?    errors.map(error => (
-                                <>
+                                <div className= 'completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
                                     <p className='errors'>Errors</p>
-                                    <p classnam='errors' key={error}>{error}</p>
-                                </>
+                                    <p className='errors' key={error}>{error}</p>
+                                </div>
                         )):<>
-                        <div classname='completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
+                        <div className= 'completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
                             <p style={{fontFamily: "'Roboto', sans-serif", marginLeft:'30px' }}>Your Transfer Was Successful!</p>
                             <button className='form-buy-button' onClick={onComplete}>Complete!</button>
                         </div>

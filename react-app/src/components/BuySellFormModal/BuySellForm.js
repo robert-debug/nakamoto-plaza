@@ -8,15 +8,15 @@ import { coinIdObj } from '../../utilities'
 import { requestUserCoins } from '../../store/coins'
 
 const BuySellForm = ({ props }) =>{
-    console.log(props.coin)
+
     const history = useHistory()
     const setShowModal = props.setShowModal
     const dispatch = useDispatch();
     const coins = useSelector(state => state.coin.list)
     const priceFinder = useSelector(state => state.coin)
     const errors = useSelector(state=> state.transaction.errors )
-    console.log(priceFinder)
     const sessionId = useSelector(state => state.session.user.id)
+    const [purchaseErrors, setErrors] = useState([]);
     const [purchase, setPurchase] = useState(true);
     const [coinAmt, setCoinAmt] = useState(0);
     const [fiatPrice, setFiatPrice] = useState(0);
@@ -29,11 +29,15 @@ const BuySellForm = ({ props }) =>{
 
     const onSubmit = (e)=> {
         e.preventDefault();
+        if(coinAmt > 0){
         const coinId = coinIdObj[coinSymbol]
         dispatch(makeTransaction(coinAmt, fiatPrice, purchase,  fiatId, coinId, sessionId))
         dispatch(requestTransactions(sessionId))
         dispatch(requestUserCoins(sessionId))
         setPurchaseCompleted(true)
+        } else {
+            setErrors(['Please select a value greater than $0.'])
+        }
     }
     const onComplete = (e)=>{
         setShowDisplay('Home')
@@ -67,6 +71,9 @@ const BuySellForm = ({ props }) =>{
         {
             !purchaseCompleted ?
         <div className='form-div'>
+            {purchaseErrors.map((error) => (
+            <div>{error}</div>
+            ))}
             <div className='buy-sell'>
                 <div className={purchase ? 'buy-card-selected' : 'not-selected'} onClick={onBuy}>
                     <span>Buy</span></div>
@@ -101,12 +108,12 @@ const BuySellForm = ({ props }) =>{
         </div> :
         <div classname='form-div'>
             {errors ?    errors.map(error => (
-                            <>
+                            <div className='completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
                                 <p className='errors'>Errors</p>
                                 <p classnam='errors' key={error}>{error}</p>
-                            </>
+                            </div>
                     )):<>
-                    <div classname='completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
+                    <div className='completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
                         <p style={{fontFamily: "'Roboto', sans-serif", marginLeft:'30px' }}>Your Transaction Was Successful!</p>
                         <button className='form-buy-button' onClick={onComplete}>Complete!</button>
                     </div>
