@@ -19,19 +19,24 @@ const BuySellForm = ({ props }) =>{
     const [coinSymbol, setCoinSymbol] = useState('BTC');
     const { showDisplay, setShowDisplay} = useContext(DisplayStateContext)
     const [purchaseCompleted, setPurchaseCompleted] = useState(false)
+    const [zeroErrors, setErrors] = useState([]);
 
     const onSubmit = (e)=> {
         e.preventDefault();
-        const coinId = coinIdObj[coinSymbol]
-        dispatch(makeTransfers(sessionId, receiverIdentification, coinAmt, coinId, sessionId))
-        dispatch(requestTransfers(sessionId))
-        dispatch(requestUserCoins(sessionId))
-        setPurchaseCompleted('true')
+        if(coinAmt > 0){
+            const coinId = coinIdObj[coinSymbol]
+            dispatch(makeTransfers(sessionId, receiverIdentification, coinAmt, coinId, sessionId))
+            dispatch(requestTransfers(sessionId))
+            dispatch(requestUserCoins(sessionId))
+            setPurchaseCompleted('true')
+        } else{
+            setErrors(['Please select a value greater than 0.'])
+        }
     }
     const onComplete = (e)=>{
-        setShowDisplay('Home')
-        setPurchaseCompleted(false)
-        setShowModal(false)
+            setShowDisplay('Home')
+            setPurchaseCompleted(false)
+            setShowModal(false)
     }
     const updateAmount = (e) => {
         const amount = e.target.value
@@ -51,6 +56,9 @@ const BuySellForm = ({ props }) =>{
         {
             !purchaseCompleted ? 
         <div className='send-form-div'>
+            {zeroErrors.map((error) => (
+            <div>{error}</div>
+            ))}
               <h1 className='transfer-h1'>Transfer</h1>
               <form className='send-form' onSubmit={onSubmit}>
                  <input

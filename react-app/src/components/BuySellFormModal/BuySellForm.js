@@ -16,6 +16,7 @@ const BuySellForm = ({ props }) =>{
     const priceFinder = useSelector(state => state.coin)
     const errors = useSelector(state=> state.transaction.errors )
     const sessionId = useSelector(state => state.session.user.id)
+    const [purchaseErrors, setErrors] = useState([]);
     const [purchase, setPurchase] = useState(true);
     const [coinAmt, setCoinAmt] = useState(0);
     const [fiatPrice, setFiatPrice] = useState(0);
@@ -28,11 +29,15 @@ const BuySellForm = ({ props }) =>{
 
     const onSubmit = (e)=> {
         e.preventDefault();
+        if(coinAmt > 0){
         const coinId = coinIdObj[coinSymbol]
         dispatch(makeTransaction(coinAmt, fiatPrice, purchase,  fiatId, coinId, sessionId))
         dispatch(requestTransactions(sessionId))
         dispatch(requestUserCoins(sessionId))
         setPurchaseCompleted(true)
+        } else {
+            setErrors(['Please select a value greater than $0.'])
+        }
     }
     const onComplete = (e)=>{
         setShowDisplay('Home')
@@ -66,6 +71,9 @@ const BuySellForm = ({ props }) =>{
         {
             !purchaseCompleted ?
         <div className='form-div'>
+            {purchaseErrors.map((error) => (
+            <div>{error}</div>
+            ))}
             <div className='buy-sell'>
                 <div className={purchase ? 'buy-card-selected' : 'not-selected'} onClick={onBuy}>
                     <span>Buy</span></div>
