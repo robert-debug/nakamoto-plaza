@@ -40,7 +40,7 @@ def get_tranfers(user_id):
 def get_one_coin(user_id, coin_id):
     transfers = Transfer.query.filter_by(sender_id=user_id).filter_by(coin_id=coin_id).all()
     transfered = Transfer.query.filter_by(receiver_id=user_id).filter_by(coin_id=coin_id).all()
-    senders_coins = [transfers.to_dict() for transfer in transfers]
+    senders_coins = [transfer.to_dict() for transfer in transfers]
     receivers_coins = [transfer.to_dict() for transfer in transfered]
     print('###################################', senders_coins)
     print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', receivers_coins)
@@ -70,8 +70,9 @@ def transfer():
     receiver_email = body.get('receiver_identification')
     try:
         receiver = User.query.filter_by(email=receiver_email).first()
+        receiver.to_dict()
     except:
-        return {'errors': 'No such user'}
+        return {'errors': ['No such user']}
     receiver = receiver.to_dict()
     receiver_id = receiver['id']
     vault = Vault.query.filter_by(user_id=sender_id).first()
@@ -79,7 +80,7 @@ def transfer():
     print('########################', vault['id'])
     coin = VaultCoin.query.filter_by(vault_id=vault['id']).filter_by(coin_id=coin_id).first()
     coinAmount = coin.to_dict()
-    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!',coin)
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!',coinAmount)
     print('########################', coinamt)
     if coinamt <= coinAmount['amount']:
         new_vault = Vault.query.filter_by(user_id=receiver_id).first()

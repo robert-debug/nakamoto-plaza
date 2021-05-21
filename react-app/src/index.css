@@ -629,10 +629,11 @@ input {
   }
   .completed-div{
       display: flex;
+      flex-direction: column;
       align-content: center;
       justify-content: center;
       font-family: 'Roboto', sans-serif;
-      font-size: 5px;
+      font-size:20px;
       background-color: white;
       width: 200px;
   }

@@ -108,12 +108,12 @@ const BuySellForm = ({ props }) =>{
         </div> :
         <div classname='form-div'>
             {errors ?    errors.map(error => (
-                            <>
+                            <div className='completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
                                 <p className='errors'>Errors</p>
                                 <p classnam='errors' key={error}>{error}</p>
-                            </>
+                            </div>
                     )):<>
-                    <div classname='completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
+                    <div className='completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
                         <p style={{fontFamily: "'Roboto', sans-serif", marginLeft:'30px' }}>Your Transaction Was Successful!</p>
                         <button className='form-buy-button' onClick={onComplete}>Complete!</button>
                     </div>

@@ -52,6 +52,7 @@ export const makeTransaction = (coinAmt, fiatPrice, purchase, fiatId, coinId, se
     });
     const data = await response.json();
     if (data.errors) {
+        console.log(data, data.errors)
         return dispatch(errors(data));
     }
     dispatch(postTransaction(data));
