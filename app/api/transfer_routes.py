@@ -20,8 +20,6 @@ def get_tranfers(user_id):
         user2= user2.to_dict()
         coin['sender'] = user
         coin['receiver'] = user2
-    print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$',senders_coins)
-    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', receivers_coins)
     for coin in receivers_coins:
         user = User.query.get(coin['receiver_id'])
         user = user.to_dict()
@@ -40,10 +38,8 @@ def get_tranfers(user_id):
 def get_one_coin(user_id, coin_id):
     transfers = Transfer.query.filter_by(sender_id=user_id).filter_by(coin_id=coin_id).all()
     transfered = Transfer.query.filter_by(receiver_id=user_id).filter_by(coin_id=coin_id).all()
-    senders_coins = [transfer.to_dict() for transfer in transfers]
+    senders_coins = [transfers.to_dict() for transfer in transfers]
     receivers_coins = [transfer.to_dict() for transfer in transfered]
-    print('###################################', senders_coins)
-    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', receivers_coins)
     transfer_dict = {}
     i = 0
     while i < len(transfers):
@@ -63,25 +59,18 @@ def get_one_coin(user_id, coin_id):
 def transfer():
     body = request.get_json()
     sender_id = body.get('sender_id')
-    print('$$$$$$$$$$$$$$$$$$$$$$', sender_id)
     coin_id = body.get('coin_id')
     coinamt = body.get('coinamt')
     coinamt = float(coinamt)
     receiver_email = body.get('receiver_identification')
-    try:
-        receiver = User.query.filter_by(email=receiver_email).first()
-        receiver.to_dict()
-    except:
-        return {'errors': ['No such user']}
+    receiver = User.query.filter_by(email=receiver_email).first()
+    # return {'errors': 'No such user'}
     receiver = receiver.to_dict()
     receiver_id = receiver['id']
     vault = Vault.query.filter_by(user_id=sender_id).first()
     vault = vault.to_dict()
-    print('########################', vault['id'])
     coin = VaultCoin.query.filter_by(vault_id=vault['id']).filter_by(coin_id=coin_id).first()
     coinAmount = coin.to_dict()
-    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!',coinAmount)
-    print('########################', coinamt)
     if coinamt <= coinAmount['amount']:
         new_vault = Vault.query.filter_by(user_id=receiver_id).first()
         new_vault = new_vault.to_dict()
@@ -102,9 +91,9 @@ def transfer():
         user2 = User.query.get(new_transfer['receiver_id'])
         user = user.to_dict()
         user2= user2.to_dict()
-        coin['sender'] = user
-        coin['receiver'] = user2
-        return new_transfer.to_dict()
+        new_transfer['sender'] = user
+        new_transfer['receiver'] = user2
+        return new_transfer
     return {'errors':['Insufficient tokens']}
 
 
