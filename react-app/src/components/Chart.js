@@ -28,20 +28,20 @@ const Chart = ( { props } ) =>{
     if (props === '1h' && spark['Time Series Crypto (5min)']){
         for (const key in spark['Time Series Crypto (5min)']){
             
-            data.unshift({ 'time': key.slice(11,19), 'price': spark['Time Series Crypto (5min)'][key]['4. close']})
+            data.unshift({ 'time': key.slice(11,19), 'price': parseInt(spark['Time Series Crypto (5min)'][key]['4. close']).toFixed(0)})
         }
         data.splice(0,87)
     }
     if (props === '1d' && spark['Time Series Crypto (30min)']){
 
         for (const key in spark['Time Series Crypto (30min)']){
-            data.unshift({ 'time': key.slice(11,19), 'price': `${spark['Time Series Crypto (30min)'][key]['4. close']}`})
+            data.unshift({ 'time': key.slice(11,19), 'price': parseInt(`${spark['Time Series Crypto (30min)'][key]['4. close']}`).toFixed(0)})
         }
     }
     if (props === '1w' && spark['Time Series (Digital Currency Daily)']){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Daily)']){
-            data.unshift({ 'time': key, 'price': spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)']})
+            data.unshift({ 'time': key, 'price': parseInt(spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)']).toFixed(0)})
             i++;
             if (i > 6) break;
         }
@@ -49,7 +49,7 @@ const Chart = ( { props } ) =>{
     if (props === '1m' && spark['Time Series (Digital Currency Daily)']){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Daily)']){
-            data.unshift({ 'time': key, 'price': spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)']})
+            data.unshift({ 'time': key, 'price': parseInt(spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)']).toFixed(0)})
             i++;
             if (i > 29) break;
         }
@@ -57,7 +57,7 @@ const Chart = ( { props } ) =>{
     if (props === '1y' && ['Time Series (Digital Currency Weekly)']){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Weekly)']){
-            data.unshift({ 'time': key, 'price': spark['Time Series (Digital Currency Weekly)'][key]['4b. close (USD)']})
+            data.unshift({ 'time': key, 'price': parseInt(spark['Time Series (Digital Currency Weekly)'][key]['4b. close (USD)']).toFixed(0)})
             i++;
             if (i > 29) break;
         }
