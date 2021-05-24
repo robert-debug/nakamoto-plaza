@@ -26,17 +26,17 @@ const BuySellForm = ({ props }) =>{
         if(coinAmt > 0){
             const coinId = coinIdObj[coinSymbol]
             dispatch(makeTransfers(sessionId, receiverIdentification, coinAmt, coinId, sessionId))
-            dispatch(requestTransfers(sessionId))
-            dispatch(requestUserCoins(sessionId))
             setPurchaseCompleted(true)
         } else{
             setErrors(['Please select a value greater than 0.'])
         }
     }
     const onComplete = (e)=>{
-            setShowDisplay('Home')
-            setPurchaseCompleted(false)
-            setShowModal(false)
+        dispatch(requestTransfers(sessionId))
+        dispatch(requestUserCoins(sessionId))
+        setShowDisplay('Home')
+        setPurchaseCompleted(false)
+        setShowModal(false)
     }
     const updateAmount = (e) => {
         const amount = e.target.value
@@ -88,8 +88,8 @@ const BuySellForm = ({ props }) =>{
         </div> :
                 <div classname='form-div'>
                 {errors ?    errors.map(error => (
-                                <div className= 'completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
-                                    <p className='errors'>Errors</p>
+                                <div className= 'completed-div' key= {error} style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
+                                    <p className='errors'>Errors:</p>
                                     <p className='errors' key={error}>{error}</p>
                                 </div>
                         )):<>

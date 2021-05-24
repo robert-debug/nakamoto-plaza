@@ -64,6 +64,9 @@ def transfer():
     coinamt = float(coinamt)
     receiver_email = body.get('receiver_identification')
     receiver = User.query.filter_by(email=receiver_email).first()
+    print('#############################', receiver)
+    if receiver == None:
+        return {'errors': ['No such user']}
     # return {'errors': 'No such user'}
     receiver = receiver.to_dict()
     receiver_id = receiver['id']
