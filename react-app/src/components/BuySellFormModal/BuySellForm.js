@@ -44,6 +44,13 @@ const BuySellForm = ({ props }) =>{
         setPurchaseCompleted(false)
         setShowModal(false)
     }
+    const onFailure = (e)=>{
+        dispatch(requestTransactions(sessionId))
+        dispatch(requestUserCoins(sessionId))
+        setShowDisplay('Home')
+        setPurchaseCompleted(false)
+        setShowModal(false)
+    }
 
     const onFiat = (e) => {
         const paymentAmount = e.target.value
@@ -111,6 +118,7 @@ const BuySellForm = ({ props }) =>{
                             <div className='completed-div' key={error} style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
                                 <p className='errors'>Errors:</p>
                                 <p classnam='errors' >{error}</p>
+                                <button className='form-buy-button' onClick={onFailure}>Continue</button>
                             </div>
                     )):<>
                     <div className='completed-div' style={{backgroundColor:"white", borderRadius: '5px', width: '300px', padding:'10px' }}>
