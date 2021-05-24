@@ -24,7 +24,7 @@ const SideBar = () => {
                 <img className='home-img' src={home} onClick={onHome}/>
                 <img className='portfolio-img' src={portfolio} onClick={onPortfolio}/>
                 <img className='price-list-img' src={prices} onClick={onPrices}/>
-                <a href='https://github.com/robert-debug/nakamoto-plaza'>
+                <a href='https://github.com/robert-debug'>
                     <img className='github-icon' src={github}  />
                 </a>
                 <a href='https://www.linkedin.com/in/robert-george-b5568b28/'>
