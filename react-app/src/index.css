@@ -1,388 +1,387 @@
 /* top level */
-@media only screen and (min-width: 600px) {
-.body{
-    background-color: white;
-    color: black;
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    top:0px;
-    right:0px;
-    bottom:0px;
-    left:0px;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-}
-#root{
-    position:absolute;
-    top:0px;
-    right:0px;
-    bottom:0px;
-    left:0px;
-    margin: 0;
-    padding: 0;
-}
-/* grid */
-.app-container{
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-template-areas: 
-        "header header header header header"
-        "sidebar main main main main"
-        "sidebar main main main main"
-        "sidebar main main main main"
-        "sidebar main main main main";
-
-    position:absolute;
-    top:0px;
-    right:0px;
-    bottom:0px;
-    left:0px;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-}
-
-.header-div{
-    grid-area: header;
-    width: 100%;
-    height: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-}
-
-.sidebar-div{
-    grid-area: sidebar;
-    width: 100%;
-    height: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-}
-
-.main-div{
-    grid-area: main;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    align-content: baseline;
-    width: 1000px;
-    height: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-}
-
-.footer-div{
-    position: absolute;
-    width: 100%;
-    height: 20px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
+@media all and (min-width: 600px) {
+    .body{
+        background-color: white;
+        color: black;
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        top:0px;
+        right:0px;
+        bottom:0px;
+        left:0px;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
     }
+    #root{
+        position:absolute;
+        top:0px;
+        right:0px;
+        bottom:0px;
+        left:0px;
+        margin: 0;
+        padding: 0;
+    }
+/* grid */
+    .app-container{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-areas: 
+            "header header header header header"
+            "sidebar main main main main"
+            "sidebar main main main main"
+            "sidebar main main main main"
+            "sidebar main main main main";
+
+        position:absolute;
+        top:0px;
+        right:0px;
+        bottom:0px;
+        left:0px;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .header-div{
+        grid-area: header;
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .sidebar-div{
+        grid-area: sidebar;
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .main-div{
+        grid-area: main;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        align-content: baseline;
+        width: 1000px;
+        height: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .footer-div{
+        position: absolute;
+        width: 100%;
+        height: 20px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        }
 
 /* navbar */
 
-.navbar{
-    color: black;
-    font-family: 'Roboto', sans-serif;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-}
-.buy-button {
-    margin: 20px;
-    display:inline-block;
-    padding: .5em 1.2em;
-    border-radius: 5px;
-    background-color: #1652F0;
-    color: white;
-    width: 100px;
-    border: 0.2em solid #1652F0;
-    transition: all 0.2s;
-}
-.logout-button {
-    margin: 20px;
-    display:inline-block;
-    padding: .5em 1.2em;
-    border-radius: 5px;
-    background-color: #1652F0;
-    color: white;
-    width: 100px;
-    border: 0.2em solid #1652F0;
-    transition: all 0.2s;
-}
-.logout-button:hover {
-    transform: scale(1.05)
-}
-.buy-button:hover {
-    transform: scale(1.05)
-}
-.send-button {
-    margin: 20px;
-    display:inline-block;
-    padding: .5em 1.2em;
-    border-radius: 5px;
-    background-color: white;
-    color: #1652F0;
-    width: 100px;
-    border: 0.2em solid #1652F0;
-    transition: all 0.2s;
-}       
-.send-button:hover {
-    transform: scale(1.05)
-}
-.logo-loc-container{
-    width: 30%;
-    display: flex;
-    justify-content: space-between;
+    .navbar{
+        color: black;
+        font-family: 'Roboto', sans-serif;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    .buy-button {
+        margin: 20px;
+        display:inline-block;
+        padding: .5em 1.2em;
+        border-radius: 5px;
+        background-color: #1652F0;
+        color: white;
+        width: 100px;
+        border: 0.2em solid #1652F0;
+        transition: all 0.2s;
+    }
+    .logout-button {
+        margin: 20px;
+        display:inline-block;
+        padding: .5em 1.2em;
+        border-radius: 5px;
+        background-color: #1652F0;
+        color: white;
+        width: 100px;
+        border: 0.2em solid #1652F0;
+        transition: all 0.2s;
+    }
+    .logout-button:hover {
+        transform: scale(1.05)
+    }
+    .buy-button:hover {
+        transform: scale(1.05)
+    }
+    .send-button {
+        margin: 20px;
+        display:inline-block;
+        padding: .5em 1.2em;
+        border-radius: 5px;
+        background-color: white;
+        color: #1652F0;
+        width: 100px;
+        border: 0.2em solid #1652F0;
+        transition: all 0.2s;
+    }       
+    .send-button:hover {
+        transform: scale(1.05)
+    }
+    .logo-loc-container{
+        width: 30%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .button-icon-container{
+        width: 30%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
 
-}
-.button-icon-container{
-    width: 30%;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-
-}
-.logo{
-    height: 130px;
-    cursor: pointer;  
-}
-.location-label{
-    margin-top: 20px;
-}
+    }
+    .logo{
+        height: 130px;
+        cursor: pointer;  
+    }
+    .location-label{
+        margin-top: 20px;
+    }
 /* sidebar */
-.sidebar-container{
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-.sidebar{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-.home-img{
-    filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
-    height: 65px;
-    margin-bottom: 20px;
-    margin-right:40px;
-    cursor: pointer;
-    transition: all 0.2s;   
-}
-.portfolio-img{
-    filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
-    height: 50px;
-    margin-right:40px;
-    margin-bottom: 20px;
-    cursor: pointer; 
-    transition: all 0.2s; 
-}
+    .sidebar-container{
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    .sidebar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    .home-img{
+        filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
+        height: 65px;
+        margin-bottom: 20px;
+        margin-right:40px;
+        cursor: pointer;
+        transition: all 0.2s;   
+    }
+    .portfolio-img{
+        filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
+        height: 50px;
+        margin-right:40px;
+        margin-bottom: 20px;
+        cursor: pointer; 
+        transition: all 0.2s; 
+    }
 
-.price-list-img{
-    filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
-    height: 60px;
-    cursor: pointer;  
-    transition: all 0.2s;
-    margin-bottom: 20px;
-    margin-right:40px;
-}
-.link-icon{
-    height: 40px;
-    cursor: pointer;  
-    transition: all 0.2s;
-    margin-right:40px;
-    margin-bottom: 20px;
-}
-.github-icon{
-    height: 40px;
-    cursor: pointer;  
-    transition: all 0.2s;
-    margin-right:40px;
-    margin-bottom: 20px;
-}
-.linkedin-icon{
-    height: 40px;
-    cursor: pointer;  
-    transition: all 0.2s;
-    margin-right:40px;
-    margin-bottom: 20px;
-}
-.angel-icon{
-    height: 40px;
-    cursor: pointer;  
-    transition: all 0.2s;
-    margin-right:40px;
-    margin-bottom:40px;
-}
+    .price-list-img{
+        filter: invert(22%) sepia(89%) saturate(5724%) hue-rotate(226deg) brightness(99%) contrast(90%);
+        height: 60px;
+        cursor: pointer;  
+        transition: all 0.2s;
+        margin-bottom: 20px;
+        margin-right:40px;
+    }
+    .link-icon{
+        height: 40px;
+        cursor: pointer;  
+        transition: all 0.2s;
+        margin-right:40px;
+        margin-bottom: 20px;
+    }
+    .github-icon{
+        height: 40px;
+        cursor: pointer;  
+        transition: all 0.2s;
+        margin-right:40px;
+        margin-bottom: 20px;
+    }
+    .linkedin-icon{
+        height: 40px;
+        cursor: pointer;  
+        transition: all 0.2s;
+        margin-right:40px;
+        margin-bottom: 20px;
+    }
+    .angel-icon{
+        height: 40px;
+        cursor: pointer;  
+        transition: all 0.2s;
+        margin-right:40px;
+        margin-bottom:40px;
+    }
 /*main-dispaly*/
-.main-display{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
+    .main-display{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
 /* forms */
-.buy-sell{
-   color: black;
-   font-size: 20px;
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   margin-bottom: 40px;
-   font-family: 'Roboto', sans-serif;
-}
-.buy-card-selected{
-    border-right: 1px solid black;
-    width: 200px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Roboto', sans-serif;
-    transition: all 0.2s;
-}
-.sell-card-selected{
-    width: 200px;
-    height: 100px;
-    border-left:  1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Roboto', sans-serif;
-    transition: all 0.2s;
-}
-.not-selected{
-    border-bottom: 1px solid black;
-    width: 200px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Roboto', sans-serif;
-    background-color: rgba(0,0,0,0.6);
+    .buy-sell{
+        color: black;
+        font-size: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        font-family: 'Roboto', sans-serif;
+    }
+    .buy-card-selected{
+        border-right: 1px solid black;
+        width: 200px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+        transition: all 0.2s;
+    }
+    .sell-card-selected{
+        width: 200px;
+        height: 100px;
+        border-left:  1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+        transition: all 0.2s;
+    }
+    .not-selected{
+        border-bottom: 1px solid black;
+        width: 200px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+        background-color: rgba(0,0,0,0.6);
     
-}
-.money{
-    text-align: center;
+    }
+    .money{
+        text-align: center;
 
-}
+    }
 
-.number-input {
-    text-align: center;
-    width: 70%;
-    font-size: 50px;
+    .number-input {
+        text-align: center;
+        width: 70%;
+        font-size: 50px;
 
-}
+    }
 
-input {
-    border-radius: 5px;
-    border: 2px gray;
-    display: block;
-    box-sizing: border-box;
-    background-color: white;
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    width: 100%;
-    margin: 10px 0px 5px 0px;
-    padding: 10px;
-    outline: 0;
-  }
+    input {
+        border-radius: 5px;
+        border: 2px gray;
+        display: block;
+        box-sizing: border-box;
+        background-color: white;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        width: 100%;
+        margin: 10px 0px 5px 0px;
+        padding: 10px;
+        outline: 0;
+    }
   
   input:focus {
     border: 2px #1652F0;
   }
-.money-input-div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.money-input-div > i{
-    font-size: 50px;
-    width:15%
-}
-.coin-select{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.form-buy-button {
-    margin-top: 20px;
-    margin-left: 97px;
-    display:inline-block;
-    padding: .5em 1.2em;
-    border-radius: 5px;
-    background-color: #1652F0;
-    color: white;
-    width: 100px;
-    border: 0.2em solid #1652F0;
-    transition: all 0.2s;
-}
-.coin-price-label{
-    margin-left: 45px;
-}
-.coin-select > select{
-    margin: 20px;
-    border-radius: 20px;
-    font-size: 20px;
-    text-align: center;
-}
-.form-div{
-    justify-content: center;
-    border: #1652F0;
-    border-radius: 6px;
-    border-width: 2px;
-    width: 300px;
-    height: 400px;
-    font-family: 'Roboto', sans-serif;
-    background-color: white;
-    color: grey;
-    text-align: left;
-    font-size: 15px;
-    padding: 0px;
-}
-.send-form > select{
-    margin: 20px;
-    border-radius: 20px;
-    font-size: 20px;
-    text-align: center;
-}
+    .money-input-div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .money-input-div > i{
+        font-size: 50px;
+        width:15%
+    }
+    .coin-select{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-buy-button {
+        margin-top: 20px;
+        margin-left: 97px;
+        display:inline-block;
+        padding: .5em 1.2em;
+        border-radius: 5px;
+        background-color: #1652F0;
+        color: white;
+        width: 100px;
+        border: 0.2em solid #1652F0;
+        transition: all 0.2s;
+    }
+    .coin-price-label{
+        margin-left: 45px;
+    }
+    .coin-select > select{
+        margin: 20px;
+        border-radius: 20px;
+        font-size: 20px;
+        text-align: center;
+    }
+    .form-div{
+        justify-content: center;
+        border: #1652F0;
+        border-radius: 6px;
+        border-width: 2px;
+        width: 300px;
+        height: 400px;
+        font-family: 'Roboto', sans-serif;
+        background-color: white;
+        color: grey;
+        text-align: left;
+        font-size: 15px;
+        padding: 0px;
+    }
+    .send-form > select{
+        margin: 20px;
+        border-radius: 20px;
+        font-size: 20px;
+        text-align: center;
+    }
 .to-label{
     font-size: 20px;
 }
@@ -479,15 +478,15 @@ input {
     }
 
 /* portfolio */
-.trans-holder{
-    width: 100%;
-    height: 100%;
-    margin: 0;
+    .trans-holder{
+        width: 100%;
+        height: 100%;
+        margin: 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-}
+    }
     .portfolio-container{
         width: 100%;
         height: 100%;
@@ -676,5 +675,12 @@ input {
         margin: 0;
         padding: 0;
     }
-
+    .header-div{
+        width: 100%;
+        position: fixed; 
+        top: 0;
+    }
+    .footer-div{
+        
+    }
 }
