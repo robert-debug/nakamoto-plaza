@@ -1,4 +1,5 @@
 /* top level */
+@media only screen and (min-width: 600px) {
 .body{
     background-color: white;
     color: black;
@@ -648,3 +649,32 @@ input {
   .signup-logo-div{
       margin-left: 25px;
   }
+}
+@media only screen and (max-width: 599px) {
+    .body{
+        background-color: white;
+        color: black;
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        top:0px;
+        right:0px;
+        bottom:0px;
+        left:0px;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+    #root{
+        position:absolute;
+        top:0px;
+        right:0px;
+        bottom:0px;
+        left:0px;
+        margin: 0;
+        padding: 0;
+    }
+
+}

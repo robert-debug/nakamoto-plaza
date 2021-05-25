@@ -32,7 +32,7 @@ const Home = () =>{
         const biggestAmount = amount(userCoins[biggest]?.amount, coins[idCoinObj[userCoins[biggest].coin_id]].id)
         if(newAmount > biggestAmount) biggest = i
     }
-    setCoinDisplay(coins[idCoinObj[userCoins[biggest].coin_id]]?.id)
+    setCoinDisplay(coins[idCoinObj[userCoins[biggest]?.coin_id]]?.id)
 
     const onClick = (symbol) => {
         setSelectedCoin(symbol)
