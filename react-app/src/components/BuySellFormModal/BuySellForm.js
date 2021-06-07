@@ -97,6 +97,7 @@ const BuySellForm = ({ props }) =>{
                        name="fiatprice"
                        onChange={onFiat}
                        value={fiatPrice}
+                       min='0'
                     ></input>
                   </div>
 

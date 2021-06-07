@@ -548,12 +548,13 @@
     }
     .chart-top-div{
       font-family: 'Roboto', sans-serif;
-      padding: 1em;
+      padding: 2em;
       font-size: 15px;
       display: flex;
       flex-direction: row;
-      align-content: center;
-      width: 1015px;
+      align-content: baseline;
+      width: 70em;
+      height: 7em;
       justify-content: space-between;
       margin-left: 50px;
       flex-basis: 200px;
@@ -586,24 +587,36 @@
     .coin-elements{
         margin: 10px
     }
-    .chart-header-info{
+    #chart-header-info{
         margin-left: 2em;
         margin-bottom: 2em;
-        min-width: 300px;
-        min-height: 300px;
-        padding:.5rem;
+        min-width: 3em;
+        min-height: 1em;
+        padding:.5em;
         /* display: flex;
         flex-direction: row;
         justify-content: space-between; */
     }
-    .time-span-div{
-        margin-top: 100px;
+    #coin-header-info{
+        margin-left: 2em;
+        margin-bottom: 2em;
+        min-width: 3em;
+        min-height: 1em;
+        padding:.5em;
+        /* display: flex;
+        flex-direction: row;
+        justify-content: space-between; */
+    }
+    #time-span-div{
+        margin-top: 1.1em;
         text-align: center;
+        padding: 1em;
+
+
         
     }
     .time-span{
         cursor: pointer;
-
         padding: .5em;
         border-radius: 5px;
         

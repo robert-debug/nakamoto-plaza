@@ -17,45 +17,75 @@ const Coin = () =>{
     const coin = useSelector(state => state.coin.coin)
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
     const { chartDisplay, setChartDisplay } = useContext(ChartStateContext)
+    const [hourBackground, changeHourBackground] = useState(true)
+    const [dayBackground, changeDayBackground] = useState(false)
+    const [weekBackground, changeWeekBackground] = useState(false)
+    const [monthBackground, changeMonthBackground] = useState(false)
+    const [yearBackground, changeYearBackground] = useState(false)
     
     if (!coin) return null
 
     const onHour = (symbol) => {
         setChartDisplay('1h')
+        changeHourBackground(true)
+        changeDayBackground(false)
+        changeWeekBackground(false)
+        changeMonthBackground(false)
+        changeYearBackground(false)
         dispatch(requestSparklineIntraDay(coinDisplay))
     }
     const onDay = (symbol) => {
         setChartDisplay('1d')
+        changeHourBackground(false)
+        changeDayBackground(true)
+        changeWeekBackground(false)
+        changeMonthBackground(false)
+        changeYearBackground(false)
         dispatch(requestSparklineOneDay(coinDisplay))
     }
     const onWeek = (symbol) => {
         setChartDisplay('1w')
+        changeHourBackground(false)
+        changeDayBackground(false)
+        changeWeekBackground(true)
+        changeMonthBackground(false)
+        changeYearBackground(false)
         dispatch(requestSparklineDaily(coinDisplay))
     }
     const onMonth = (symbol) => {
         setChartDisplay('1m')
+        changeHourBackground(false)
+        changeDayBackground(false)
+        changeWeekBackground(false)
+        changeMonthBackground(true)
+        changeYearBackground(false)
         dispatch(requestSparklineDaily(coinDisplay))
     }
     const onYear = (symbol) => {
         setChartDisplay('1y')
+        changeHourBackground(false)
+        changeDayBackground(false)
+        changeWeekBackground(false)
+        changeMonthBackground(false)
+        changeYearBackground(true)
         dispatch(requestSparklineWeekly(coinDisplay))
     }
     return (
         <>
             <div className='chart-div'>
                 <div className='chart-top-div'>
-                    <div classname='chart-header-info'>
+                    <div id='coin-header-info'>
                         <h2>  ${parseFloat(coin?.price).toFixed(2)}  </h2>
                         <img alt={`${coin?.id}-logo`}src={coin?.logo_url} className='coin-logo'/>
                         <span>  {coin?.name} </span>
                         <span> {coin?.symbol} </span>
                     </div>
                     <div className='coin-time-span-div'>
-                        <span className='time-span' onClick={onHour}>  1H  </span>
-                        <span className='time-span' onClick={onDay}>  Day  </span>
-                        <span className='time-span' onClick={onWeek}>  Week  </span>
-                        <span className='time-span' onClick={onMonth}>  Month  </span>
-                        <span className='time-span' onClick={onYear}>  1/2Year  </span>
+                    <span className='time-span' onClick={onHour} style={hourBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}} >   1H   </span>
+                    <span className='time-span' onClick={onDay} style={dayBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>   Day   </span>
+                    <span className='time-span' onClick={onWeek} style={weekBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>   Week   </span>
+                    <span className='time-span' onClick={onMonth} style={monthBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>  Month  </span>
+                    <span className='time-span' onClick={onYear} style={yearBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>  1/2Year  </span>
                     </div>
                 </div>
                 <Chart props={chartDisplay}/>

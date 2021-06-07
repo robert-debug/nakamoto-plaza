@@ -101,13 +101,13 @@ const Home = () =>{
         <div className='chart-div'>
             
             <div className='chart-top-div'>
-                <div classname='chart-header-info'>
+                <div id='chart-header-info'>
                     <h2 className= 'coin-price'>${parseFloat(coins[selectedCoin].price).toFixed(2)}</h2>
                     <img alt={`${coins[selectedCoin].id}-logo`}src={coins[selectedCoin].logo_url} className='coin-logo'/>
                     <span value={coins[selectedCoin].id}>{coins[selectedCoin].name}</span>
                     <span value={coins[selectedCoin].id}>{coins[selectedCoin].symbol}</span>
                 </div>
-                <div classname='time-span-div'>
+                <div id='time-span-div'>
                     <span className='time-span' onClick={onHour} style={hourBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}} >   1H   </span>
                     <span className='time-span' onClick={onDay} style={dayBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>   Day   </span>
                     <span className='time-span' onClick={onWeek} style={weekBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>   Week   </span>
