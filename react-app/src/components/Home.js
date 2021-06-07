@@ -88,7 +88,7 @@ const Home = () =>{
     }
     const onYear = (symbol) => {
         setChartDisplay('1y')
-        changeHourBackground(true)
+        changeHourBackground(false)
         changeDayBackground(false)
         changeWeekBackground(false)
         changeMonthBackground(false)
@@ -108,11 +108,11 @@ const Home = () =>{
                     <span value={coins[selectedCoin].id}>{coins[selectedCoin].symbol}</span>
                 </div>
                 <div classname='time-span-div'>
-                    <span className='time-span' onClick={onHour} style={hourBackground ? {'background-color' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}} >   1H   </span>
-                    <span className='time-span' onClick={onDay} style={dayBackground ? {'background-color' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>   Day   </span>
-                    <span className='time-span' onClick={onWeek} style={weekBackground ? {'background-color' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>   Week   </span>
-                    <span className='time-span' onClick={onMonth} style={monthBackground ? {'background-color' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>  Month  </span>
-                    <span className='time-span' onClick={onYear} style={yearBackground ? {'background-color' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>  1/2Year  </span>
+                    <span className='time-span' onClick={onHour} style={hourBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}} >   1H   </span>
+                    <span className='time-span' onClick={onDay} style={dayBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>   Day   </span>
+                    <span className='time-span' onClick={onWeek} style={weekBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>   Week   </span>
+                    <span className='time-span' onClick={onMonth} style={monthBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>  Month  </span>
+                    <span className='time-span' onClick={onYear} style={yearBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>  1/2Year  </span>
                 </div> 
             </div>
                 <Chart props={coinDisplay, chartDisplay}/>
@@ -120,15 +120,15 @@ const Home = () =>{
             </div>
             <h3 className='home-portfolio-h1'>Your Portfolio</h3>
             <div className='home-info-div'>
-                {userCoins.map( coin => {
+                {userCoins.map( (coin, i) => {
                     if(coin.amount === 0) return null
                     return (
-                        <div className='home-coins' onClick={() => onClick(coins[idCoinObj[coin.coin_id]].id)}>
-                            <img classname='coin-elements' alt={`${coins[idCoinObj[coin.coin_id]].id}-logo`}src={coins[idCoinObj[coin.coin_id]].logo_url} className='coin-logo'/>
-                            <span classname='coin-elements'>  {coins[idCoinObj[coin.coin_id]].name}  </span>
-                            <span classname='coin-elements'>  {coins[idCoinObj[coin.coin_id]].symbol}  </span>
-                            <span classname='coin-elements'>$ {(amount(coin.amount, idCoinObj[coin.coin_id])).toFixed(2)}</span>
-                            <span classname='coin-elements'>  {coins.amount}  </span>
+                        <div className='home-coins' key={i} onClick={() => onClick(coins[idCoinObj[coin.coin_id]].id)}>
+                            <img  alt={`${coins[idCoinObj[coin.coin_id]].id}-logo`}src={coins[idCoinObj[coin.coin_id]].logo_url} className='coin-logo'/>
+                            <span >  {coins[idCoinObj[coin.coin_id]].name}  </span>
+                            <span >  {coins[idCoinObj[coin.coin_id]].symbol}  </span>
+                            <span >$ {(amount(coin.amount, idCoinObj[coin.coin_id])).toFixed(2)}</span>
+                            <span >  {coins.amount}  </span>
                         </div>
                             )})}
         </div>

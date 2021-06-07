@@ -548,6 +548,7 @@
     }
     .chart-top-div{
       font-family: 'Roboto', sans-serif;
+      padding: 1em;
       font-size: 15px;
       display: flex;
       flex-direction: row;
@@ -555,7 +556,8 @@
       width: 1015px;
       justify-content: space-between;
       margin-left: 50px;
-      flex-basis: 200px
+      flex-basis: 200px;
+      margin-bottom: 1em;
     }
     .home-portfolio-h1{
         font-family: 'Roboto', sans-serif;
@@ -585,20 +587,26 @@
         margin: 10px
     }
     .chart-header-info{
-        margin-left: 100px;
-        min-width: 200px;
-        min-height: 200px;
-        display: flex;
+        margin-left: 2em;
+        margin-bottom: 2em;
+        min-width: 300px;
+        min-height: 300px;
+        padding:.5rem;
+        /* display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-between; */
     }
     .time-span-div{
         margin-top: 100px;
+        text-align: center;
+        
     }
     .time-span{
         cursor: pointer;
-        position: relative;
-        top:40px;
+
+        padding: .5em;
+        border-radius: 5px;
+        
     }
   /* coin */
   .coin-info-div{
