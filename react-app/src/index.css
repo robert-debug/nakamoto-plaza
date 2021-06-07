@@ -548,11 +548,12 @@
     }
     .chart-top-div{
       font-family: 'Roboto', sans-serif;
-      padding: 2em;
+      padding: 1.2em;
       font-size: 15px;
       display: flex;
       flex-direction: row;
       align-content: baseline;
+      margin-top: 2em;
       width: 70em;
       height: 7em;
       justify-content: space-between;
@@ -560,6 +561,20 @@
       flex-basis: 200px;
       margin-bottom: 1em;
     }
+    .coin-chart-top-div{
+        font-family: 'Roboto', sans-serif;
+        padding: 1.2em;
+        font-size: 15px;
+        display: flex;
+        flex-direction: row;
+        align-content: baseline;
+        width: 70em;
+        height: 7em;
+        justify-content: space-between;
+        margin-left: 50px;
+        flex-basis: 200px;
+        margin-bottom: 1em;
+      }
     .home-portfolio-h1{
         font-family: 'Roboto', sans-serif;
         margin-top: 0px;
@@ -608,6 +623,14 @@
         justify-content: space-between; */
     }
     #time-span-div{
+        margin-top: 1.1em;
+        text-align: center;
+        padding: 1em;
+
+
+        
+    }
+    #coin-time-span-div{
         margin-top: 1.1em;
         text-align: center;
         padding: 1em;

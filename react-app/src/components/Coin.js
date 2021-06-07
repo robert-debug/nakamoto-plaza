@@ -72,15 +72,15 @@ const Coin = () =>{
     }
     return (
         <>
-            <div className='chart-div'>
-                <div className='chart-top-div'>
+            <div className='coin-chart-div'>
+                <div className='coin-chart-top-div'>
                     <div id='coin-header-info'>
                         <h2>  ${parseFloat(coin?.price).toFixed(2)}  </h2>
                         <img alt={`${coin?.id}-logo`}src={coin?.logo_url} className='coin-logo'/>
                         <span>  {coin?.name} </span>
                         <span> {coin?.symbol} </span>
                     </div>
-                    <div className='coin-time-span-div'>
+                    <div id='coin-time-span-div'>
                     <span className='time-span' onClick={onHour} style={hourBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}} >   1H   </span>
                     <span className='time-span' onClick={onDay} style={dayBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>   Day   </span>
                     <span className='time-span' onClick={onWeek} style={weekBackground ? {'backgroundColor' : '#ADD8E6'} : {'background-color' : 'FFFFFF'}}>   Week   </span>
