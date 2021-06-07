@@ -69,7 +69,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <div modal='signup-form-div'>
+    <div modal='signup-form-div' className='signup-form-div'>
         <div className='signup-logo-div'>
           <img className='signup-form-logo' alt='logo' src={logo}/>
         </div>

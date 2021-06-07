@@ -1,5 +1,5 @@
 /* top level */
-@media all and (min-width: 600px) {
+@media screen and (min-width: 50px) {
     .body{
         background-color: white;
         color: black;
@@ -414,9 +414,19 @@
 .auth-form{
     font-family: 'Roboto', sans-serif;
 }
+.signup-form-div{
+    border: 1px solid;
+    border-color: #1652F0;
+    padding: 1.5rem;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+}
 .signup-form{
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
+}
+.signup-interior-div{
+    margin: .5rem;
 }
 .signup-interior-div > label{
     padding: 5px;
@@ -426,11 +436,15 @@
 .signup-interior-div > input{
     padding: 5px;
     margin: 5px;
+    background-color: aliceblue;
+    font-size: 12px;
 }
 .auth-select{
     border-radius: 20px;
-    font-size: 20px;
+    font-size: 12px;
     text-align: center;
+    padding-left: .2rem;
+
 }
 
 
@@ -621,11 +635,17 @@
     height:240px
 }
   .login-form-div{
-      margin-bottom: 50px;
+      margin-bottom: 3rem;
+      border: 1px solid;
+      border-color: #1652F0;
+      border-radius: 5px;
+      padding: .5rem;
+      font-family: 'Roboto', sans-serif;
   }
   .nomics-link{
     font-family: 'Roboto', sans-serif;
     font-size: 5px;
+    margin-top: .5em;
   }
   .completed-div{
       display: flex;
@@ -680,7 +700,5 @@
         position: fixed; 
         top: 0;
     }
-    .footer-div{
-        
-    }
+
 }

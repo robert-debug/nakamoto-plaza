@@ -95,7 +95,7 @@ const Home = () =>{
                             <span classname='coin-elements'>$ {(amount(coin.amount, idCoinObj[coin.coin_id])).toFixed(2)}</span>
                             <span classname='coin-elements'>  {coins.amount}  </span>
                         </div>
-                                )})}
+                            )})}
         </div>
         </>
     )
