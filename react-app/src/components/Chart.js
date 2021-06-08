@@ -16,6 +16,7 @@ const Chart = ( { props } ) =>{
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
     const toolTipStyle = { 'border-radius':'20px', 'color':'#F4F4F4'}
     const contentStyle = { 'font-family': 'Roboto'}
+    let seconds = 60
     let data = [];
 
     // const [selectedCoin, setSelectedCoin] = useState('BTC')
@@ -66,6 +67,9 @@ const Chart = ( { props } ) =>{
     // const customLabel=()
 
     return (
+        <>
+        {
+            spark['Meta Data'] ? 
         <div className='chart-info-container'>
             {/* <div className='chart-top-div'>
                 <h2>{coins[props].price}</h2>
@@ -91,7 +95,13 @@ const Chart = ( { props } ) =>{
                 </YAxis>
                 <Tooltip wrapperStyle={{backgroundColor:'lightgray'}}labelStyle={{ fontSize: '1rem', fontFamily: "'Roboto', sans-serif"}}  />
             </LineChart>
+        </div> 
+        : <div className='chart-info-container' onRender={setInterval(()=>{seconds -= 1}, 1000)}>
+            <p>{`You have used up the Alpha Vantage API calls for the current time frame: please wait ${seconds} seconds and refresh to view this chart.`}</p>
         </div>
+
+        }
+        </>
     )
 }
 
