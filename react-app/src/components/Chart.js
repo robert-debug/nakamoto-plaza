@@ -100,7 +100,7 @@ const Chart = ( { props } ) =>{
         : 
         <div id='timer'>
             <p>{`You have used up the Alpha Vantage API calls for the current time frame: please wait ${seconds} seconds and refresh to view this chart.`}</p>
-            <span>Time Left to Refresh:</span><Countdown date={Date.now() + 60000}><span>Please refresh!</span></Countdown>
+            <span>Time Left to Refresh:</span><Countdown date={Date.now() + 60000}><span>  Please refresh!</span></Countdown>
         </div>
 
 
