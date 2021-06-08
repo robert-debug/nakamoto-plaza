@@ -1,4 +1,5 @@
 import React, {useEffect, useContext, useState } from 'react';
+import Countdown from 'react-countdown';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createChart } from 'lightweight-charts';
@@ -14,6 +15,7 @@ const Chart = ( { props } ) =>{
     const userCoins = useSelector(state => state.coin.userCoins)
     const spark = useSelector(state => state.coin.spark)
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
+    let [seconds, setSeconds]= useState(60)
     const toolTipStyle = { 'border-radius':'20px', 'color':'#F4F4F4'}
     const contentStyle = { 'font-family': 'Roboto'}
     let data = [];
@@ -66,6 +68,9 @@ const Chart = ( { props } ) =>{
     // const customLabel=()
 
     return (
+        <>
+        {
+            spark['Meta Data'] ? 
         <div className='chart-info-container'>
             {/* <div className='chart-top-div'>
                 <h2>{coins[props].price}</h2>
@@ -91,7 +96,17 @@ const Chart = ( { props } ) =>{
                 </YAxis>
                 <Tooltip wrapperStyle={{backgroundColor:'lightgray'}}labelStyle={{ fontSize: '1rem', fontFamily: "'Roboto', sans-serif"}}  />
             </LineChart>
+        </div> 
+        : 
+        <div id='timer'>
+            <p>{`You have used up the Alpha Vantage API calls for the current time frame: please wait ${seconds} seconds and refresh to view this chart.`}</p>
+            <span>Time Left to Refresh:</span><Countdown date={Date.now() + 60000}><span>  Please refresh!</span></Countdown>
         </div>
+
+
+
+        }
+        </>
     )
 }
 

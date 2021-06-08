@@ -704,6 +704,13 @@
   .state-label{
       margin-right: 10px;
   }
+  #timer{
+    position: relative;
+    color: black;
+    margin-left: 100px;
+    margin-bottom: 100px;
+    font-family: 'Roboto', sans-serif;
+}
   .switch-nomics{
     font-family: 'Roboto', sans-serif;
     display: 'flex'
@@ -729,6 +736,12 @@
         margin-left: 0;
         margin-right: 0;
         padding: 0;
+    }
+    #timer > p{
+        position: relative;
+        color: black;
+        margin-left: 30px;
+        font-family: 'Roboto', sans-serif;
     }
     #root{
         position:absolute;
