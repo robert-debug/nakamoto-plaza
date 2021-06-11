@@ -25,24 +25,25 @@ const Chart = ( { props } ) =>{
     //     setSelectedCoin(props)
     // }, [props])
     // props=props
-               
+    let dataMin=``;           
     if(!userCoins || !coins || !spark ) return (<p>Loading...</p>) 
     if (props === '1h' && spark['Time Series Crypto (5min)']){
         for (const key in spark['Time Series Crypto (5min)']){
-            
+            dataMin = spark['Time Series Crypto (5min)'][key]['4. close'] * .97
             data.unshift({ 'time': key.slice(11,19), 'price': parseInt(spark['Time Series Crypto (5min)'][key]['4. close']).toFixed(0)})
         }
         data.splice(0,87)
     }
     if (props === '1d' && spark['Time Series Crypto (30min)']){
-
         for (const key in spark['Time Series Crypto (30min)']){
+            dataMin = (spark['Time Series Crypto (30min)'][key]['4. close'] * .80) - (spark['Time Series Crypto (30min)'][key]['4. close'] * .1)
             data.unshift({ 'time': key.slice(11,19), 'price': parseInt(`${spark['Time Series Crypto (30min)'][key]['4. close']}`).toFixed(0)})
         }
     }
     if (props === '1w' && spark['Time Series (Digital Currency Daily)']){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Daily)']){
+                dataMin = spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)'] * .80
             data.unshift({ 'time': key, 'price': parseInt(spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)']).toFixed(0)})
             i++;
             if (i > 6) break;
@@ -51,6 +52,7 @@ const Chart = ( { props } ) =>{
     if (props === '1m' && spark['Time Series (Digital Currency Daily)']){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Daily)']){
+            dataMin = spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)'] * .40
             data.unshift({ 'time': key, 'price': parseInt(spark['Time Series (Digital Currency Daily)'][key]['4b. close (USD)']).toFixed(0)})
             i++;
             if (i > 29) break;
@@ -59,6 +61,7 @@ const Chart = ( { props } ) =>{
     if (props === '1y' && ['Time Series (Digital Currency Weekly)']){
         let i = 0;
         for (const key in spark['Time Series (Digital Currency Weekly)']){
+            dataMin = spark['Time Series (Digital Currency Weekly)'][key]['4b. close (USD)'] * .40
             data.unshift({ 'time': key, 'price': parseInt(spark['Time Series (Digital Currency Weekly)'][key]['4b. close (USD)']).toFixed(0)})
             i++;
             if (i > 29) break;
@@ -91,8 +94,8 @@ const Chart = ( { props } ) =>{
                 }}> 
                 <Line type='monotone' dataKey='price' stroke='#1652F0' dot={false}/>
                 <CartesianGrid vertical={false} horizontal={false}/>
-                <XAxis  tick={{ 'font-size': '1rem', 'font-family': 'Roboto', 'color': '#F4F4F4'}} dataKey="time" />
-                <YAxis hide={true} tick={{ 'font-size': '1rem', 'font-family': 'Roboto', 'color': '#F4F4F4'}}>
+                <XAxis tick={{ 'font-size': '1rem', 'font-family': 'Roboto', 'color': '#F4F4F4'}} dataKey="time" />
+                <YAxis domain={[dataMin, 'dataMax']} hide={true} tick={{ 'font-size': '1rem', 'font-family': 'Roboto', 'color': '#F4F4F4'}}>
                 </YAxis>
                 <Tooltip wrapperStyle={{backgroundColor:'lightgray'}}labelStyle={{ fontSize: '1rem', fontFamily: "'Roboto', sans-serif"}}  />
             </LineChart>
