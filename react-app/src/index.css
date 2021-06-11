@@ -170,10 +170,12 @@
     }
     .logo{
         height: 130px;
-        cursor: pointer;  
+        cursor: pointer; 
+        margin-left: 1em; 
     }
     .location-label{
         margin-top: 20px;
+        margin-right: 1em;
     }
 /* sidebar */
     .sidebar-container{

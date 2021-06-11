@@ -29,7 +29,8 @@ const MainDisplay = () =>{
         dispatch(requestUserCoins(sessionUser.id))
         dispatch(requestTransactions(sessionUser.id))
         dispatch(requestTransfers(sessionUser.id))
-    }, [showDisplay])
+    }, [showDisplay, coinDisplay])
+
     
 
     return(

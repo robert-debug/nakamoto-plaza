@@ -23,7 +23,7 @@ const Home = () =>{
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
     const { chartDisplay, setChartDisplay } = useContext(ChartStateContext)
     const [selectedCoin, setSelectedCoin] = useState(coinDisplay)
-    
+    console.log(selectedCoin)
     if (!coins[selectedCoin]) return(<p>Loading... Please refresh if loading is prolonged...</p>) 
     if (!userCoins) return(<p>Loading... Please refresh if loading is prolonged...</p>)
     const amount = (amount, symbol) => {
@@ -40,8 +40,9 @@ const Home = () =>{
     setCoinDisplay(coins[idCoinObj[userCoins[biggest]?.coin_id]]?.id)
 
     const onClick = (symbol) => {
-        setSelectedCoin(symbol)
+        console.log(symbol)
         setCoinDisplay(symbol)
+        setSelectedCoin(symbol)
         setChartDisplay('1h')
         changeHourBackground(true)
         changeDayBackground(false)
@@ -51,22 +52,24 @@ const Home = () =>{
         dispatch(requestSparklineIntraDay(symbol))
     }
     const onHour = (symbol) => {
+        setCoinDisplay(selectedCoin)
         setChartDisplay('1h')
         changeHourBackground(true)
         changeDayBackground(false)
         changeWeekBackground(false)
         changeMonthBackground(false)
         changeYearBackground(false)
-        dispatch(requestSparklineIntraDay(coinDisplay))
+        dispatch(requestSparklineIntraDay(selectedCoin))
     }
     const onDay = (symbol) => {
+        console.log(coinDisplay)
         setChartDisplay('1d')
         changeHourBackground(false)
         changeDayBackground(true)
         changeWeekBackground(false)
         changeMonthBackground(false)
         changeYearBackground(false)
-        dispatch(requestSparklineOneDay(coinDisplay))
+        dispatch(requestSparklineOneDay(selectedCoin))
     }
     const onWeek = (symbol) => {
         setChartDisplay('1w')
@@ -75,7 +78,7 @@ const Home = () =>{
         changeWeekBackground(true)
         changeMonthBackground(false)
         changeYearBackground(false)
-        dispatch(requestSparklineDaily(coinDisplay))
+        dispatch(requestSparklineDaily(selectedCoin))
     }
     const onMonth = (symbol) => {
         setChartDisplay('1m')
@@ -84,7 +87,7 @@ const Home = () =>{
         changeWeekBackground(false)
         changeMonthBackground(true)
         changeYearBackground(false)
-        dispatch(requestSparklineDaily(coinDisplay))
+        dispatch(requestSparklineDaily(selectedCoin))
     }
     const onYear = (symbol) => {
         setChartDisplay('1y')
@@ -93,7 +96,7 @@ const Home = () =>{
         changeWeekBackground(false)
         changeMonthBackground(false)
         changeYearBackground(true)
-        dispatch(requestSparklineWeekly(coinDisplay))
+        dispatch(requestSparklineWeekly(selectedCoin))
     }
     console.log('hour', hourBackground, 'day', dayBackground)
     return (
