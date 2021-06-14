@@ -23,7 +23,7 @@ const Home = () =>{
     const { coinDisplay, setCoinDisplay } = useContext(CoinStateContext)
     const { chartDisplay, setChartDisplay } = useContext(ChartStateContext)
     const [selectedCoin, setSelectedCoin] = useState(coinDisplay)
-    console.log(selectedCoin)
+
     if (!coins[selectedCoin]) return(<p>Loading... Please refresh if loading is prolonged...</p>) 
     if (!userCoins) return(<p>Loading... Please refresh if loading is prolonged...</p>)
     const amount = (amount, symbol) => {
@@ -40,7 +40,7 @@ const Home = () =>{
     setCoinDisplay(coins[idCoinObj[userCoins[biggest]?.coin_id]]?.id)
 
     const onClick = (symbol) => {
-        console.log(symbol)
+
         setCoinDisplay(symbol)
         setSelectedCoin(symbol)
         setChartDisplay('1h')
@@ -62,7 +62,7 @@ const Home = () =>{
         dispatch(requestSparklineIntraDay(selectedCoin))
     }
     const onDay = (symbol) => {
-        console.log(coinDisplay)
+
         setChartDisplay('1d')
         changeHourBackground(false)
         changeDayBackground(true)
@@ -98,7 +98,7 @@ const Home = () =>{
         changeYearBackground(true)
         dispatch(requestSparklineWeekly(selectedCoin))
     }
-    console.log('hour', hourBackground, 'day', dayBackground)
+
     return (
         <>
         <div className='chart-div'>
