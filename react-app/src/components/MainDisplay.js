@@ -34,12 +34,12 @@ const MainDisplay = () =>{
     
 
     return(
-        <div className='main-display'>
+        <main className='main-display'>
             {showDisplay === 'Home' ? <Home /> : null}
             {showDisplay === 'Portfolio' ? <Portfolio /> : null}
             {showDisplay === 'Prices' ? <Prices/> : null}
             {showDisplay === 'coin' ? <Coin /> : null}
-        </div>
+        </main>
     )
 }
 export default MainDisplay

@@ -42,7 +42,7 @@ const NavBar = () => {
     history.push('/')
   }
   return (
-      <div className='navbar'>
+      <header className='navbar'>
         <div className='logo-loc-container'>
 
           <div className='logo-div' onClick={onClick}>
@@ -66,7 +66,7 @@ const NavBar = () => {
             { sessionUser ? <BuySellFormModal props={{coin: 'BTC'}}/>: null}
           </div>
           </div>
-      </div>
+      </header>
   );
 }
 
