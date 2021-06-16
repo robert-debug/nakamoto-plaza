@@ -7,6 +7,8 @@ import { requestTransactions } from '../store/transaction';
 import { requestTransfers } from '../store/transfer'
 import { coinIdObj } from '../utilities'
 import { idCoinObj } from '../utilities'
+import PieChart from './PieChart'
+
 const Portfolio = () =>{
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
@@ -38,6 +40,7 @@ const Portfolio = () =>{
 
     return(
         <div className='portfolio-container'>
+            <PieChart prop={}/>
             <table className='portfolio-table'>
                 <thead>
                     <tr>
