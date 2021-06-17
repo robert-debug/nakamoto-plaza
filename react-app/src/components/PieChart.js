@@ -37,7 +37,7 @@ const PieChartComponent = () =>{
     return(
         <>
         <PieChart width={400} height={400}>
-            <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
+            <Pie data={data} dataKey="value" paddingAngle={5} nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#1652F0" />
         </PieChart>
         </>
     )
