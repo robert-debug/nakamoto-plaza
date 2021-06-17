@@ -29,15 +29,15 @@ const PieChartComponent = () =>{
     }
 
     let data = userCoins.map(coin =>{
-        return {'name': coins[idCoinObj[coin.coin_id]].name, 'value':(amount(coin.amount, idCoinObj[coin.coin_id])).toFixed(2)}
+        return {'name': coins[idCoinObj[coin.coin_id]].name, 'value':parseInt(amount(coin.amount, idCoinObj[coin.coin_id]).toFixed(0))}
 
     })
-
+    console.log(data)
 
     return(
         <>
-        <PieChart width={730} height={250}>
-            <Pie data={data} dataKey="value" nameKey="Portfolio" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
+        <PieChart width={400} height={400}>
+            <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
         </PieChart>
         </>
     )
