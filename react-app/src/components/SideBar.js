@@ -34,7 +34,7 @@ const SideBar = () => {
                     <img className='angel-icon' src={angel}  />
                 </a>
             </div>
-            <a className='nomics-link' target="_blank" href="https://nomics.com">{'Crypto Market Cap & Pricing Data Provided By Nomics'}</a>
+            <a className='nomics-link' target="_blank" href="https://nomics.com" rel='noreferrer'>{'Crypto Market Cap & Pricing Data Provided By Nomics'}</a>
         </div>
             
         

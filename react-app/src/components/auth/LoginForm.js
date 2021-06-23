@@ -86,7 +86,7 @@ const LoginForm = () => {
             Need an Account? Sign Up
           </NavLink>
       </div>
-          <a className='nomics-link' target="_blank" href="https://nomics.com">{'Crypto Market Cap & Pricing Data Provided By Nomics'}</a>
+          <a className='nomics-link' target="_blank" href="https://nomics.com" rel='noreferrer'>{'Crypto Market Cap & Pricing Data Provided By Nomics'}</a>
     </div>
   );
 };
