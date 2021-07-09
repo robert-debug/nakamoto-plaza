@@ -40,7 +40,6 @@ const Portfolio = () =>{
 
     return(
         <div className='portfolio-container'>
-            <PieChart prop={''}/>
             <table className='portfolio-table'>
                 <thead>
                     <tr>
